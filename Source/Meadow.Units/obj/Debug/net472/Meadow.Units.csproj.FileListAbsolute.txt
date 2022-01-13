@@ -1,0 +1,8 @@
+C:\Users\brikim\gh\Meadow.Core\source\Meadow.Units\bin\Debug\net472\Meadow.Units.dll
+C:\Users\brikim\gh\Meadow.Core\source\Meadow.Units\bin\Debug\net472\Meadow.Units.pdb
+C:\Users\brikim\gh\Meadow.Core\source\Meadow.Units\obj\Debug\net472\Meadow.Units.csprojAssemblyReference.cache
+C:\Users\brikim\gh\Meadow.Core\source\Meadow.Units\obj\Debug\net472\Meadow.Units.AssemblyInfoInputs.cache
+C:\Users\brikim\gh\Meadow.Core\source\Meadow.Units\obj\Debug\net472\Meadow.Units.AssemblyInfo.cs
+C:\Users\brikim\gh\Meadow.Core\source\Meadow.Units\obj\Debug\net472\Meadow.Units.csproj.CoreCompileInputs.cache
+C:\Users\brikim\gh\Meadow.Core\source\Meadow.Units\obj\Debug\net472\Meadow.Units.dll
+C:\Users\brikim\gh\Meadow.Core\source\Meadow.Units\obj\Debug\net472\Meadow.Units.pdb

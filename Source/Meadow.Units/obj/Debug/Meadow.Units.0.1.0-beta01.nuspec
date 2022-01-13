@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Meadow.Units</id>
+    <version>0.1.0-beta01</version>
+    <authors>Meadow.Units</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>http://developer.wildernesslabs.co/Meadow/</projectUrl>
+    <iconUrl>https://github.com/WildernessLabs/Meadow.Foundation/blob/master/Source/icon.png?raw=true</iconUrl>
+    <description>Package Description</description>
+    <tags>Meadow</tags>
+    <repository url="https://github.com/WildernessLabs/Meadow.Core" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.7.2" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\brikim\gh\Meadow.Core\source\Meadow.Units\bin\Debug\net472\Meadow.Units.dll" target="lib\net472\Meadow.Units.dll" />
+  </files>
+</package>
