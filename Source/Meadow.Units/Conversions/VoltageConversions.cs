@@ -1,6 +1,6 @@
 ﻿namespace Meadow.Units.Conversions
 {
-	internal static class VoltageConversions
+    internal static class VoltageConversions
 	{
 		public static double Convert(double value, Voltage.UnitType from, Voltage.UnitType to)
 		{
