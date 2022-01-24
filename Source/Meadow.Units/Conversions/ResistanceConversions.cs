@@ -14,6 +14,7 @@
 		//must align to enum
 		private static readonly double[] resistanceConversions =
 		{
+			1000, //MilliOhms
 			1, //Ohms
 			0.001, //KiloOhms
 			0.000001, //MegaOhms

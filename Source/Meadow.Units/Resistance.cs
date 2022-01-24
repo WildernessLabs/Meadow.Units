@@ -47,6 +47,10 @@ namespace Meadow.Units
         public enum UnitType
         {
             /// <summary>
+            /// MilliOhms
+            /// </summary>
+            Milliohms,
+            /// <summary>
             /// Ohms
             /// </summary>
             Ohms,
@@ -60,6 +64,10 @@ namespace Meadow.Units
             Megaohms
         }
 
+        /// <summary>
+        /// Get resistance in MilliOhms
+        /// </summary>
+        public double Milliohms => From(UnitType.Milliohms);
         /// <summary>
         /// Get resistance in Ohms
         /// </summary>
