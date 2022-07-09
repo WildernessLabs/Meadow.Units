@@ -1,3 +1,6 @@
 **/obj
 **/bin
 **/.vs
+
+# macOS folder user view settings
+.DS_Store
