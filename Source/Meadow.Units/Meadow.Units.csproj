@@ -6,7 +6,6 @@
     <Company>Wilderness Labs, Inc</Company>
     <PackageProjectUrl>http://developer.wildernesslabs.co/Meadow/</PackageProjectUrl>
     <PackageId>Meadow.Units</PackageId>
-    <PackageIconUrl>https://raw.githubusercontent.com/WildernessLabs/Meadow.Foundation/main/Source/icon.png</PackageIconUrl>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/WildernessLabs/Meadow.Units</RepositoryUrl>
     <PackageTags>Meadow</PackageTags>
