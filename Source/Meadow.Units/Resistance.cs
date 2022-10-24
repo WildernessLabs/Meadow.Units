@@ -8,32 +8,32 @@ using Meadow.Units.Conversions;
 namespace Meadow.Units
 {
     /// <summary>
-    /// Represents Concentration
+    /// Represents a value of Electrical resistance
     /// </summary>
     [Serializable]
     [ImmutableObject(true)]
     [StructLayout(LayoutKind.Sequential)]
-    public struct Concentration :
+    public struct Resistance :
         IComparable, IFormattable, IConvertible,
         IEquatable<double>, IComparable<double>
     {
         /// <summary>
-        /// Creates a new `Concentration` object.
+        /// Creates a new `Resistance` object.
         /// </summary>
-        /// <param name="value">The Concentration value.</param>
-        /// <param name="type">Parts Per Million by default.</param>
-        public Concentration(double value, UnitType type = UnitType.PartsPerMillion)
+        /// <param name="value">The Resistance value.</param>
+        /// <param name="type">Ohms by default.</param>
+        public Resistance(double value, UnitType type = UnitType.Ohms)
         {
-            Value = ConcentrationConversions.Convert(value, type, UnitType.PartsPerMillion);
+            Value = ResistanceConversions.Convert(value, type, UnitType.Ohms);
         }
 
         /// <summary>
-        /// Creates a copy of a `Concentration` object.
+        /// Creates a new `Resistance` object from an existing Resistance object
         /// </summary>
-        /// <param name="concentration">Concentration to copy</param>
-        public Concentration(Concentration concentration)
+        /// <param name="resistance"></param>
+        public Resistance(Resistance resistance)
         {
-            Value = concentration.Value;
+            Value = resistance.Value;
         }
 
         /// <summary>
@@ -42,185 +42,168 @@ namespace Meadow.Units
         private readonly double Value;
 
         /// <summary>
-        /// The type of units available to describe the concentration.
+        /// The type of units available to describe the resistance.
         /// </summary>
         public enum UnitType
         {
             /// <summary>
-            /// Parts per 100
+            /// MilliOhms
             /// </summary>
-            PartsPerHundred,
+            Milliohms,
             /// <summary>
-            /// Parts per 1,000
+            /// Ohms
             /// </summary>
-            PartsPerThousand,
+            Ohms,
             /// <summary>
-            /// Parts per 1,000,000
+            /// Kiloohms
             /// </summary>
-            PartsPerMillion,
+            Kiloohms,
             /// <summary>
-            /// Parts per 1,000,000,000
+            /// Megaohms
             /// </summary>
-            PartsPerBillion,
+            Megaohms
         }
 
         /// <summary>
-        /// Get Concentration in parts per 100
+        /// Get resistance in MilliOhms
         /// </summary>
-        public double PartsPerHundred => From(UnitType.PartsPerHundred);
+        public double Milliohms => From(UnitType.Milliohms);
         /// <summary>
-        /// Get Concentration in parts per 1000
+        /// Get resistance in Ohms
         /// </summary>
-        public double PartsPerThousand => From(UnitType.PartsPerThousand);
+        public double Ohms => From(UnitType.Ohms);
         /// <summary>
-        /// Get Concentration in parts per 1,000,000
+        /// Get resistance in kiloOhms
         /// </summary>
-        public double PartsPerMillion => From(UnitType.PartsPerMillion);
+        public double Kiloohms => From(UnitType.Kiloohms);
         /// <summary>
-        /// Get Concentration in parts per 1,000,000,000
+        /// Get resistance in megaOhms
         /// </summary>
-        public double PartsPerBillion => From(UnitType.PartsPerBillion);
+        public double Megaohms => From(UnitType.Megaohms);
 
         /// <summary>
-        /// Get Concentration for a specific unit
+        /// Get a double value for a specific unit
         /// </summary>
-        /// <param name="convertTo">unit</param>
-        /// <returns>value as a double</returns>
+        /// <param name="convertTo">unit to covert to</param>
+        /// <returns>the converted value</returns>
         [Pure] public double From(UnitType convertTo)
         {
-            return ConcentrationConversions.Convert(Value, UnitType.PartsPerMillion, convertTo);
+            return ResistanceConversions.Convert(Value, Resistance.UnitType.Ohms, convertTo);
         }
 
         /// <summary>
-        /// Compare two Concentration objects
+        /// Compare to another Resistance object
         /// </summary>
-        /// <param name="obj"></param>
+        /// <param name="obj">The object to compare</param>
         /// <returns>true if equal</returns>
         [Pure] public override bool Equals(object obj)
         {
             if (obj is null) { return false; }
             if (Equals(this, obj)) { return true; }
-            return obj.GetType() == GetType() && Equals((Concentration)obj);
+            return obj.GetType() == GetType() && Equals((Resistance)obj);
         }
 
         /// <summary>
-        /// Get hash of Concentration object
+        /// Get hash of object
         /// </summary>
-        /// <returns>int32 hash of object</returns>
+        /// <returns>int32 hash value</returns>
         [Pure] public override int GetHashCode() => Value.GetHashCode();
-
-        // implicit conversions
-        //[Pure] public static implicit operator Concentration(ushort value) => new Concentration(value);
-        //[Pure] public static implicit operator Concentration(short value) => new Concentration(value);
-        //[Pure] public static implicit operator Concentration(uint value) => new Concentration(value);
-        //[Pure] public static implicit operator Concentration(long value) => new Concentration(value);
-        //[Pure] public static implicit operator Concentration(int value) => new Concentration(value);
-        //[Pure] public static implicit operator Concentration(float value) => new Concentration(value);
-        //[Pure] public static implicit operator Concentration(double value) => new Concentration(value);
-        //[Pure] public static implicit operator Concentration(decimal value) => new Concentration((double)value);
 
         // Comparison
         /// <summary>
-        /// Compare to another Concentration objects
+        /// Compare to another Resistance object
         /// </summary>
         /// <param name="other">The object to compare</param>
         /// <returns>true if equal</returns>
-        [Pure] public bool Equals(Concentration other) => Value == other.Value;
+        [Pure] public bool Equals(Resistance other) => Value == other.Value;
 
         /// <summary>
-        /// Equals operator to compare two Concentration objects
+        /// Equals operator to compare two Resistance objects
         /// </summary>
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>true if equal</returns>
-        [Pure] public static bool operator ==(Concentration left, Concentration right) => Equals(left.Value, right.Value);
+        [Pure] public static bool operator ==(Resistance left, Resistance right) => Equals(left.Value, right.Value);
 
         /// <summary>
-        /// Not equals operator to compare two Concentration objects
+        /// Not equals operator to compare two Resistance objects
         /// </summary>
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>true if not equal</returns>
-        [Pure] public static bool operator !=(Concentration left, Concentration right) => !Equals(left.Value, right.Value);
+        [Pure] public static bool operator !=(Resistance left, Resistance right) => !Equals(left.Value, right.Value);
 
         /// <summary>
-        /// Compare to another Concentration object
+        /// Compare to another Resistance object
         /// </summary>
         /// <param name="other"></param>
         /// <returns>0 if equal</returns>
-        [Pure] public int CompareTo(Concentration other) => Equals(Value, other.Value) ? 0 : Value.CompareTo(other.Value);
+        [Pure] public int CompareTo(Resistance other) => Equals(Value, other.Value) ? 0 : Value.CompareTo(other.Value);
 
         /// <summary>
-        /// Less than operator to compare two Concentration objects
+        /// Less than operator to compare two Resistance objects
         /// </summary>
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>true if left is less than right</returns>
-        [Pure] public static bool operator <(Concentration left, Concentration right) => Comparer<double>.Default.Compare(left.Value, right.Value) < 0;
+        [Pure] public static bool operator <(Resistance left, Resistance right) => Comparer<double>.Default.Compare(left.Value, right.Value) < 0;
 
         /// <summary>
-        /// Greater than operator to compare two Concentration objects
+        /// Greater than operator to compare two Resistance objects
         /// </summary>
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>true if left is greater than right</returns>
-        [Pure] public static bool operator >(Concentration left, Concentration right) => Comparer<double>.Default.Compare(left.Value, right.Value) > 0;
+        [Pure] public static bool operator >(Resistance left, Resistance right) => Comparer<double>.Default.Compare(left.Value, right.Value) > 0;
 
         /// <summary>
-        /// Less than or equal operator to compare two Concentration objects
+        /// Less than or equal operator to compare two Resistance objects
         /// </summary>
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>true if left is less than or equal to right</returns>
-        [Pure] public static bool operator <=(Concentration left, Concentration right) => Comparer<double>.Default.Compare(left.Value, right.Value) <= 0;
+        [Pure] public static bool operator <=(Resistance left, Resistance right) => Comparer<double>.Default.Compare(left.Value, right.Value) <= 0;
 
         /// <summary>
-        /// Greater than or equal operator to compare two Concentration objects
+        /// Greater than or equal operator to compare two Resistance objects
         /// </summary>
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>true if left is greater than or equal to right</returns>
-        [Pure] public static bool operator >=(Concentration left, Concentration right) => Comparer<double>.Default.Compare(left.Value, right.Value) >= 0;
+        [Pure] public static bool operator >=(Resistance left, Resistance right) => Comparer<double>.Default.Compare(left.Value, right.Value) >= 0;
 
         // Math
         /// <summary>
-        /// Addition operator to add two Concentration objects
+        /// Addition operator to add two Resistance objects
         /// </summary>
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
-        /// <returns>A new Concentration object with a value of left + right</returns>
-        [Pure] public static Concentration operator +(Concentration left, Concentration right) => new (left.Value + right.Value);
+        /// <returns>A new Resistance object with a value of left + right</returns>
+        [Pure] public static Resistance operator +(Resistance left, Resistance right) => new (left.Value + right.Value);
 
         /// <summary>
-        /// Subtraction operator to subtract two Concentration objects
+        /// Subtraction operator to subtract two Resistance objects
         /// </summary>
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
-        /// <returns>A new Concentration object with a value of left - right</returns>
-        [Pure] public static Concentration operator -(Concentration left, Concentration right) => new (left.Value - right.Value);
+        /// <returns>A new Resistance object with a value of left - right</returns>
+        [Pure] public static Resistance operator -(Resistance left, Resistance right) => new (left.Value - right.Value);
 
         /// <summary>
         /// Multipication operator to multiply by a double
         /// </summary>
         /// <param name="value">object to multiply</param>
         /// <param name="operand">operand to multiply object</param>
-        /// <returns>A new Concentration object with a value of value multiplied by the operand</returns>
-        [Pure] public static Concentration operator *(Concentration value, double operand) => new (value.Value * operand);
+        /// <returns>A new Resistance object with a value of value multiplied by the operand</returns>
+        [Pure] public static Resistance operator *(Resistance value, double operand) => new (value.Value * operand);
 
         /// <summary>
         /// Division operator to divide by a double
         /// </summary>
         /// <param name="value">object to be divided</param>
         /// <param name="operand">operand to divide object</param>
-        /// <returns>A new Concentration object with a value of value divided by the operand</returns>
-        [Pure] public static Concentration operator /(Concentration value, double operand) => new (value.Value / operand);
-
-        /// <summary>
-        /// Returns the absolute length, that is, the length without regards to
-        /// negative polarity
-        /// </summary>
-        /// <returns></returns>
-        [Pure] public Concentration Abs() { return new Concentration(Math.Abs(this.Value)); }
+        /// <returns>A new Resistance object with a value of value divided by the operand</returns>
+        [Pure] public static Resistance operator /(Resistance value, double operand) => new (value.Value / operand);
 
         /// <summary>
         /// Get a string represention of the object
@@ -238,9 +221,9 @@ namespace Meadow.Units
 
         // IComparable
         /// <summary>
-        /// Compare to another Concentration object
+        /// Compare to another Resistance object
         /// </summary>
-        /// <param name="obj">The other Concentration cast to object</param>
+        /// <param name="obj">The other Resistance cast to object</param>
         /// <returns>0 if equal</returns>
         [Pure] public int CompareTo(object obj) => Value.CompareTo(obj);
 
