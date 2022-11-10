@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Meadow.Units.Conversions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
-using Meadow.Units.Conversions;
 
 namespace Meadow.Units
 {
@@ -11,7 +11,7 @@ namespace Meadow.Units
 
     // Notes:
     //  1. there are additional precision compass cardinal points: http://tamivox.org/dave/compass/index.html
-    
+
     /// <summary>
     /// Represents a cardinal direction; 
     /// </summary>
@@ -28,7 +28,7 @@ namespace Meadow.Units
         /// <param name="value">The cardinal direction value.</param>
         public Azimuth(double value)
         {
-            Value = value;
+            Value = ConvertTo360(value);
         }
 
         /// <summary>
@@ -81,8 +81,10 @@ namespace Meadow.Units
         /// Gets the cardinal direction value expressed as a unit a 16 division cardinal point
         /// name.
         /// </summary>
-        public Azimuth16PointCardinalNames Compass16PointCardinalName {
-            get {
+        public Azimuth16PointCardinalNames Compass16PointCardinalName
+        {
+            get
+            {
                 return AzimuthConversions.DegressToCompass16PointCardinalName(Value);
             }
         }
@@ -95,21 +97,22 @@ namespace Meadow.Units
         /// </summary>
         /// <param name="value">The cardinal direction value.</param>
         /// <returns>A new cardinal direction object.</returns>
-        [Pure] public static Azimuth FromDecimalDegrees(double value) => new (value);
+        [Pure] public static Azimuth FromDecimalDegrees(double value) => new(ConvertTo360(value));
 
         /// <summary>
         /// Creates a new `Azimuth` object
         /// </summary>
         /// <param name="name">The 16 point cardinal direction.</param>
         /// <returns>A new cardinal direction object.</returns>
-        [Pure] public static Azimuth FromCompass16PointCardinalName(Azimuth16PointCardinalNames name) => new (name);
+        [Pure] public static Azimuth FromCompass16PointCardinalName(Azimuth16PointCardinalNames name) => new(name);
 
         /// <summary>
         /// Compare to another Azimuth object.
         /// </summary>
         /// <param name="obj">object to compare</param>
         /// <returns>true if equal</returns>
-        [Pure] public override bool Equals(object obj)
+        [Pure]
+        public override bool Equals(object obj)
         {
             if (obj is null) { return false; }
             if (Equals(this, obj)) { return true; }
@@ -195,6 +198,13 @@ namespace Meadow.Units
         /// <returns>true if left is greater than or equal to right</returns>
         [Pure] public static bool operator >=(Azimuth left, Azimuth right) => Comparer<double>.Default.Compare(left.Value, right.Value) >= 0;
 
+        private static double ConvertTo360(double value)
+        {
+            value %= 360;
+            if (value < 0) value += 360;
+            return value;
+        }
+
         // Math
         /// <summary>
         /// Addition operator to add two Azimuth objects
@@ -202,7 +212,8 @@ namespace Meadow.Units
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>A new Azimuth object with a value of left + right</returns>
-        [Pure] public static Azimuth operator +(Azimuth left, Azimuth right) => new (left.Value + right.Value);
+        [Pure]
+        public static Azimuth operator +(Azimuth left, Azimuth right) => new Azimuth(ConvertTo360(left.Value + right.Value));
 
         /// <summary>
         /// Subtraction operator to subtract two Azimuth objects
@@ -210,7 +221,7 @@ namespace Meadow.Units
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>A new Azimuth object with a value of left - right</returns>
-        [Pure] public static Azimuth operator -(Azimuth left, Azimuth right) => new (left.Value - right.Value);
+        [Pure] public static Azimuth operator -(Azimuth left, Azimuth right) => new(ConvertTo360(left.Value - right.Value));
 
         /// <summary>
         /// Multipication operator to multiply by a double
@@ -218,8 +229,16 @@ namespace Meadow.Units
         /// <param name="value">object to multiply</param>
         /// <param name="operand">operand to multiply object</param>
         /// <returns>A new Azimuth object with a value of value multiplied by the operand</returns>
-		[Pure] public static Azimuth operator *(Azimuth value, double operand) => new (value.Value * operand);
-		
+		[Pure] public static Azimuth operator *(Azimuth value, double operand) => new(ConvertTo360(value.Value * operand));
+
+        /// <summary>
+        /// Multipication operator to divide by a double
+        /// </summary>
+        /// <param name="value">object to divide</param>
+        /// <param name="operand">operand to divide object</param>
+        /// <returns>A new Azimuth object with a value of value divideed by the operand</returns>
+		[Pure] public static Azimuth operator /(Azimuth value, double operand) => new(ConvertTo360(value.Value / operand));
+
         private static double StandardizeAzimuth(double value)
         {
             value %= 360d;
@@ -380,7 +399,8 @@ namespace Meadow.Units
         /// </summary>
         /// <param name="other">value to compare</param>
         /// <returns>0 if equal</returns>
-        [Pure] public int CompareTo(double? other)
+        [Pure]
+        public int CompareTo(double? other)
         {
             return (other is null) ? -1 : (Value).CompareTo(other.Value);
         }

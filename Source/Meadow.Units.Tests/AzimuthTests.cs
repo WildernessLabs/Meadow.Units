@@ -1,5 +1,4 @@
 ﻿using System;
-using Meadow.Units;
 using Xunit;
 
 namespace Meadow.Units.Tests
@@ -63,6 +62,15 @@ namespace Meadow.Units.Tests
 
             var a5 = a3 * 5;
             Assert.Equal(90d, a5.DecimalDegrees);
+
+            var m = new Azimuth(90) * 5;
+            Assert.Equal(90d, m.DecimalDegrees);
+
+            var m2 = new Azimuth(90) * -1;
+            Assert.Equal(270d, m2.DecimalDegrees);
+
+            var m3 = new Azimuth(360 * 5.5);
+            Assert.Equal(180d, m3.DecimalDegrees);
         }
     }
 }
