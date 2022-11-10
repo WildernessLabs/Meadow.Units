@@ -9,7 +9,7 @@
    <PackageIconUrl>https://github.com/WildernessLabs/Meadow.Foundation/blob/master/Source/icon.png?raw=true</PackageIconUrl>
    <RepositoryUrl>https://github.com/WildernessLabs/Meadow.Units</RepositoryUrl>
    <PackageTags>Meadow</PackageTags>
-   <Version>0.30.0</Version>
+   <Version>0.33.0</Version>
    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
    <GenerateDocumentationFile>true</GenerateDocumentationFile>
    <RootNamespace>Meadow</RootNamespace>
