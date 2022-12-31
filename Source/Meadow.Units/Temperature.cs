@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Meadow.Units.Conversions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
-using Meadow.Units.Conversions;
 
 namespace Meadow.Units
 {
@@ -20,6 +20,8 @@ namespace Meadow.Units
         IComparable, IFormattable, IConvertible,
         IEquatable<double>, IComparable<double>
     {
+        public static Temperature AbsoluteZero = new Temperature(0, UnitType.Kelvin);
+
         /// <summary>
         /// Creates a new `Temperature` object.
         /// </summary>
@@ -28,7 +30,7 @@ namespace Meadow.Units
         public Temperature(double value, UnitType type = UnitType.Celsius)
         {
             Value = 0;
-            switch (type) 
+            switch (type)
             {
                 case UnitType.Celsius:
                     Value = value;
@@ -40,6 +42,8 @@ namespace Meadow.Units
                     Value = TempConversions.KToC(value);
                     break;
             }
+
+            if (this < AbsoluteZero) throw new ArgumentOutOfRangeException();
         }
 
         /// <summary>
@@ -98,7 +102,8 @@ namespace Meadow.Units
         /// </summary>
         /// <param name="convertTo">unit to convert to</param>
         /// <returns></returns>
-        [Pure] public double From(UnitType convertTo)
+        [Pure]
+        public double From(UnitType convertTo)
         {
             return TempConversions.Convert(Value, UnitType.Celsius, convertTo);
         }
@@ -108,7 +113,8 @@ namespace Meadow.Units
         /// </summary>
         /// <param name="obj">The object to compare</param>
         /// <returns>true if equal</returns>
-        [Pure] public override bool Equals(object obj)
+        [Pure]
+        public override bool Equals(object obj)
         {
             if (obj is null) { return false; }
             if (Equals(this, obj)) { return true; }
@@ -201,7 +207,7 @@ namespace Meadow.Units
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>A new Temperature object with a value of left + right</returns>
-        [Pure] public static Temperature operator +(Temperature left, Temperature right) => new (left.Value + right.Value);
+        [Pure] public static Temperature operator +(Temperature left, Temperature right) => new(left.Value + right.Value);
 
         /// <summary>
         /// Subtraction operator to subtract two Temperature objects
@@ -209,7 +215,7 @@ namespace Meadow.Units
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>A new Temperature object with a value of left - right</returns>
-        [Pure] public static Temperature operator -(Temperature left, Temperature right) => new (left.Value - right.Value);
+        [Pure] public static Temperature operator -(Temperature left, Temperature right) => new(left.Value - right.Value);
 
         /// <summary>
         /// Multipication operator to multiply by a double
@@ -217,7 +223,7 @@ namespace Meadow.Units
         /// <param name="value">object to multiply</param>
         /// <param name="operand">operand to multiply object</param>
         /// <returns>A new Temperature object with a value of value multiplied by the operand</returns>
-        [Pure] public static Temperature operator *(Temperature value, double operand) => new (value.Value * operand);
+        [Pure] public static Temperature operator *(Temperature value, double operand) => new(value.Value * operand);
 
         /// <summary>
         /// Division operator to divide by a double
@@ -225,7 +231,7 @@ namespace Meadow.Units
         /// <param name="value">object to be divided</param>
         /// <param name="operand">operand to divide object</param>
         /// <returns>A new Temperature object with a value of value divided by the operand</returns>
-        [Pure] public static Temperature operator /(Temperature value, double operand) => new (value.Value / operand);
+        [Pure] public static Temperature operator /(Temperature value, double operand) => new(value.Value / operand);
 
         /// <summary>
         /// Returns the absolute length, that is, the length without regards to
@@ -380,7 +386,8 @@ namespace Meadow.Units
         /// </summary>
         /// <param name="other">value to compare</param>
         /// <returns>0 if equal</returns>
-        [Pure] public int CompareTo(double? other)
+        [Pure]
+        public int CompareTo(double? other)
         {
             return (other is null) ? -1 : (Value).CompareTo(other.Value);
         }

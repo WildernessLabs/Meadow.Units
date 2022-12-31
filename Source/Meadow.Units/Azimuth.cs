@@ -76,6 +76,10 @@ namespace Meadow.Units
         /// Gets the cardinal direction value expressed as a unit _Decimal Degrees_ (`°`)
         /// </summary>
         public double DecimalDegrees => Value;
+        /// <summary>
+        /// Gets the cardinal direction value expressed as Radians
+        /// </summary>
+        public double Radians => Value * Math.PI / 180.0;
 
         /// <summary>
         /// Gets the cardinal direction value expressed as a unit a 16 division cardinal point
@@ -95,9 +99,16 @@ namespace Meadow.Units
         /// <summary>
         /// Creates a new `Azimuth` object from a unit value in _Decimal Degrees_ (`°`).
         /// </summary>
-        /// <param name="value">The cardinal direction value.</param>
+        /// <param name="degrees">The cardinal direction value.</param>
         /// <returns>A new cardinal direction object.</returns>
-        [Pure] public static Azimuth FromDecimalDegrees(double value) => new(ConvertTo360(value));
+        [Pure] public static Azimuth FromDecimalDegrees(double degrees) => new(ConvertTo360(degrees));
+
+        /// <summary>
+        /// Creates a new `Azimuth` object from a unit value in Radians.
+        /// </summary>
+        /// <param name="radians">The cardinal direction value.</param>
+        /// <returns>A new cardinal direction object.</returns>
+        [Pure] public static Azimuth FromRadians(double radians) => new(ConvertTo360(radians * 180 / Math.PI));
 
         /// <summary>
         /// Creates a new `Azimuth` object
