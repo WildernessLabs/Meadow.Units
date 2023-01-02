@@ -20,8 +20,6 @@ namespace Meadow.Units
         IComparable, IFormattable, IConvertible,
         IEquatable<double>, IComparable<double>
     {
-        public static Temperature AbsoluteZero = new Temperature(0, UnitType.Kelvin);
-
         /// <summary>
         /// Creates a new `Temperature` object.
         /// </summary>
@@ -43,7 +41,10 @@ namespace Meadow.Units
                     break;
             }
 
-            if (this < AbsoluteZero) throw new ArgumentOutOfRangeException();
+            if (this.Kelvin < 0)
+            {
+                throw new ArgumentOutOfRangeException("Temperature cannot be less than 0 Kelvin");
+            }
         }
 
         /// <summary>
