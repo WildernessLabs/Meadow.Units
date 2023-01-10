@@ -92,6 +92,18 @@ namespace Meadow.Units
         /// Get ConcentrationInWater in parts per 1,000,000,000
         /// </summary>
         public double PartsPerBillion => From(UnitType.PartsPerBillion);
+        /// <summary>
+        /// Get ConcentrationInWater in Grams Per Cubic Meter
+        /// </summary>
+        public double GramsPerCubicMeter => From(UnitType.GramsPerCubicMeter);
+        /// <summary>
+        /// Get ConcentrationInWater in Micrograms Per Liter
+        /// </summary>
+        public double MicrogramsPerLiter => From(UnitType.MicrogramsPerLiter);
+        /// <summary>
+        /// Get ConcentrationInWater in Milligrams Per Liter
+        /// </summary>
+        public double MilligramsPerLiter => From(UnitType.MilligramsPerLiter);
 
         /// <summary>
         /// Get ConcentrationInWater for a specific unit
