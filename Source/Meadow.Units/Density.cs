@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Meadow.Units.Conversions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
-using Meadow.Units.Conversions;
 
 namespace Meadow.Units
 {
@@ -47,6 +47,14 @@ namespace Meadow.Units
         public enum UnitType
         {
             /// <summary>
+            /// Grams per meters cubed
+            /// </summary>
+            MicroGramsPerMetersCubed,
+            /// <summary>
+            /// Grams per meters cubed
+            /// </summary>
+            MilliGramsPerMetersCubed,
+            /// <summary>
             /// Grams per centimeters cubed
             /// </summary>
             GramsPerCentimetersCubed,
@@ -85,6 +93,14 @@ namespace Meadow.Units
         }
 
         /// <summary>
+        /// Get the density in micrograms per meters cubed
+        /// </summary>
+        public double MicroGramsPerMetersCubed => From(UnitType.MicroGramsPerMetersCubed);
+        /// <summary>
+        /// Get the density in milligrams per meters cubed
+        /// </summary>
+        public double MilliGramsPerMetersCubed => From(UnitType.MilliGramsPerMetersCubed);
+        /// <summary>
         /// Get the density in grams per centimeters cubed
         /// </summary>
         public double GramsPerCentimetersCubed => From(UnitType.GramsPerCentimetersCubed);
@@ -120,13 +136,14 @@ namespace Meadow.Units
         /// Get the density relative to water
         /// </summary>
         public double Water => From(UnitType.Water);
-		
+
         /// <summary>
         /// Get a double value for a specific unit
         /// </summary>
         /// <param name="convertTo">unit to covert to</param>
         /// <returns>the converted value</returns>
-        [Pure] public double From(UnitType convertTo)
+        [Pure]
+        public double From(UnitType convertTo)
         {
             return DensityConversions.Convert(Value, UnitType.KilogramsPerMetersCubed, convertTo);
         }
@@ -136,7 +153,8 @@ namespace Meadow.Units
         /// </summary>
         /// <param name="obj">The object to compare</param>
         /// <returns>true if equal</returns>
-        [Pure] public override bool Equals(object obj)
+        [Pure]
+        public override bool Equals(object obj)
         {
             if (obj is null) { return false; }
             if (Equals(this, obj)) { return true; }
@@ -229,7 +247,7 @@ namespace Meadow.Units
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>A new Density object with a value of left + right</returns>
-        [Pure] public static Density operator +(Density left, Density right) => new (left.Value + right.Value);
+        [Pure] public static Density operator +(Density left, Density right) => new(left.Value + right.Value);
 
         /// <summary>
         /// Subtraction operator to subtract two Density objects
@@ -237,7 +255,7 @@ namespace Meadow.Units
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>A new Density object with a value of left - right</returns>
-        [Pure] public static Density operator -(Density left, Density right) => new (left.Value - right.Value);
+        [Pure] public static Density operator -(Density left, Density right) => new(left.Value - right.Value);
 
         /// <summary>
         /// Multipication operator to multiply by a double
@@ -245,7 +263,7 @@ namespace Meadow.Units
         /// <param name="value">object to multiply</param>
         /// <param name="operand">operand to multiply object</param>
         /// <returns>A new Density object with a value of value multiplied by the operand</returns>
-        [Pure] public static Density operator *(Density value, double operand) => new (value.Value * operand);
+        [Pure] public static Density operator *(Density value, double operand) => new(value.Value * operand);
 
         /// <summary>
         /// Division operator to divide by a double
@@ -253,7 +271,7 @@ namespace Meadow.Units
         /// <param name="value">object to be divided</param>
         /// <param name="operand">operand to divide object</param>
         /// <returns>A new Density object with a value of value divided by the operand</returns>
-        [Pure] public static Density operator /(Density value, double operand) => new (value.Value / operand);
+        [Pure] public static Density operator /(Density value, double operand) => new(value.Value / operand);
 
         /// <summary>
         /// Returns the absolute length, that is, the length without regards to
@@ -408,7 +426,8 @@ namespace Meadow.Units
         /// </summary>
         /// <param name="other">value to compare</param>
         /// <returns>0 if equal</returns>
-        [Pure] public int CompareTo(double? other)
+        [Pure]
+        public int CompareTo(double? other)
         {
             return (other is null) ? -1 : (Value).CompareTo(other.Value);
         }
