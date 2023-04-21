@@ -15,6 +15,8 @@
         private static readonly double[] densityConversions =
         {
             1.0,//particles/l
+            100.0,//particles/cl
+            1000.0,//particles/ml
 	    };
     }
 }
