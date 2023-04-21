@@ -47,15 +47,33 @@ namespace Meadow.Units
         public enum UnitType
         {
             /// <summary>
-            /// ParticlesPerLiter
+            /// Particles per liter
             /// </summary>
             ParticlesPerLiter,
+            /// <summary>
+            /// Particles per centiliter
+            /// </summary>
+            ParticlesPerCentiliter,
+            /// <summary>
+            /// Particles per milliliter
+            /// </summary>
+            ParticlesPerMilliliter,
         }
 
         /// <summary>
         /// Get the particle density in particles per liter
         /// </summary>
         public double ParticlesPerLiter => From(UnitType.ParticlesPerLiter);
+
+        /// <summary>
+        /// Get the particle density in particles per centiliter
+        /// </summary>
+        public double ParticlesPerCentiliter => From(UnitType.ParticlesPerCentiliter);
+
+        /// <summary>
+        /// Get the particle density in particles per milliliter
+        /// </summary>
+        public double ParticlesPerMilliliter => From(UnitType.ParticlesPerMilliliter);
 
         /// <summary>
         /// Get a double value for a specific unit
