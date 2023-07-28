@@ -1,4 +1,4 @@
-<img src="Design/banner.jpg" style="margin-bottom:10px" />
+<img src="Design/meadow.units.jpg" alt="iot, dotnet, meadow, meadow-units" style="margin-bottom:10px" />
 
 # Meadow.Units
 
