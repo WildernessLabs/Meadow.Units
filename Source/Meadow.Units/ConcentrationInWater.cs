@@ -234,7 +234,7 @@ namespace Meadow.Units
         [Pure] public static ConcentrationInWater operator -(ConcentrationInWater left, ConcentrationInWater right) => new(left.Value - right.Value);
 
         /// <summary>
-        /// Multipication operator to multiply by a double
+        /// Multiplication operator to multiply by a double
         /// </summary>
         /// <param name="value">object to multiply</param>
         /// <param name="operand">operand to multiply object</param>
@@ -257,13 +257,13 @@ namespace Meadow.Units
         [Pure] public ConcentrationInWater Abs() { return new ConcentrationInWater(Math.Abs(this.Value)); }
 
         /// <summary>
-        /// Get a string represention of the object
+        /// Get a string representation of the object
         /// </summary>
         /// <returns>A string representing the object</returns>
         [Pure] public override string ToString() => Value.ToString();
 
         /// <summary>
-        /// Get a string represention of the object
+        /// Get a string representation of the object
         /// </summary>
         /// <param name="format">format</param>
         /// <param name="formatProvider">format provider</param>

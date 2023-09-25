@@ -179,13 +179,13 @@ namespace Meadow.Units
         }
 
         /// <summary>
-        /// Get a string represention of the object
+        /// Get a string representation of the object
         /// </summary>
         /// <returns>A string representing the object</returns>
         [Pure] public override string ToString() => $"{X}, {Y}, {Z}";
 
         /// <summary>
-        /// Get a string represention of the object
+        /// Get a string representation of the object
         /// </summary>
         /// <param name="format">format</param>
         /// <param name="formatProvider">format provider</param>
