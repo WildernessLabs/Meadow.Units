@@ -161,7 +161,7 @@ namespace Meadow.Units
         [Pure] public static Turbidity operator -(Turbidity left, Turbidity right) => new(left.NTU - right.NTU);
 
         /// <summary>
-        /// Multipication operator to multiply by a double
+        /// Multiplication operator to multiply by a double
         /// </summary>
         /// <param name="value">object to multiply</param>
         /// <param name="operand">operand to multiply object</param>
@@ -184,13 +184,13 @@ namespace Meadow.Units
         [Pure] public Turbidity Abs() { return new Turbidity(Math.Abs(this.NTU)); }
 
         /// <summary>
-        /// Get a string represention of the object
+        /// Get a string representation of the object
         /// </summary>
         /// <returns>A string representing the object</returns>
         [Pure] public override string ToString() => NTU.ToString();
 
         /// <summary>
-        /// Get a string represention of the object
+        /// Get a string representation of the object
         /// </summary>
         /// <param name="format">format</param>
         /// <param name="formatProvider">format provider</param>
