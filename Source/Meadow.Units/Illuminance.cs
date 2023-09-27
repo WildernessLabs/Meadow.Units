@@ -65,7 +65,7 @@ namespace Meadow.Units
         /// </summary>
         public double KiloLux => From(UnitType.KiloLux);
         /// <summary>
-        /// Get illuminace value as Lux
+        /// Get illuminance value as Lux
         /// </summary>
         public double Lux => From(UnitType.Lux);
         /// <summary>
@@ -74,7 +74,7 @@ namespace Meadow.Units
         public double FootCandles => From(UnitType.FootCandles);
 
         /// <summary>
-        /// Get illumance value for a given unit
+        /// Get illuminance value for a given unit
         /// </summary>
         /// <param name="convertTo">unit to convert to</param>
         /// <returns></returns>

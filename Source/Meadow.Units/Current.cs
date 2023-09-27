@@ -51,23 +51,23 @@ namespace Meadow.Units
             /// </summary>
             Amps,
             /// <summary>
-            /// Milliamperes
+            /// Milli-amperes
             /// </summary>
             Milliamps,
             /// <summary>
-            /// Microamperes
+            /// Micro-amperes
             /// </summary>
             Microamps,
             /// <summary>
-            /// Kiloamperes
+            /// Kilo-amperes
             /// </summary>
             Kiloamps,
             /// <summary>
-            /// Megaamperes
+            /// Mega-amperes
             /// </summary>
             Megaamps,
             /// <summary>
-            /// Gigaamperes
+            /// Giga-amperes
             /// </summary>
             Gigaamps,
         }
@@ -98,7 +98,7 @@ namespace Meadow.Units
         public double Megaamps => From(UnitType.Megaamps);
 
         /// <summary>
-        /// Get current in gagaamps
+        /// Get current in gigaamps
         /// </summary>
         public double Gigaamps => From(UnitType.Gigaamps);
  

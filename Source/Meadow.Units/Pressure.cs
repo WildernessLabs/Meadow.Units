@@ -60,7 +60,7 @@ namespace Meadow.Units
             /// </summary>
             Psi,
             /// <summary>
-            /// Standard atmopsheric pressure
+            /// Standard atmospheric pressure
             /// </summary>
             StandardAtmosphere,
             /// <summary>

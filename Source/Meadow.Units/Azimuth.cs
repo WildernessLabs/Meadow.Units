@@ -247,7 +247,7 @@ namespace Meadow.Units
         /// </summary>
         /// <param name="value">object to divide</param>
         /// <param name="operand">operand to divide object</param>
-        /// <returns>A new Azimuth object with a value of value divideed by the operand</returns>
+        /// <returns>A new Azimuth object with a value of value divided by the operand</returns>
 		[Pure] public static Azimuth operator /(Azimuth value, double operand) => new(ConvertTo360(value.Value / operand));
 
         private static double StandardizeAzimuth(double value)

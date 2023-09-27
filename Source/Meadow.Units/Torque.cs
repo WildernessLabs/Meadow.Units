@@ -71,7 +71,7 @@ namespace Meadow.Units
             /// </summary>
             InchPound,
             /// <summary>
-            /// Inch ouces
+            /// Inch ounces
             /// </summary>
             InchOunce,
             /// <summary>
@@ -109,7 +109,7 @@ namespace Meadow.Units
         /// </summary>
         public double InchOunce => From(UnitType.InchOunce);
         /// <summary>
-        /// Get torque in dyne centimers
+        /// Get torque in dyne centimeters
         /// </summary>
         public double DyneCentimeter => From(UnitType.DyneCentimeter);
 

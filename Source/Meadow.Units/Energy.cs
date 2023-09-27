@@ -109,7 +109,7 @@ namespace Meadow.Units
         /// </summary>
         public double KilowattHours => From(UnitType.KilowattHours);
         /// <summary>
-        /// Get engery value as Therms
+        /// Get energy value as Therms
         /// </summary>
         public double Therms => From(UnitType.Therms);
         /// <summary>

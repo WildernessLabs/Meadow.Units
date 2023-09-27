@@ -99,19 +99,19 @@ namespace Meadow.Units
             /// </summary>
             BTUsPerHour,
             /// <summary>
-            /// Footpounds per second
+            /// Foot-pounds per second
             /// </summary>
             FootPoundsPerSecond,
             /// <summary>
-            /// Footpounds per minute
+            /// Foot-pounds per minute
             /// </summary>
             FootPoundsPerMinute,
             /// <summary>
-            /// Footpounds per hour
+            /// Foot-pounds per hour
             /// </summary>
             FootPoundsPerHour,
             /// <summary>
-            /// Tons refridgeration
+            /// Tons refrigeration
             /// </summary>
             TonsRefridgeration
         }
@@ -169,19 +169,19 @@ namespace Meadow.Units
         /// </summary>
         public double BTUsPerHour => From(UnitType.BTUsPerHour);
         /// <summary>
-        /// Power in footpounds per second
+        /// Power in foot-pounds per second
         /// </summary>
         public double FootPoundsPerSecond => From(UnitType.FootPoundsPerSecond);
         /// <summary>
-        /// Power in footpounds per minute
+        /// Power in foot-pounds per minute
         /// </summary>
         public double FootPoundsPerMinute => From(UnitType.FootPoundsPerMinute);
         /// <summary>
-        /// Power in footpounds per hour
+        /// Power in foot-pounds per hour
         /// </summary>
         public double FootPoundsPerHour => From(UnitType.FootPoundsPerHour);
         /// <summary>
-        /// Power in tons refridgeration
+        /// Power in tons refrigeration
         /// </summary>
         public double TonsRefridgeration => From(UnitType.TonsRefridgeration);
 
