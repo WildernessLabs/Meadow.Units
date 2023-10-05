@@ -42,7 +42,7 @@ namespace Meadow.Units
         private readonly double Value;
 
         /// <summary>
-        /// The type of units available to describe the resistance.
+        /// The type of units available to describe the Resistance.
         /// </summary>
         public enum UnitType
         {

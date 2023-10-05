@@ -40,7 +40,7 @@ namespace Meadow.Units
         /// </summary>
         public double pH { get; private set; }
         /// <summary>
-        /// The type of units available to describe the temperature.
+        /// The type of units available to describe the PotentialHydrogen.
         /// </summary>
         public enum UnitType
         {

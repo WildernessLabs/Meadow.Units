@@ -42,7 +42,7 @@ namespace Meadow.Units
         private readonly double Value;
 
         /// <summary>
-        /// The type of units available to describe the voltage.
+        /// The type of units available to describe the Voltage.
         /// </summary>
         public enum UnitType
         {

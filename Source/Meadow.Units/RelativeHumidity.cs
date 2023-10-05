@@ -42,7 +42,7 @@ namespace Meadow.Units
         /// </summary>
         public double Percent { get; private set; }
         /// <summary>
-        /// The type of units available to describe the temperature.
+        /// The type of units available to describe the RelativeHumidity.
         /// </summary>
         public enum UnitType
         {

@@ -41,7 +41,7 @@ namespace Meadow.Units
         /// </summary>
         public double NTU { get; private set; }
         /// <summary>
-        /// The type of units available to describe the turbidity.
+        /// The type of units available to describe the Turbidity.
         /// </summary>
         public enum UnitType
         {

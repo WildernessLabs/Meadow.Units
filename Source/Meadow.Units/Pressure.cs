@@ -43,7 +43,7 @@ namespace Meadow.Units
         private readonly double Value;
 
         /// <summary>
-        /// The type of units available to describe the pressure.
+        /// The type of units available to describe the Pressure.
         /// </summary>
         public enum UnitType
         {

@@ -42,7 +42,7 @@ namespace Meadow.Units
         private readonly double Value;
 
         /// <summary>
-        /// The type of units available to describe the mass.
+        /// The type of units available to describe the Mass.
         /// </summary>
         public enum UnitType
         {

@@ -42,7 +42,7 @@ namespace Meadow.Units
         private readonly double Value;
 
         /// <summary>
-        /// The type of units available to describe the acceleration.
+        /// The type of units available to describe the Acceleration.
         /// </summary>
         public enum UnitType
         {

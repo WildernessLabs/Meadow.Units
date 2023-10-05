@@ -67,7 +67,7 @@ namespace Meadow.Units
         private readonly double Value;
 
         /// <summary>
-        /// The type of units available to describe the temperature.
+        /// The type of units available to describe the Temperature.
         /// </summary>
         public enum UnitType
         {
