@@ -176,12 +176,11 @@ namespace Meadow.Units
         /// <returns>A new Turbidity object with a value of value divided by the operand</returns>
         [Pure] public static Turbidity operator /(Turbidity value, double operand) => new(value.NTU / operand);
 
-        /// <summary>
-        /// Returns the absolute length, that is, the length without regards to
-        /// negative polarity
-        /// </summary>
-        /// <returns></returns>
-        [Pure] public Turbidity Abs() { return new Turbidity(Math.Abs(this.NTU)); }
+		/// <summary>
+		/// Returns the absolute value of the <see cref="Turbidity"/>
+		/// </summary>
+		/// <returns></returns>
+		[Pure] public Turbidity Abs() { return new Turbidity(Math.Abs(this.NTU)); }
 
         /// <summary>
         /// Get a string representation of the object

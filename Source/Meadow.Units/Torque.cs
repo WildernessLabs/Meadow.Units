@@ -247,12 +247,11 @@ namespace Meadow.Units
         /// <returns>A new Torque object with a value of value divided by the operand</returns>
         [Pure] public static Torque operator /(Torque value, double operand) => new (value.Value / operand);
 
-        /// <summary>
-        /// Returns the absolute length, that is, the length without regards to
-        /// negative polarity
-        /// </summary>
-        /// <returns></returns>
-        [Pure] public Torque Abs() { return new Torque(Math.Abs(this.Value)); }
+		/// <summary>
+		/// Returns the absolute value of the <see cref="Torque"/>
+		/// </summary>
+		/// <returns></returns>
+		[Pure] public Torque Abs() { return new Torque(Math.Abs(this.Value)); }
 
         /// <summary>
         /// Get a string representation of the object

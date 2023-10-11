@@ -287,12 +287,11 @@ namespace Meadow.Units
         /// <returns>A new Speed object with a value of value divided by the operand</returns>
         [Pure] public static Speed operator /(Speed value, double operand) => new (value.Value / operand);
 
-        /// <summary>
-        /// Returns the absolute length, that is, the length without regards to
-        /// negative polarity
-        /// </summary>
-        /// <returns></returns>
-        [Pure] public Speed Abs() { return new Speed(Math.Abs(this.Value)); }
+		/// <summary>
+		/// Returns the absolute value of the <see cref="Speed"/>
+		/// </summary>
+		/// <returns></returns>
+		[Pure] public Speed Abs() { return new Speed(Math.Abs(this.Value)); }
 
         /// <summary>
         /// Get a string representation of the object

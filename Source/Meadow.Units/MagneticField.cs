@@ -247,12 +247,11 @@ namespace Meadow.Units
         /// <returns>A new MagneticField object with a value of value divided by the operand</returns>
         [Pure] public static MagneticField operator /(MagneticField value, double operand) => new (value.Value / operand);
 
-        /// <summary>
-        /// Returns the absolute length, that is, the length without regards to
-        /// negative polarity
-        /// </summary>
-        /// <returns></returns>
-        [Pure] public MagneticField Abs() { return new MagneticField(Math.Abs(this.Value)); }
+		/// <summary>
+		/// Returns the absolute value of the <see cref="MagneticField"/>
+		/// </summary>
+		/// <returns></returns>
+		[Pure] public MagneticField Abs() { return new MagneticField(Math.Abs(this.Value)); }
 
         /// <summary>
         /// Get a string representation of the object

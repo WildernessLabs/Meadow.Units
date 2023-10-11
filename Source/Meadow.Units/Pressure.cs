@@ -236,12 +236,11 @@ namespace Meadow.Units
         /// <returns>A new Pressure object with a value of value divided by the operand</returns>
         [Pure] public static Pressure operator /(Pressure value, double operand) => new (value.Value / operand);
 
-        /// <summary>
-        /// Returns the absolute length, that is, the length without regards to
-        /// negative polarity
-        /// </summary>
-        /// <returns></returns>
-        [Pure] public Pressure Abs() { return new Pressure(Math.Abs(this.Value)); }
+		/// <summary>
+		/// Returns the absolute value of the <see cref="Pressure"/>
+		/// </summary>
+		/// <returns></returns>
+		[Pure] public Pressure Abs() { return new Pressure(Math.Abs(this.Value)); }
 
         /// <summary>
         /// Get a string representation of the object

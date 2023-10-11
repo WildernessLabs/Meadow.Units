@@ -215,12 +215,11 @@ namespace Meadow.Units
         /// <returns>A new Frequency object with a value of value divided by the operand</returns>
         [Pure] public static Frequency operator /(Frequency value, double operand) => new (value.Value / operand);
 
-        /// <summary>
-        /// Returns the absolute frequency, that is, the frequency without regards to
-        /// negative polarity
-        /// </summary>
-        /// <returns></returns>
-        [Pure] public Frequency Abs() =>  new (Math.Abs(Value)); 
+		/// <summary>
+		/// Returns the absolute value of the <see cref="Frequency"/>
+		/// </summary>
+		/// <returns></returns>
+		[Pure] public Frequency Abs() =>  new (Math.Abs(Value)); 
 
         /// <summary>
         /// Get a string representation of the object

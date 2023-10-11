@@ -209,6 +209,10 @@ namespace Meadow.Units
         /// <returns>true if left is greater than or equal to right</returns>
         [Pure] public static bool operator >=(Azimuth left, Azimuth right) => Comparer<double>.Default.Compare(left.Value, right.Value) >= 0;
 
+        /// <summary>
+        /// Helper method to ensure mathematical results 'wrap' correctly at 0/360 degrees.
+        /// </summary>
+        /// <returns>proper result in the range of [0,360)</returns>
         private static double ConvertTo360(double value)
         {
             value %= 360;
@@ -257,12 +261,11 @@ namespace Meadow.Units
             return value;
         }
 
-        /// <summary>
-        /// Returns the absolute length, that is, the length without regards to
-        /// negative polarity
-        /// </summary>
-        /// <returns></returns>
-        [Pure] public Azimuth Abs() { return new Azimuth(Math.Abs(Value)); }
+		/// <summary>
+		/// Returns the absolute value of the <see cref="Azimuth"/>
+		/// </summary>
+		/// <returns></returns>
+		[Pure] public Azimuth Abs() { return new Azimuth(Math.Abs(Value)); }
 
         /// <summary>
         /// Get a string representation of the object
