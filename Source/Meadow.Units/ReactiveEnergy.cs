@@ -22,9 +22,9 @@ namespace Meadow.Units
         /// </summary>
         /// <param name="value">The ReactiveEnergy value.</param>
         /// <param name="type">kilometers meters per second by default.</param>
-        public ReactiveEnergy(double value, UnitType type = UnitType.VoltAmphereHours)
+        public ReactiveEnergy(double value, UnitType type = UnitType.VoltAmpereHours)
         {
-            Value = ReactiveEnergyConversions.Convert(value, type, UnitType.VoltAmphereHours);
+            Value = ReactiveEnergyConversions.Convert(value, type, UnitType.VoltAmpereHours);
         }
 
         /// <summary>
@@ -47,51 +47,51 @@ namespace Meadow.Units
         public enum UnitType
         {
             /// <summary>
-            /// Gigavolt Amphere hours
+            /// Gigavolt Ampere hours
             /// </summary>
-            GigavoltAmphereHours,
+            GigavoltAmpereHours,
             /// <summary>
-            /// Megavolt Amphere hours
+            /// Megavolt Ampere hours
             /// </summary>
-            MegavoltAmphereHours,
+            MegavoltAmpereHours,
             /// <summary>
-            /// Kilovolt Amphere hours
+            /// Kilovolt Ampere hours
             /// </summary>
-            KilovoltAmphereHours,
+            KilovoltAmpereHours,
             /// <summary>
-            /// Volt Amphere hours
+            /// Volt Ampere hours
             /// </summary>
-            VoltAmphereHours,
+            VoltAmpereHours,
             /// <summary>
-            /// Millivolt Amphere hours
+            /// Millivolt Ampere hours
             /// </summary>
-            MillivoltAmphereHours,
+            MillivoltAmpereHours,
         }
 
         /// <summary>
-        ///ReactiveEnergy in Millovolt Amphere Hours
+        ///ReactiveEnergy in Millovolt Ampere Hours
         /// </summary>
-        public double MillivoltAmphereHours => From(UnitType.MillivoltAmphereHours);
+        public double MillivoltAmpereHours => From(UnitType.MillivoltAmpereHours);
 
         /// <summary>
-        ///ReactiveEnergy in Volt Amphere Hours
+        ///ReactiveEnergy in Volt Ampere Hours
         /// </summary>
-        public double VoltAmphereHours => From(UnitType.VoltAmphereHours);
+        public double VoltAmpereHours => From(UnitType.VoltAmpereHours);
 
         /// <summary>
-        ///ReactiveEnergy in Kilvolt Amphere Hours
+        ///ReactiveEnergy in Kilvolt Ampere Hours
         /// </summary>
-        public double KilovoltAmphereHours => From(UnitType.KilovoltAmphereHours);
+        public double KilovoltAmpereHours => From(UnitType.KilovoltAmpereHours);
 
         /// <summary>
-        ///ReactiveEnergy in Megavolt Amphere Hours
+        ///ReactiveEnergy in Megavolt Ampere Hours
         /// </summary>
-        public double MegavoltAmphereHours => From(UnitType.MegavoltAmphereHours);
+        public double MegavoltAmpereHours => From(UnitType.MegavoltAmpereHours);
 
         /// <summary>
-        ///ReactiveEnergy in Gigavolt Amphere Hours
+        ///ReactiveEnergy in Gigavolt Ampere Hours
         /// </summary>
-        public double GigavoltAmphereHours => From(UnitType.GigavoltAmphereHours);
+        public double GigavoltAmpereHours => From(UnitType.GigavoltAmpereHours);
 
         /// <summary>
         /// Get a double value for a specific unit
@@ -101,7 +101,7 @@ namespace Meadow.Units
         [Pure]
         public double From(UnitType convertTo)
         {
-            return ReactiveEnergyConversions.Convert(Value, UnitType.VoltAmphereHours, convertTo);
+            return ReactiveEnergyConversions.Convert(Value, UnitType.VoltAmpereHours, convertTo);
         }
 
         /// <summary>

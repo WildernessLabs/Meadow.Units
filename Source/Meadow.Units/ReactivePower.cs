@@ -22,9 +22,9 @@ namespace Meadow.Units
         /// </summary>
         /// <param name="value">The ReactivePower value.</param>
         /// <param name="type">kilometers meters per second by default.</param>
-        public ReactivePower(double value, UnitType type = UnitType.VoltAmpheres)
+        public ReactivePower(double value, UnitType type = UnitType.VoltAmperes)
         {
-            Value = ReactivePowerConversions.Convert(value, type, UnitType.VoltAmpheres);
+            Value = ReactivePowerConversions.Convert(value, type, UnitType.VoltAmperes);
         }
 
         /// <summary>
@@ -47,51 +47,51 @@ namespace Meadow.Units
         public enum UnitType
         {
             /// <summary>
-            /// Gigavolt Amphere
+            /// Gigavolt Ampere
             /// </summary>
-            GigavoltAmpheres,
+            GigavoltAmperes,
             /// <summary>
-            /// Megavolt Amphere
+            /// Megavolt Ampere
             /// </summary>
-            MegavoltAmpheres,
+            MegavoltAmperes,
             /// <summary>
-            /// Kilovolt Amphere
+            /// Kilovolt Ampere
             /// </summary>
-            KilovoltAmpheres,
+            KilovoltAmperes,
             /// <summary>
-            /// Volt Amphere
+            /// Volt Ampere
             /// </summary>
-            VoltAmpheres,
+            VoltAmperes,
             /// <summary>
-            /// Millivolt Amphere
+            /// Millivolt Ampere
             /// </summary>
-            MillivoltAmpheres,
+            MillivoltAmperes,
         }
 
         /// <summary>
-        ///ReactivePower in Millovolt Ampheres
+        ///ReactivePower in Millovolt Amperes
         /// </summary>
-        public double MillivoltAmpheres => From(UnitType.MillivoltAmpheres);
+        public double MillivoltAmperes => From(UnitType.MillivoltAmperes);
 
         /// <summary>
-        ///ReactivePower in Volt Ampheres
+        ///ReactivePower in Volt Amperes
         /// </summary>
-        public double VoltAmpheres => From(UnitType.VoltAmpheres);
+        public double VoltAmperes => From(UnitType.VoltAmperes);
 
         /// <summary>
-        ///ReactivePower in Kilvolt Ampheres
+        ///ReactivePower in Kilvolt Amperes
         /// </summary>
-        public double KilovoltAmpheres => From(UnitType.KilovoltAmpheres);
+        public double KilovoltAmperes => From(UnitType.KilovoltAmperes);
 
         /// <summary>
-        ///ReactivePower in Megavolt Ampheres
+        ///ReactivePower in Megavolt Amperes
         /// </summary>
-        public double MegavoltAmpheres => From(UnitType.MegavoltAmpheres);
+        public double MegavoltAmperes => From(UnitType.MegavoltAmperes);
 
         /// <summary>
-        ///ReactivePower in Gigavolt Ampheres
+        ///ReactivePower in Gigavolt Amperes
         /// </summary>
-        public double GigavoltAmpheres => From(UnitType.GigavoltAmpheres);
+        public double GigavoltAmperes => From(UnitType.GigavoltAmperes);
 
         /// <summary>
         /// Get a double value for a specific unit
@@ -101,7 +101,7 @@ namespace Meadow.Units
         [Pure]
         public double From(UnitType convertTo)
         {
-            return ReactivePowerConversions.Convert(Value, UnitType.VoltAmpheres, convertTo);
+            return ReactivePowerConversions.Convert(Value, UnitType.VoltAmperes, convertTo);
         }
 
         /// <summary>
