@@ -22,9 +22,9 @@ namespace Meadow.Units
         /// </summary>
         /// <param name="value">The ReactiveEnergy value.</param>
         /// <param name="type">kilometers meters per second by default.</param>
-        public ReactiveEnergy(double value, UnitType type = UnitType.VoltAmpheres)
+        public ReactiveEnergy(double value, UnitType type = UnitType.VoltAmphereHours)
         {
-            Value = ReactiveEnergyConversions.Convert(value, type, UnitType.VoltAmpheres);
+            Value = ReactiveEnergyConversions.Convert(value, type, UnitType.VoltAmphereHours);
         }
 
         /// <summary>
