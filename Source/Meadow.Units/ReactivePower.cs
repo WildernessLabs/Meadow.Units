@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Meadow.Units.Conversions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
-using Meadow.Units.Conversions;
 
 namespace Meadow.Units
 {
@@ -155,7 +155,7 @@ namespace Meadow.Units
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>true if not equal</returns>
-        [Pure] public static bool operator !=(ReactivePower left,ReactivePower right) => !Equals(left.Value, right.Value);
+        [Pure] public static bool operator !=(ReactivePower left, ReactivePower right) => !Equals(left.Value, right.Value);
 
         /// <summary>
         /// Compare to anotherReactivePower object
@@ -170,7 +170,7 @@ namespace Meadow.Units
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>true if left is less than right</returns>
-        [Pure] public static bool operator <(ReactivePower left,ReactivePower right) => Comparer<double>.Default.Compare(left.Value, right.Value) < 0;
+        [Pure] public static bool operator <(ReactivePower left, ReactivePower right) => Comparer<double>.Default.Compare(left.Value, right.Value) < 0;
 
         /// <summary>
         /// Greater than operator to compare twoReactivePower objects
@@ -178,7 +178,7 @@ namespace Meadow.Units
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>true if left is greater than right</returns>
-        [Pure] public static bool operator >(ReactivePower left,ReactivePower right) => Comparer<double>.Default.Compare(left.Value, right.Value) > 0;
+        [Pure] public static bool operator >(ReactivePower left, ReactivePower right) => Comparer<double>.Default.Compare(left.Value, right.Value) > 0;
 
         /// <summary>
         /// Less than or equal operator to compare twoReactivePower objects
@@ -186,7 +186,7 @@ namespace Meadow.Units
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>true if left is less than or equal to right</returns>
-        [Pure] public static bool operator <=(ReactivePower left,ReactivePower right) => Comparer<double>.Default.Compare(left.Value, right.Value) <= 0;
+        [Pure] public static bool operator <=(ReactivePower left, ReactivePower right) => Comparer<double>.Default.Compare(left.Value, right.Value) <= 0;
 
         /// <summary>
         /// Greater than or equal operator to compare twoReactivePower objects
@@ -194,7 +194,7 @@ namespace Meadow.Units
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>true if left is greater than or equal to right</returns>
-        [Pure] public static bool operator >=(ReactivePower left,ReactivePower right) => Comparer<double>.Default.Compare(left.Value, right.Value) >= 0;
+        [Pure] public static bool operator >=(ReactivePower left, ReactivePower right) => Comparer<double>.Default.Compare(left.Value, right.Value) >= 0;
 
         // Math
         /// <summary>
@@ -203,7 +203,7 @@ namespace Meadow.Units
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>A new ReactivePower object with a value of left + right</returns>
-        [Pure] public static ReactivePower operator +(ReactivePower left,ReactivePower right) => new(left.Value + right.Value);
+        [Pure] public static ReactivePower operator +(ReactivePower left, ReactivePower right) => new(left.Value + right.Value);
 
         /// <summary>
         /// Subtraction operator to subtract twoReactivePower objects
@@ -211,7 +211,7 @@ namespace Meadow.Units
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>A new ReactivePower object with a value of left - right</returns>
-        [Pure] public static ReactivePower operator -(ReactivePower left,ReactivePower right) => new(left.Value - right.Value);
+        [Pure] public static ReactivePower operator -(ReactivePower left, ReactivePower right) => new(left.Value - right.Value);
 
         /// <summary>
         /// Multipication operator to multiply by a double
