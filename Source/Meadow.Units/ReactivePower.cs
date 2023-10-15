@@ -21,7 +21,7 @@ namespace Meadow.Units
         /// Creates a new `ReactivePower` object.
         /// </summary>
         /// <param name="value">The ReactivePower value.</param>
-        /// <param name="type">kilometers meters per second by default.</param>
+        /// <param name="type">Volt Amperes by default.</param>
         public ReactivePower(double value, UnitType type = UnitType.VoltAmperes)
         {
             Value = ReactivePowerConversions.Convert(value, type, UnitType.VoltAmperes);

@@ -21,7 +21,7 @@ namespace Meadow.Units
         /// Creates a new `ApparentPower` object.
         /// </summary>
         /// <param name="value">The ApparentPower value.</param>
-        /// <param name="type">kilometers meters per second by default.</param>
+        /// <param name="type">Volt Amperes by default.</param>
         public ApparentPower(double value, UnitType type = UnitType.VoltAmperes)
         {
             Value = ApparentPowerConversions.Convert(value, type, UnitType.VoltAmperes);
