@@ -46,7 +46,7 @@ namespace Meadow.Units
         }
 
         /// <summary>
-        /// Calculates the distance to anotehr GeoLocation
+        /// Calculates the distance to another GeoLocation
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>

@@ -209,6 +209,10 @@ namespace Meadow.Units
         /// <returns>true if left is greater than or equal to right</returns>
         [Pure] public static bool operator >=(Azimuth left, Azimuth right) => Comparer<double>.Default.Compare(left.Value, right.Value) >= 0;
 
+        /// <summary>
+        /// Helper method to ensure mathematical results 'wrap' correctly at 0/360 degrees.
+        /// </summary>
+        /// <returns>proper result in the range of [0,360)</returns>
         private static double ConvertTo360(double value)
         {
             value %= 360;
@@ -247,7 +251,7 @@ namespace Meadow.Units
         /// </summary>
         /// <param name="value">object to divide</param>
         /// <param name="operand">operand to divide object</param>
-        /// <returns>A new Azimuth object with a value of value divideed by the operand</returns>
+        /// <returns>A new Azimuth object with a value of value divided by the operand</returns>
 		[Pure] public static Azimuth operator /(Azimuth value, double operand) => new(ConvertTo360(value.Value / operand));
 
         private static double StandardizeAzimuth(double value)
@@ -257,12 +261,11 @@ namespace Meadow.Units
             return value;
         }
 
-        /// <summary>
-        /// Returns the absolute length, that is, the length without regards to
-        /// negative polarity
-        /// </summary>
-        /// <returns></returns>
-        [Pure] public Azimuth Abs() { return new Azimuth(Math.Abs(Value)); }
+		/// <summary>
+		/// Returns the absolute value of the <see cref="Azimuth"/>
+		/// </summary>
+		/// <returns></returns>
+		[Pure] public Azimuth Abs() { return new Azimuth(Math.Abs(Value)); }
 
         /// <summary>
         /// Get a string representation of the object
@@ -293,91 +296,91 @@ namespace Meadow.Units
         [Pure] public TypeCode GetTypeCode() => Value.GetTypeCode();
 
         /// <summary>
-        /// Covert to boolean
+        /// Convert to boolean
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>bool representation of the object</returns>
         [Pure] public bool ToBoolean(IFormatProvider provider) => ((IConvertible)Value).ToBoolean(provider);
 
         /// <summary>
-        /// Covert to byte
+        /// Convert to byte
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>byte representation of the object</returns>
         [Pure] public byte ToByte(IFormatProvider provider) => ((IConvertible)Value).ToByte(provider);
 
         /// <summary>
-        /// Covert to char
+        /// Convert to char
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>char representation of the object</returns>
         [Pure] public char ToChar(IFormatProvider provider) => ((IConvertible)Value).ToChar(provider);
 
         /// <summary>
-        /// Covert to DateTime
+        /// Convert to DateTime
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>DateTime representation of the object</returns>
         [Pure] public DateTime ToDateTime(IFormatProvider provider) => ((IConvertible)Value).ToDateTime(provider);
 
         /// <summary>
-        /// Covert to Decimal
+        /// Convert to Decimal
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>Decimal representation of the object</returns>
         [Pure] public decimal ToDecimal(IFormatProvider provider) => ((IConvertible)Value).ToDecimal(provider);
 
         /// <summary>
-        /// Covert to double
+        /// Convert to double
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>double representation of the object</returns>
         [Pure] public double ToDouble(IFormatProvider provider) => Value;
 
         /// <summary>
-        /// Covert to in16
+        /// Convert to in16
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>int16 representation of the object</returns>
         [Pure] public short ToInt16(IFormatProvider provider) => ((IConvertible)Value).ToInt16(provider);
 
         /// <summary>
-        /// Covert to int32
+        /// Convert to int32
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>int32 representation of the object</returns>
         [Pure] public int ToInt32(IFormatProvider provider) => ((IConvertible)Value).ToInt32(provider);
 
         /// <summary>
-        /// Covert to int64
+        /// Convert to int64
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>int64 representation of the object</returns>
         [Pure] public long ToInt64(IFormatProvider provider) => ((IConvertible)Value).ToInt64(provider);
 
         /// <summary>
-        /// Covert to sbyte
+        /// Convert to sbyte
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>sbyte representation of the object</returns>
         [Pure] public sbyte ToSByte(IFormatProvider provider) => ((IConvertible)Value).ToSByte(provider);
 
         /// <summary>
-        /// Covert to float
+        /// Convert to float
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>float representation of the object</returns>
         [Pure] public float ToSingle(IFormatProvider provider) => ((IConvertible)Value).ToSingle(provider);
 
         /// <summary>
-        /// Covert to string
+        /// Convert to string
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>string representation of the object</returns>
         [Pure] public string ToString(IFormatProvider provider) => Value.ToString(provider);
 
         /// <summary>
-        /// Covert to type
+        /// Convert to type
         /// </summary>
         /// <param name="conversionType">type to convert to</param>
         /// <param name="provider">format provider</param>
@@ -385,21 +388,21 @@ namespace Meadow.Units
         [Pure] public object ToType(Type conversionType, IFormatProvider provider) => ((IConvertible)Value).ToType(conversionType, provider);
 
         /// <summary>
-        /// Covert to uint16
+        /// Convert to uint16
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>uint16 representation of the object</returns>
         [Pure] public ushort ToUInt16(IFormatProvider provider) => ((IConvertible)Value).ToUInt16(provider);
 
         /// <summary>
-        /// Covert to uint32
+        /// Convert to uint32
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>uint32 representation of the object</returns>
         [Pure] public uint ToUInt32(IFormatProvider provider) => ((IConvertible)Value).ToUInt32(provider);
 
         /// <summary>
-        /// Covert to uint64
+        /// Convert to uint64
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>uint64 representation of the object</returns>

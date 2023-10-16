@@ -57,7 +57,7 @@ namespace Meadow.Units
         }
 
         /// <summary>
-        /// X component of accleration
+        /// X component of acceleration
         /// </summary>
         public Acceleration X { get; set; }
         /// <summary>

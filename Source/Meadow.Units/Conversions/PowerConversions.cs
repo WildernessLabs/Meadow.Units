@@ -15,7 +15,7 @@
 		private static readonly double[] powerConversions =
 		{
             0.000000001,		//gigawatts
-            0.000001,			//mwatts
+            0.000001,			//milliwatts
 		    0.001,				//kwatts
 		    1.0,				//watts
 		    1000.0,				//milliwatt

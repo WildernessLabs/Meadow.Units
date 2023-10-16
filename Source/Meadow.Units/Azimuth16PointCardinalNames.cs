@@ -43,7 +43,7 @@ namespace Meadow.Units
         /// </summary>
         S,
         /// <summary>
-        /// South by southwes
+        /// South by southwest
         /// </summary>
         SSW,
         /// <summary>
