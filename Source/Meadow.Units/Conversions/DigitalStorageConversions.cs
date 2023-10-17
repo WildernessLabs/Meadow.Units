@@ -10,7 +10,7 @@ namespace Meadow.Units.Conversions
             {
                 return value;
             }
-            return value * digitalStorageConversions[(int)to] / digitalStorageConversions[(int)from];
+            return value * digitalStorageConversions[(int)from] / digitalStorageConversions[(int)to];
         }
 
         private static readonly double[] digitalStorageConversions =
