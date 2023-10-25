@@ -31,7 +31,7 @@ namespace Meadow.Units
         /// Creates a new `ParticleDensity` object from an existing ParticleDensity object
         /// </summary>
         /// <param name="density"></param>
-		public ParticleDensity(ParticleDensity density)
+        public ParticleDensity(ParticleDensity density)
         {
             Value = density.Value;
         }

@@ -239,11 +239,11 @@ namespace Meadow.Units
         /// <returns>A new Temperature object with a value of value divided by the operand</returns>
         [Pure] public static Temperature operator /(Temperature value, double operand) => new(value.Value / operand);
 
-		/// <summary>
-		/// Returns the absolute value of the <see cref="Temperature"/>
-		/// </summary>
-		/// <returns></returns>
-		[Pure] public Temperature Abs() { return new Temperature(Math.Abs(this.Value)); }
+        /// <summary>
+        /// Returns the absolute value of the <see cref="Temperature"/>
+        /// </summary>
+        /// <returns></returns>
+        [Pure] public Temperature Abs() { return new Temperature(Math.Abs(this.Value)); }
 
         /// <summary>
         /// Get a string representation of the object

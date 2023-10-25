@@ -87,8 +87,8 @@ namespace Meadow.Units
         /// </summary>
         /// <returns>hash as 32 bit integer</returns>
         [Pure] public override int GetHashCode() => (X.GetHashCode() + Y.GetHashCode() + Z.GetHashCode()) / 3;
-		
-		/// <summary>
+        
+        /// <summary>
         /// Compare two 3DAngularVelocity objects
         /// </summary>
         /// <param name="other">object to compare</param>

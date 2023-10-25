@@ -279,11 +279,11 @@ namespace Meadow.Units
         /// <returns>A new Length object with a value of value divided by the operand</returns>
         [Pure] public static Length operator /(Length value, double operand) => new (value.Value / operand);
 
-		/// <summary>
-		/// Returns the absolute value of the <see cref="Length"/>
-		/// </summary>
-		/// <returns></returns>
-		[Pure] public Length Abs() { return new Length(Math.Abs(this.Value)); }
+        /// <summary>
+        /// Returns the absolute value of the <see cref="Length"/>
+        /// </summary>
+        /// <returns></returns>
+        [Pure] public Length Abs() { return new Length(Math.Abs(this.Value)); }
 
         /// <summary>
         /// Get a string representation of the object
