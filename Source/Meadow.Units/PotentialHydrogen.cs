@@ -175,11 +175,11 @@ namespace Meadow.Units
         /// <returns>A new PotentialHydrogen object with a value of value divided by the operand</returns>
         [Pure] public static PotentialHydrogen operator /(PotentialHydrogen value, double operand) => new(value.pH / operand);
 
-		/// <summary>
-		/// Returns the absolute value of the <see cref="PotentialHydrogen"/>
-		/// </summary>
-		/// <returns></returns>
-		[Pure] public PotentialHydrogen Abs() { return new PotentialHydrogen(Math.Abs(this.pH)); }
+        /// <summary>
+        /// Returns the absolute value of the <see cref="PotentialHydrogen"/>
+        /// </summary>
+        /// <returns></returns>
+        [Pure] public PotentialHydrogen Abs() { return new PotentialHydrogen(Math.Abs(this.pH)); }
 
         /// <summary>
         /// Get a string representation of the object

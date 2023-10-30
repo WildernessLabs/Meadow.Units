@@ -237,13 +237,13 @@ namespace Meadow.Units
         [Pure] public ReactivePower Abs() { return new ReactivePower(Math.Abs(this.Value)); }
 
         /// <summary>
-        /// Get a string represention of the object
+        /// Get a string representation of the object
         /// </summary>
         /// <returns>A string representing the object</returns>
         [Pure] public override string ToString() => Value.ToString();
 
         /// <summary>
-        /// Get a string represention of the object
+        /// Get a string representation of the object
         /// </summary>
         /// <param name="format">format</param>
         /// <param name="formatProvider">format provider</param>

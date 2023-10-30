@@ -31,7 +31,7 @@ namespace Meadow.Units
         /// Creates a new Acceleration object.
         /// </summary>
         /// <param name="acceleration"></param>
-		public Acceleration(Acceleration acceleration)
+        public Acceleration(Acceleration acceleration)
         {
             Value = acceleration.Value;
         }
@@ -54,27 +54,27 @@ namespace Meadow.Units
             /// Centimeters per second squared
             /// </summary>
             CentimetersPerSecondSquared,
-			/// <summary>
+            /// <summary>
             /// Galileo
             /// </summary>
             Galileo,
-			/// <summary>
+            /// <summary>
             /// MilliGalileo
             /// </summary>
             MilliGalileo,
-			/// <summary>
+            /// <summary>
             /// MilliGravity
             /// </summary>
             MilliGravity,
-			/// <summary>
+            /// <summary>
             /// Gravity
             /// </summary>
             Gravity,
-			/// <summary>
+            /// <summary>
             /// Feet per second squared
             /// </summary>
             FeetPerSecondSquared,
-			/// <summary>
+            /// <summary>
             /// Inches per second squared
             /// </summary>
             InchesPerSecondSquared,
@@ -235,11 +235,11 @@ namespace Meadow.Units
         /// <returns>A new Acceleration object with a value of value divided by the operand</returns>
         [Pure] public static Acceleration operator /(Acceleration value, double operand) => new (value.Value / operand);
 
-		/// <summary>
-		/// Returns the absolute value of the <see cref="Acceleration"/>
-		/// </summary>
-		/// <returns></returns>
-		[Pure] public Acceleration Abs() { return new Acceleration(Math.Abs(this.Value)); }
+        /// <summary>
+        /// Returns the absolute value of the <see cref="Acceleration"/>
+        /// </summary>
+        /// <returns></returns>
+        [Pure] public Acceleration Abs() { return new Acceleration(Math.Abs(this.Value)); }
 
         /// <summary>
         /// Get a string representation of the object

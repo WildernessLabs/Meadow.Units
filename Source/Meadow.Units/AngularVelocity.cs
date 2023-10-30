@@ -31,7 +31,7 @@ namespace Meadow.Units
         /// Creates a new AngularVelocity object.
         /// </summary>
         /// <param name="angularVelocity"></param>
-	    public AngularVelocity(AngularVelocity angularVelocity)
+        public AngularVelocity(AngularVelocity angularVelocity)
         {
             Value = angularVelocity.Value;
         }
@@ -53,23 +53,23 @@ namespace Meadow.Units
             /// <summary>
             /// Revolutions per minute
             /// </summary>
-			RevolutionsPerMinute,
+            RevolutionsPerMinute,
             /// <summary>
             /// Radians per second
             /// </summary>
-			RadiansPerSecond,
+            RadiansPerSecond,
             /// <summary>
             /// Radians per minute
             /// </summary>
-			RadiansPerMinute,
+            RadiansPerMinute,
             /// <summary>
             /// Degrees per second
             /// </summary>
-			DegreesPerSecond,
+            DegreesPerSecond,
             /// <summary>
             /// Degrees per minute
             /// </summary>
-			DegreesPerMinute
+            DegreesPerMinute
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Meadow.Units
         /// <summary>
         /// Get angular velocity in revolutions per minute
         /// </summary>
-		public double RevolutionsPerMinute => From(UnitType.RevolutionsPerMinute);
+        public double RevolutionsPerMinute => From(UnitType.RevolutionsPerMinute);
 
         /// <summary>
         /// Get angular velocity in radians per second
@@ -236,11 +236,11 @@ namespace Meadow.Units
         /// <returns>A new AngularVelocity object with a value of value divided by the operand</returns>
         [Pure] public static AngularVelocity operator /(AngularVelocity value, double operand) => new (value.Value / operand);
 
-		/// <summary>
-		/// Returns the absolute value of the <see cref="AngularVelocity"/>
-		/// </summary>
-		/// <returns></returns>
-		[Pure] public AngularVelocity Abs() { return new AngularVelocity(Math.Abs(this.Value)); }
+        /// <summary>
+        /// Returns the absolute value of the <see cref="AngularVelocity"/>
+        /// </summary>
+        /// <returns></returns>
+        [Pure] public AngularVelocity Abs() { return new AngularVelocity(Math.Abs(this.Value)); }
 
         /// <summary>
         /// Get a string representation of the object

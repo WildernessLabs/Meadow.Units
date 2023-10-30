@@ -86,7 +86,7 @@ namespace Meadow.Units
         /// </summary>
         /// <param name="convertTo">unit to covert to</param>
         /// <returns>the converted value</returns>
-		[Pure] public double From(UnitType convertTo)
+        [Pure] public double From(UnitType convertTo)
         {
             return FrequencyConversions.Convert(Value, UnitType.Hertz, convertTo);
         }
@@ -215,11 +215,11 @@ namespace Meadow.Units
         /// <returns>A new Frequency object with a value of value divided by the operand</returns>
         [Pure] public static Frequency operator /(Frequency value, double operand) => new (value.Value / operand);
 
-		/// <summary>
-		/// Returns the absolute value of the <see cref="Frequency"/>
-		/// </summary>
-		/// <returns></returns>
-		[Pure] public Frequency Abs() =>  new (Math.Abs(Value)); 
+        /// <summary>
+        /// Returns the absolute value of the <see cref="Frequency"/>
+        /// </summary>
+        /// <returns></returns>
+        [Pure] public Frequency Abs() =>  new (Math.Abs(Value)); 
 
         /// <summary>
         /// Get a string representation of the object

@@ -53,31 +53,31 @@ namespace Meadow.Units
             /// <summary>
             /// KiloTesla
             /// </summary>
-			KiloTesla,
+            KiloTesla,
             /// <summary>
             /// Tesla
             /// </summary>
-			Tesla,
+            Tesla,
             /// <summary>
             /// MilliTesla
             /// </summary>
-			MilliTesla,
+            MilliTesla,
             /// <summary>
             /// MicroTesla
             /// </summary>
-			MicroTesla,
+            MicroTesla,
             /// <summary>
             /// NanoTesla
             /// </summary>
-			NanoTesla,
+            NanoTesla,
             /// <summary>
             /// PicoTesla
             /// </summary>
-			PicoTesla,
+            PicoTesla,
             /// <summary>
             /// Gauss
             /// </summary>
-			Gauss
+            Gauss
         }
 
         /// <summary>
@@ -247,11 +247,11 @@ namespace Meadow.Units
         /// <returns>A new MagneticField object with a value of value divided by the operand</returns>
         [Pure] public static MagneticField operator /(MagneticField value, double operand) => new (value.Value / operand);
 
-		/// <summary>
-		/// Returns the absolute value of the <see cref="MagneticField"/>
-		/// </summary>
-		/// <returns></returns>
-		[Pure] public MagneticField Abs() { return new MagneticField(Math.Abs(this.Value)); }
+        /// <summary>
+        /// Returns the absolute value of the <see cref="MagneticField"/>
+        /// </summary>
+        /// <returns></returns>
+        [Pure] public MagneticField Abs() { return new MagneticField(Math.Abs(this.Value)); }
 
         /// <summary>
         /// Get a string representation of the object

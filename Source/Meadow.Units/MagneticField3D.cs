@@ -17,7 +17,7 @@ namespace Meadow.Units
     public struct MagneticField3D :
         IFormattable, IComparable,
         IEquatable<(double X, double Y, double Z)>, 
-		IComparable<(double, double, double)>
+        IComparable<(double, double, double)>
     {
         /// <summary>
         /// Creates a new `MagneticField3d` object.

@@ -319,11 +319,11 @@ namespace Meadow.Units
         /// <returns>A new Power object with a value of value divided by the operand</returns>
         [Pure] public static Power operator /(Power value, double operand) => new (value.Value / operand);
 
-		/// <summary>
-		/// Returns the absolute value of the <see cref="Power"/>
-		/// </summary>
-		/// <returns></returns>
-		[Pure] public Power Abs() { return new Power(Math.Abs(this.Value)); }
+        /// <summary>
+        /// Returns the absolute value of the <see cref="Power"/>
+        /// </summary>
+        /// <returns></returns>
+        [Pure] public Power Abs() { return new Power(Math.Abs(this.Value)); }
 
         /// <summary>
         /// Get a string representation of the object

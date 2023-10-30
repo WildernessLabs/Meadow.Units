@@ -244,7 +244,7 @@ namespace Meadow.Units
         /// <param name="value">object to multiply</param>
         /// <param name="operand">operand to multiply object</param>
         /// <returns>A new Azimuth object with a value of value multiplied by the operand</returns>
-		[Pure] public static Azimuth operator *(Azimuth value, double operand) => new(ConvertTo360(value.Value * operand));
+        [Pure] public static Azimuth operator *(Azimuth value, double operand) => new(ConvertTo360(value.Value * operand));
 
         /// <summary>
         /// Multiplication operator to divide by a double
@@ -252,7 +252,7 @@ namespace Meadow.Units
         /// <param name="value">object to divide</param>
         /// <param name="operand">operand to divide object</param>
         /// <returns>A new Azimuth object with a value of value divided by the operand</returns>
-		[Pure] public static Azimuth operator /(Azimuth value, double operand) => new(ConvertTo360(value.Value / operand));
+        [Pure] public static Azimuth operator /(Azimuth value, double operand) => new(ConvertTo360(value.Value / operand));
 
         private static double StandardizeAzimuth(double value)
         {
@@ -261,11 +261,11 @@ namespace Meadow.Units
             return value;
         }
 
-		/// <summary>
-		/// Returns the absolute value of the <see cref="Azimuth"/>
-		/// </summary>
-		/// <returns></returns>
-		[Pure] public Azimuth Abs() { return new Azimuth(Math.Abs(Value)); }
+        /// <summary>
+        /// Returns the absolute value of the <see cref="Azimuth"/>
+        /// </summary>
+        /// <returns></returns>
+        [Pure] public Azimuth Abs() { return new Azimuth(Math.Abs(Value)); }
 
         /// <summary>
         /// Get a string representation of the object

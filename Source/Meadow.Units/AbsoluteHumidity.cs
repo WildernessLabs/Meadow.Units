@@ -200,11 +200,11 @@ namespace Meadow.Units
         /// <returns>A new AbsoluteHumidity object with a value of value divided by the operand</returns>
         [Pure] public static AbsoluteHumidity operator /(AbsoluteHumidity value, double operand) => new (value.Value / operand);
 
-		/// <summary>
-		/// Returns the absolute value of the <see cref="AbsoluteHumidity"/>
-		/// </summary>
-		/// <returns></returns>
-		[Pure] public AbsoluteHumidity Abs() { return new AbsoluteHumidity(Math.Abs(this.Value)); }
+        /// <summary>
+        /// Returns the absolute value of the <see cref="AbsoluteHumidity"/>
+        /// </summary>
+        /// <returns></returns>
+        [Pure] public AbsoluteHumidity Abs() { return new AbsoluteHumidity(Math.Abs(this.Value)); }
 
         /// <summary>
         /// Get a string representation of the object

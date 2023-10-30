@@ -207,11 +207,11 @@ namespace Meadow.Units
         /// <returns>A new Illuminance object with a value of value divided by the operand</returns>
         [Pure] public static Illuminance operator /(Illuminance value, double operand) => new (value.Value / operand);
 
-		/// <summary>
-		/// Returns the absolute value of the <see cref="Illuminance"/>
-		/// </summary>
-		/// <returns></returns>
-		[Pure] public Illuminance Abs() => new (Math.Abs(Value));
+        /// <summary>
+        /// Returns the absolute value of the <see cref="Illuminance"/>
+        /// </summary>
+        /// <returns></returns>
+        [Pure] public Illuminance Abs() => new (Math.Abs(Value));
 
         /// <summary>
         /// Get a string representation of the object
