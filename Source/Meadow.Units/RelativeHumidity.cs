@@ -42,7 +42,7 @@ namespace Meadow.Units
         /// </summary>
         public double Percent { get; private set; }
         /// <summary>
-        /// The type of units available to describe the temperature.
+        /// The type of units available to describe the RelativeHumidity.
         /// </summary>
         public enum UnitType
         {
@@ -177,8 +177,7 @@ namespace Meadow.Units
         [Pure] public static RelativeHumidity operator /(RelativeHumidity value, double operand) => new (value.Percent / operand);
 
         /// <summary>
-        /// Returns the absolute length, that is, the length without regards to
-        /// negative polarity
+        /// Returns the absolute value of the <see cref="RelativeHumidity"/>
         /// </summary>
         /// <returns></returns>
         [Pure] public RelativeHumidity Abs() { return new RelativeHumidity(Math.Abs(this.Percent)); }
@@ -212,91 +211,91 @@ namespace Meadow.Units
         [Pure] public TypeCode GetTypeCode() => Percent.GetTypeCode();
 
         /// <summary>
-        /// Covert to boolean
+        /// Convert to boolean
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>bool representation of the object</returns>
         [Pure] public bool ToBoolean(IFormatProvider provider) => ((IConvertible)Percent).ToBoolean(provider);
 
         /// <summary>
-        /// Covert to byte
+        /// Convert to byte
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>byte representation of the object</returns>
         [Pure] public byte ToByte(IFormatProvider provider) => ((IConvertible)Percent).ToByte(provider);
 
         /// <summary>
-        /// Covert to char
+        /// Convert to char
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>char representation of the object</returns>
         [Pure] public char ToChar(IFormatProvider provider) => ((IConvertible)Percent).ToChar(provider);
 
         /// <summary>
-        /// Covert to DateTime
+        /// Convert to DateTime
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>DateTime representation of the object</returns>
         [Pure] public DateTime ToDateTime(IFormatProvider provider) => ((IConvertible)Percent).ToDateTime(provider);
 
         /// <summary>
-        /// Covert to Decimal
+        /// Convert to Decimal
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>Decimal representation of the object</returns>
         [Pure] public decimal ToDecimal(IFormatProvider provider) => ((IConvertible)Percent).ToDecimal(provider);
 
         /// <summary>
-        /// Covert to double
+        /// Convert to double
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>double representation of the object</returns>
         [Pure] public double ToDouble(IFormatProvider provider) => Percent;
 
         /// <summary>
-        /// Covert to in16
+        /// Convert to in16
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>int16 representation of the object</returns>
         [Pure] public short ToInt16(IFormatProvider provider) => ((IConvertible)Percent).ToInt16(provider);
 
         /// <summary>
-        /// Covert to int32
+        /// Convert to int32
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>int32 representation of the object</returns>
         [Pure] public int ToInt32(IFormatProvider provider) => ((IConvertible)Percent).ToInt32(provider);
 
         /// <summary>
-        /// Covert to int64
+        /// Convert to int64
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>int64 representation of the object</returns>
         [Pure] public long ToInt64(IFormatProvider provider) => ((IConvertible)Percent).ToInt64(provider);
 
         /// <summary>
-        /// Covert to sbyte
+        /// Convert to sbyte
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>sbyte representation of the object</returns>
         [Pure] public sbyte ToSByte(IFormatProvider provider) => ((IConvertible)Percent).ToSByte(provider);
 
         /// <summary>
-        /// Covert to float
+        /// Convert to float
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>float representation of the object</returns>
         [Pure] public float ToSingle(IFormatProvider provider) => ((IConvertible)Percent).ToSingle(provider);
 
         /// <summary>
-        /// Covert to string
+        /// Convert to string
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>string representation of the object</returns>
         [Pure] public string ToString(IFormatProvider provider) => Percent.ToString(provider);
 
         /// <summary>
-        /// Covert to type
+        /// Convert to type
         /// </summary>
         /// <param name="conversionType">unit to convert</param>
         /// <param name="provider">format provider</param>
@@ -304,21 +303,21 @@ namespace Meadow.Units
         [Pure] public object ToType(Type conversionType, IFormatProvider provider) => ((IConvertible)Percent).ToType(conversionType, provider);
 
         /// <summary>
-        /// Covert to uint16
+        /// Convert to uint16
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>uint16 representation of the object</returns>
         [Pure] public ushort ToUInt16(IFormatProvider provider) => ((IConvertible)Percent).ToUInt16(provider);
 
         /// <summary>
-        /// Covert to uint32
+        /// Convert to uint32
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>uint32 representation of the object</returns>
         [Pure] public uint ToUInt32(IFormatProvider provider) => ((IConvertible)Percent).ToUInt32(provider);
 
         /// <summary>
-        /// Covert to uint64
+        /// Convert to uint64
         /// </summary>
         /// <param name="provider">format provider</param>
         /// <returns>uint64 representation of the object</returns>

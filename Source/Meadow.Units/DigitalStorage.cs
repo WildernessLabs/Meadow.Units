@@ -1,39 +1,39 @@
-﻿using System;
+﻿using Meadow.Units.Conversions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
-using Meadow.Units.Conversions;
 
 namespace Meadow.Units
 {
     /// <summary>
-    /// Represents mass, or weight of an object
+    /// Represents a value of Digital Storage.
     /// </summary>
     [Serializable]
     [ImmutableObject(true)]
     [StructLayout(LayoutKind.Sequential)]
-    public struct Mass :
+    public struct DigitalStorage :
         IComparable, IFormattable, IConvertible,
         IEquatable<double>, IComparable<double>
     {
         /// <summary>
-        /// Creates a new `Mass` object.
+        /// Creates a new `DigitalStorage` object.
         /// </summary>
-        /// <param name="value">The mass value.</param>
-        /// <param name="type">Grams by default.</param>
-        public Mass(double value, UnitType type = UnitType.Grams)
+        /// <param name="value">The DigitalStorage value.</param>
+        /// <param name="type">Bytes by default.</param>
+        public DigitalStorage(double value, UnitType type = UnitType.Bytes)
         {
-            Value = MassConversions.Convert(value, type, UnitType.Grams);
+            Value = DigitalStorageConversions.Convert(value, type, UnitType.Bytes);
         }
 
         /// <summary>
-        /// Creates a new `Mass` object from an existing Mass object
+        /// Creates a new `DigitalStorage` object from an existing DigitalStorage object
         /// </summary>
-        /// <param name="mass"></param>
-        public Mass(Mass mass)
+        /// <param name="DigitalStorage"></param>
+        public DigitalStorage(DigitalStorage DigitalStorage)
         {
-            Value = mass.Value;
+            Value = DigitalStorage.Value;
         }
 
         /// <summary>
@@ -42,105 +42,133 @@ namespace Meadow.Units
         private readonly double Value;
 
         /// <summary>
-        /// The type of units available to describe the Mass.
+        /// The type of units available to describe the DigitalStorage.
         /// </summary>
         public enum UnitType
         {
             /// <summary>
-            /// Grams
+            /// Represents a unit of data size in bits
             /// </summary>
-            Grams,
+            Bits,
             /// <summary>
-            /// Kilograms
+            /// Represents a unit of data size in bytes
             /// </summary>
-            Kilograms,
+            Bytes,
             /// <summary>
-            /// Ounces
+            /// Represents a unit of data size in kilobytes (KB)
             /// </summary>
-            Ounces,
+            KiloBytes,
             /// <summary>
-            /// Pounds
+            /// Represents a unit of data size in megabytes (MB)
             /// </summary>
-            Pounds,
+            MegaBytes,
             /// <summary>
-            /// Tons metric
+            /// Represents a unit of data size in gigabytes (GB)
             /// </summary>
-            TonsMetric,
+            GigaBytes,
             /// <summary>
-            /// Tons US short
+            /// Represents a unit of data size in terabytes (TB)
             /// </summary>
-            TonsUSShort,
+            TeraBytes,
             /// <summary>
-            /// Tons UK long
+            /// Represents a unit of data size in petabytes (PB)
             /// </summary>
-            TonsUKLong,
+            PetaBytes,
             /// <summary>
-            /// Grains
+            /// Represents a unit of data size in exabytes (EB)
             /// </summary>
-            Grains,
+            ExaBytes,
             /// <summary>
-            /// Carats
+            /// Represents a unit of data size in kibibits (Kibit)
             /// </summary>
-            Carats
+            Kibibits,
+            /// <summary>
+            /// Represents a unit of data size in mebibits (Mibit)
+            /// </summary>
+            Mebibits,
+            /// <summary>
+            /// Represents a unit of data size in gibibits (Gibit)
+            /// </summary>
+            Gibibits,
         }
 
         /// <summary>
-        /// Mass in grams
+        /// Get DigitalStorage in bits
         /// </summary>
-        public double Grams => From(UnitType.Grams);
-        /// <summary>
-        /// Mass in kilograms
-        /// </summary>
-        public double Kilograms => From(UnitType.Kilograms);
-        /// <summary>
-        /// Mass in ounces
-        /// </summary>
-        public double Ounces => From(UnitType.Ounces);
-        /// <summary>
-        /// Mass in pounds
-        /// </summary>
-        public double Pounds => From(UnitType.Pounds);
-        /// <summary>
-        /// Mass in tons metric
-        /// </summary>
-        public double TonsMetric => From(UnitType.TonsMetric);
-        /// <summary>
-        /// Mass in tons US short
-        /// </summary>
-        public double TonsUSShort => From(UnitType.TonsUSShort);
-        /// <summary>
-        /// Mass in tons UK long
-        /// </summary>
-        public double TonsUKLong => From(UnitType.TonsUKLong);
-        /// <summary>
-        /// Mass in grains
-        /// </summary>
-        public double Grains => From(UnitType.Grains);
-        /// <summary>
-        /// Mass in karats
-        /// </summary>
-        public double Karats => From(UnitType.Carats);
+        public double Bits => From(UnitType.Bits);
 
         /// <summary>
-        /// Get a double value for a specific unit
+        /// Get DigitalStorage in bytes
         /// </summary>
-        /// <param name="convertTo">unit to covert to</param>
-        /// <returns>the converted value</returns>
-        [Pure] public double From(UnitType convertTo)
+        public double Bytes => From(UnitType.Bytes);
+
+        /// <summary>
+        /// Get DigitalStorage in kilobytes (KB)
+        /// </summary>
+        public double KiloBytes => From(UnitType.KiloBytes);
+
+        /// <summary>
+        /// Get DigitalStorage in megabytes (MB)
+        /// </summary>
+        public double MegaBytes => From(UnitType.MegaBytes);
+
+        /// <summary>
+        /// Get DigitalStorage in gigabytes (GB)
+        /// </summary>
+        public double GigaBytes => From(UnitType.GigaBytes);
+
+        /// <summary>
+        /// Get DigitalStorage in terabytes (TB)
+        /// </summary>
+        public double TeraBytes => From(UnitType.TeraBytes);
+
+        /// <summary>
+        /// Get DigitalStorage in petabytes (PB)
+        /// </summary>
+        public double PetaBytes => From(UnitType.PetaBytes);
+
+        /// <summary>
+        /// Get DigitalStorage in exabytes (EB)
+        /// </summary>
+        public double ExaBytes => From(UnitType.ExaBytes);
+
+        /// <summary>
+        /// Get DigitalStorage in kibibits (Kibit)
+        /// </summary>
+        public double Kibibits => From(UnitType.Kibibits);
+
+        /// <summary>
+        /// Get DigitalStorage in mebibits (Mibit)
+        /// </summary>
+        public double Mebibits => From(UnitType.Mebibits);
+
+        /// <summary>
+        /// Get DigitalStorage in gibibits (Gibit)
+        /// </summary>
+        public double Gibibits => From(UnitType.Gibibits);
+
+        /// <summary>
+        /// Convert to a specific unit
+        /// </summary>
+        /// <param name="convertTo">the unit to convert to</param>
+        /// <returns></returns>
+        [Pure]
+        public double From(UnitType convertTo)
         {
-            return MassConversions.Convert(Value, UnitType.Grams, convertTo);
+            return DigitalStorageConversions.Convert(Value, DigitalStorage.UnitType.Bytes, convertTo);
         }
 
         /// <summary>
-        /// Compare to another Mass object
+        /// Compare to another DigitalStorage object
         /// </summary>
         /// <param name="obj">The object to compare</param>
         /// <returns>true if equal</returns>
-        [Pure] public override bool Equals(object obj)
+        [Pure]
+        public override bool Equals(object obj)
         {
             if (obj is null) { return false; }
             if (Equals(this, obj)) { return true; }
-            return obj.GetType() == GetType() && Equals((Mass)obj);
+            return obj.GetType() == GetType() && Equals((DigitalStorage)obj);
         }
 
         /// <summary>
@@ -150,116 +178,116 @@ namespace Meadow.Units
         [Pure] public override int GetHashCode() => Value.GetHashCode();
 
         // implicit conversions
-        //[Pure] public static implicit operator Mass(ushort value) => new Mass(value);
-        //[Pure] public static implicit operator Mass(short value) => new Mass(value);
-        //[Pure] public static implicit operator Mass(uint value) => new Mass(value);
-        //[Pure] public static implicit operator Mass(long value) => new Mass(value);
-        //[Pure] public static implicit operator Mass(int value) => new Mass(value);
-        //[Pure] public static implicit operator Mass(float value) => new Mass(value);
-        //[Pure] public static implicit operator Mass(double value) => new Mass(value);
-        //[Pure] public static implicit operator Mass(decimal value) => new Mass((double)value);
+        //[Pure] public static implicit operator DigitalStorage(ushort value) => new DigitalStorage(value);
+        //[Pure] public static implicit operator DigitalStorage(short value) => new DigitalStorage(value);
+        //[Pure] public static implicit operator DigitalStorage(uint value) => new DigitalStorage(value);
+        //[Pure] public static implicit operator DigitalStorage(long value) => new DigitalStorage(value);
+        //[Pure] public static implicit operator DigitalStorage(int value) => new DigitalStorage(value);
+        //[Pure] public static implicit operator DigitalStorage(float value) => new DigitalStorage(value);
+        //[Pure] public static implicit operator DigitalStorage(double value) => new DigitalStorage(value);
+        //[Pure] public static implicit operator DigitalStorage(decimal value) => new DigitalStorage((double)value);
 
         // Comparison
         /// <summary>
-        /// Compare to another Mass object
+        /// Compare to another DigitalStorage object
         /// </summary>
         /// <param name="other">The object to compare</param>
         /// <returns>true if equal</returns>
-        [Pure] public bool Equals(Mass other) => Value == other.Value;
+        [Pure] public bool Equals(DigitalStorage other) => Value == other.Value;
 
         /// <summary>
-        /// Equals operator to compare two Mass objects
+        /// Equals operator to compare two DigitalStorage objects
         /// </summary>
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>true if equal</returns>
-        [Pure] public static bool operator ==(Mass left, Mass right) => Equals(left.Value, right.Value);
+        [Pure] public static bool operator ==(DigitalStorage left, DigitalStorage right) => Equals(left.Value, right.Value);
 
         /// <summary>
-        /// Not equals operator to compare two Mass objects
+        /// Not equals operator to compare two DigitalStorage objects
         /// </summary>
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>true if not equal</returns>
-        [Pure] public static bool operator !=(Mass left, Mass right) => !Equals(left.Value, right.Value);
+        [Pure] public static bool operator !=(DigitalStorage left, DigitalStorage right) => !Equals(left.Value, right.Value);
 
         /// <summary>
-        /// Compare to another Mass object
+        /// Compare to another DigitalStorage object
         /// </summary>
         /// <param name="other"></param>
         /// <returns>0 if equal</returns>
-        [Pure] public int CompareTo(Mass other) => Equals(Value, other.Value) ? 0 : Value.CompareTo(other.Value);
+        [Pure] public int CompareTo(DigitalStorage other) => Equals(Value, other.Value) ? 0 : Value.CompareTo(other.Value);
 
         /// <summary>
-        /// Less than operator to compare two Mass objects
+        /// Less than operator to compare two DigitalStorage objects
         /// </summary>
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>true if left is less than right</returns>
-        [Pure] public static bool operator <(Mass left, Mass right) => Comparer<double>.Default.Compare(left.Value, right.Value) < 0;
+        [Pure] public static bool operator <(DigitalStorage left, DigitalStorage right) => Comparer<double>.Default.Compare(left.Value, right.Value) < 0;
 
         /// <summary>
-        /// Greater than operator to compare two Mass objects
+        /// Greater than operator to compare two DigitalStorage objects
         /// </summary>
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>true if left is greater than right</returns>
-        [Pure] public static bool operator >(Mass left, Mass right) => Comparer<double>.Default.Compare(left.Value, right.Value) > 0;
+        [Pure] public static bool operator >(DigitalStorage left, DigitalStorage right) => Comparer<double>.Default.Compare(left.Value, right.Value) > 0;
 
         /// <summary>
-        /// Less than or equal operator to compare two Mass objects
+        /// Less than or equal operator to compare two DigitalStorage objects
         /// </summary>
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>true if left is less than or equal to right</returns>
-        [Pure] public static bool operator <=(Mass left, Mass right) => Comparer<double>.Default.Compare(left.Value, right.Value) <= 0;
+        [Pure] public static bool operator <=(DigitalStorage left, DigitalStorage right) => Comparer<double>.Default.Compare(left.Value, right.Value) <= 0;
 
         /// <summary>
-        /// Greater than or equal operator to compare two Mass objects
+        /// Greater than or equal operator to compare two DigitalStorage objects
         /// </summary>
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>true if left is greater than or equal to right</returns>
-        [Pure] public static bool operator >=(Mass left, Mass right) => Comparer<double>.Default.Compare(left.Value, right.Value) >= 0;
+        [Pure] public static bool operator >=(DigitalStorage left, DigitalStorage right) => Comparer<double>.Default.Compare(left.Value, right.Value) >= 0;
 
         // Math
         /// <summary>
-        /// Addition operator to add two Mass objects
+        /// Addition operator to add two DigitalStorage objects
         /// </summary>
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
-        /// <returns>A new Mass object with a value of left + right</returns>
-        [Pure] public static Mass operator +(Mass left, Mass right) => new (left.Value + right.Value);
+        /// <returns>A new DigitalStorage object with a value of left + right</returns>
+        [Pure] public static DigitalStorage operator +(DigitalStorage left, DigitalStorage right) => new(left.Value + right.Value);
 
         /// <summary>
-        /// Subtraction operator to subtract two Mass objects
+        /// Subtraction operator to subtract two DigitalStorage objects
         /// </summary>
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
-        /// <returns>A new Mass object with a value of left - right</returns>
-        [Pure] public static Mass operator -(Mass left, Mass right) => new (left.Value - right.Value);
+        /// <returns>A new DigitalStorage object with a value of left - right</returns>
+        [Pure] public static DigitalStorage operator -(DigitalStorage left, DigitalStorage right) => new(left.Value - right.Value);
 
         /// <summary>
         /// Multiplication operator to multiply by a double
         /// </summary>
         /// <param name="value">object to multiply</param>
         /// <param name="operand">operand to multiply object</param>
-        /// <returns>A new Mass object with a value of value multiplied by the operand</returns>
-        [Pure] public static Mass operator *(Mass value, double operand) => new (value.Value * operand);
+        /// <returns>A new DigitalStorage object with a value of value multiplied by the operand</returns>
+        [Pure] public static DigitalStorage operator *(DigitalStorage value, double operand) => new(value.Value * operand);
 
         /// <summary>
         /// Division operator to divide by a double
         /// </summary>
         /// <param name="value">object to be divided</param>
         /// <param name="operand">operand to divide object</param>
-        /// <returns>A new Mass object with a value of value divided by the operand</returns>
-        [Pure] public static Mass operator /(Mass value, double operand) => new (value.Value / operand);
+        /// <returns>A new DigitalStorage object with a value of value divided by the operand</returns>
+        [Pure] public static DigitalStorage operator /(DigitalStorage value, double operand) => new(value.Value / operand);
 
         /// <summary>
-        /// Returns the absolute value of the <see cref="Mass"/>
+        /// Returns the absolute value of the <see cref="DigitalStorage"/>
         /// </summary>
         /// <returns></returns>
-        [Pure] public Mass Abs() { return new Mass(Math.Abs(this.Value)); }
+        [Pure] public DigitalStorage Abs() { return new DigitalStorage(Math.Abs(this.Value)); }
 
         /// <summary>
         /// Get a string representation of the object
@@ -277,9 +305,9 @@ namespace Meadow.Units
 
         // IComparable
         /// <summary>
-        /// Compare to another Mass object
+        /// Compare to another DigitalStorage object
         /// </summary>
-        /// <param name="obj">The other Mass cast to object</param>
+        /// <param name="obj">The other DigitalStorage cast to object</param>
         /// <returns>0 if equal</returns>
         [Pure] public int CompareTo(object obj) => Value.CompareTo(obj);
 
@@ -376,7 +404,7 @@ namespace Meadow.Units
         /// <summary>
         /// Convert to type
         /// </summary>
-        /// <param name="conversionType">conversion type</param>
+        /// <param name="conversionType">conversion unit type</param>
         /// <param name="provider">format provider</param>
         /// <returns>type representation of the object</returns>
         [Pure] public object ToType(Type conversionType, IFormatProvider provider) => ((IConvertible)Value).ToType(conversionType, provider);
@@ -407,7 +435,8 @@ namespace Meadow.Units
         /// </summary>
         /// <param name="other">value to compare</param>
         /// <returns>0 if equal</returns>
-        [Pure] public int CompareTo(double? other)
+        [Pure]
+        public int CompareTo(double? other)
         {
             return (other is null) ? -1 : (Value).CompareTo(other.Value);
         }
