@@ -106,51 +106,51 @@ public struct Length :
     /// <summary>
     /// Get length value as Kilometers
     /// </summary>
-    public double Kilometers => From(UnitType.Kilometers);
+    public readonly double Kilometers => From(UnitType.Kilometers);
     /// <summary>
     /// Get length value as Meters
     /// </summary>
-    public double Meters => From(UnitType.Meters);
+    public readonly double Meters => From(UnitType.Meters);
     /// <summary>
     /// Get length value as Centimeters
     /// </summary>
-    public double Centimeters => From(UnitType.Centimeters);
+    public readonly double Centimeters => From(UnitType.Centimeters);
     /// <summary>
     /// Get length value as Decimeters
     /// </summary>
-    public double Decimeters => From(UnitType.Decimeters);
+    public readonly double Decimeters => From(UnitType.Decimeters);
     /// <summary>
     /// Get length value as Millimeters
     /// </summary>
-    public double Millimeters => From(UnitType.Millimeters);
+    public readonly double Millimeters => From(UnitType.Millimeters);
     /// <summary>
     /// Get length value as Microns
     /// </summary>
-    public double Microns => From(UnitType.Microns);
+    public readonly double Microns => From(UnitType.Microns);
     /// <summary>
     /// Get length value as Nanometers
     /// </summary>
-    public double Nanometers => From(UnitType.Nanometers);
+    public readonly double Nanometers => From(UnitType.Nanometers);
     /// <summary>
     /// Get length value as Miles
     /// </summary>
-    public double Miles => From(UnitType.Miles);
+    public readonly double Miles => From(UnitType.Miles);
     /// <summary>
     /// Get length value as NauticalMiles
     /// </summary>
-    public double NauticalMiles => From(UnitType.NauticalMiles);
+    public readonly double NauticalMiles => From(UnitType.NauticalMiles);
     /// <summary>
     /// Get length value as Yards
     /// </summary>
-    public double Yards => From(UnitType.Yards);
+    public readonly double Yards => From(UnitType.Yards);
     /// <summary>
     /// Get length value as Feet
     /// </summary>
-    public double Feet => From(UnitType.Feet);
+    public readonly double Feet => From(UnitType.Feet);
     /// <summary>
     /// Get length value as Inches
     /// </summary>
-    public double Inches => From(UnitType.Inches);
+    public readonly double Inches => From(UnitType.Inches);
 
     /// <summary>
     /// Get a double value for a specific unit
@@ -158,7 +158,7 @@ public struct Length :
     /// <param name="convertTo">unit to covert to</param>
     /// <returns>the converted value</returns>
     [Pure]
-    public double From(UnitType convertTo)
+    public readonly double From(UnitType convertTo)
     {
         return LengthConversions.Convert(Value, UnitType.Meters, convertTo);
     }
@@ -169,7 +169,7 @@ public struct Length :
     /// <param name="obj">The object to compare</param>
     /// <returns>true if equal</returns>
     [Pure]
-    public override bool Equals(object obj)
+    public override readonly bool Equals(object obj)
     {
         if (obj is null) { return false; }
         if (Equals(this, obj)) { return true; }
@@ -180,7 +180,7 @@ public struct Length :
     /// Get hash of object
     /// </summary>
     /// <returns>int32 hash value</returns>
-    [Pure] public override int GetHashCode() => Value.GetHashCode();
+    [Pure] public override readonly int GetHashCode() => Value.GetHashCode();
 
     // implicit conversions
     //[Pure] public static implicit operator Length(ushort value) => new Length(value);
@@ -198,7 +198,7 @@ public struct Length :
     /// </summary>
     /// <param name="other">The object to compare</param>
     /// <returns>true if equal</returns>
-    [Pure] public bool Equals(Length other) => Value == other.Value;
+    [Pure] public readonly bool Equals(Length other) => Value == other.Value;
 
     /// <summary>
     /// Equals operator to compare two Length objects
@@ -221,7 +221,7 @@ public struct Length :
     /// </summary>
     /// <param name="other"></param>
     /// <returns>0 if equal</returns>
-    [Pure] public int CompareTo(Length other) => Equals(Value, other.Value) ? 0 : Value.CompareTo(other.Value);
+    [Pure] public readonly int CompareTo(Length other) => Equals(Value, other.Value) ? 0 : Value.CompareTo(other.Value);
 
     /// <summary>
     /// Less than operator to compare two Length objects
@@ -292,13 +292,13 @@ public struct Length :
     /// Returns the absolute value of the <see cref="Length"/>
     /// </summary>
     /// <returns></returns>
-    [Pure] public Length Abs() { return new Length(Math.Abs(this.Value)); }
+    [Pure] public readonly Length Abs() { return new Length(Math.Abs(this.Value)); }
 
     /// <summary>
     /// Get a string representation of the object
     /// </summary>
     /// <returns>A string representing the object</returns>
-    [Pure] public override string ToString() => Value.ToString();
+    [Pure] public override readonly string ToString() => Value.ToString();
 
     /// <summary>
     /// Get a string representation of the object
@@ -306,7 +306,7 @@ public struct Length :
     /// <param name="format">format</param>
     /// <param name="formatProvider">format provider</param>
     /// <returns>A string representing the object</returns>
-    [Pure] public string ToString(string format, IFormatProvider formatProvider) => Value.ToString(format, formatProvider);
+    [Pure] public readonly string ToString(string format, IFormatProvider formatProvider) => Value.ToString(format, formatProvider);
 
     // IComparable
     /// <summary>
@@ -314,97 +314,97 @@ public struct Length :
     /// </summary>
     /// <param name="obj">The other Length cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] public int CompareTo(object obj) => Value.CompareTo(obj);
+    [Pure] public readonly int CompareTo(object obj) => Value.CompareTo(obj);
 
     /// <summary>
     /// Get type code of object
     /// </summary>
     /// <returns>The TypeCode</returns>
-    [Pure] public TypeCode GetTypeCode() => Value.GetTypeCode();
+    [Pure] public readonly TypeCode GetTypeCode() => Value.GetTypeCode();
 
     /// <summary>
     /// Convert to boolean
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>bool representation of the object</returns>
-    [Pure] public bool ToBoolean(IFormatProvider provider) => ((IConvertible)Value).ToBoolean(provider);
+    [Pure] public readonly bool ToBoolean(IFormatProvider provider) => ((IConvertible)Value).ToBoolean(provider);
 
     /// <summary>
     /// Convert to byte
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>byte representation of the object</returns>
-    [Pure] public byte ToByte(IFormatProvider provider) => ((IConvertible)Value).ToByte(provider);
+    [Pure] public readonly byte ToByte(IFormatProvider provider) => ((IConvertible)Value).ToByte(provider);
 
     /// <summary>
     /// Convert to char
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>char representation of the object</returns>
-    [Pure] public char ToChar(IFormatProvider provider) => ((IConvertible)Value).ToChar(provider);
+    [Pure] public readonly char ToChar(IFormatProvider provider) => ((IConvertible)Value).ToChar(provider);
 
     /// <summary>
     /// Convert to DateTime
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>DateTime representation of the object</returns>
-    [Pure] public DateTime ToDateTime(IFormatProvider provider) => ((IConvertible)Value).ToDateTime(provider);
+    [Pure] public readonly DateTime ToDateTime(IFormatProvider provider) => ((IConvertible)Value).ToDateTime(provider);
 
     /// <summary>
     /// Convert to Decimal
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>Decimal representation of the object</returns>
-    [Pure] public decimal ToDecimal(IFormatProvider provider) => ((IConvertible)Value).ToDecimal(provider);
+    [Pure] public readonly decimal ToDecimal(IFormatProvider provider) => ((IConvertible)Value).ToDecimal(provider);
 
     /// <summary>
     /// Convert to double
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>double representation of the object</returns>
-    [Pure] public double ToDouble(IFormatProvider provider) => Value;
+    [Pure] public readonly double ToDouble(IFormatProvider provider) => Value;
 
     /// <summary>
     /// Convert to in16
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>int16 representation of the object</returns>
-    [Pure] public short ToInt16(IFormatProvider provider) => ((IConvertible)Value).ToInt16(provider);
+    [Pure] public readonly short ToInt16(IFormatProvider provider) => ((IConvertible)Value).ToInt16(provider);
 
     /// <summary>
     /// Convert to int32
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>int32 representation of the object</returns>
-    [Pure] public int ToInt32(IFormatProvider provider) => ((IConvertible)Value).ToInt32(provider);
+    [Pure] public readonly int ToInt32(IFormatProvider provider) => ((IConvertible)Value).ToInt32(provider);
 
     /// <summary>
     /// Convert to int64
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>int64 representation of the object</returns>
-    [Pure] public long ToInt64(IFormatProvider provider) => ((IConvertible)Value).ToInt64(provider);
+    [Pure] public readonly long ToInt64(IFormatProvider provider) => ((IConvertible)Value).ToInt64(provider);
 
     /// <summary>
     /// Convert to sbyte
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>sbyte representation of the object</returns>
-    [Pure] public sbyte ToSByte(IFormatProvider provider) => ((IConvertible)Value).ToSByte(provider);
+    [Pure] public readonly sbyte ToSByte(IFormatProvider provider) => ((IConvertible)Value).ToSByte(provider);
 
     /// <summary>
     /// Convert to float
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>float representation of the object</returns>
-    [Pure] public float ToSingle(IFormatProvider provider) => ((IConvertible)Value).ToSingle(provider);
+    [Pure] public readonly float ToSingle(IFormatProvider provider) => ((IConvertible)Value).ToSingle(provider);
 
     /// <summary>
     /// Convert to string
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>string representation of the object</returns>
-    [Pure] public string ToString(IFormatProvider provider) => Value.ToString(provider);
+    [Pure] public readonly string ToString(IFormatProvider provider) => Value.ToString(provider);
 
     /// <summary>
     /// Convert to type
@@ -412,28 +412,28 @@ public struct Length :
     /// <param name="conversionType">type to covert to</param>
     /// <param name="provider">format provider</param>
     /// <returns>type representation of the object</returns>
-    [Pure] public object ToType(Type conversionType, IFormatProvider provider) => ((IConvertible)Value).ToType(conversionType, provider);
+    [Pure] public readonly object ToType(Type conversionType, IFormatProvider provider) => ((IConvertible)Value).ToType(conversionType, provider);
 
     /// <summary>
     /// Convert to uint16
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>uint16 representation of the object</returns>
-    [Pure] public ushort ToUInt16(IFormatProvider provider) => ((IConvertible)Value).ToUInt16(provider);
+    [Pure] public readonly ushort ToUInt16(IFormatProvider provider) => ((IConvertible)Value).ToUInt16(provider);
 
     /// <summary>
     /// Convert to uint32
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>uint32 representation of the object</returns>
-    [Pure] public uint ToUInt32(IFormatProvider provider) => ((IConvertible)Value).ToUInt32(provider);
+    [Pure] public readonly uint ToUInt32(IFormatProvider provider) => ((IConvertible)Value).ToUInt32(provider);
 
     /// <summary>
     /// Convert to uint64
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>uint64 representation of the object</returns>
-    [Pure] public ulong ToUInt64(IFormatProvider provider) => ((IConvertible)Value).ToUInt64(provider);
+    [Pure] public readonly ulong ToUInt64(IFormatProvider provider) => ((IConvertible)Value).ToUInt64(provider);
 
     /// <summary>
     /// Compare the default value to a double 
@@ -441,7 +441,7 @@ public struct Length :
     /// <param name="other">value to compare</param>
     /// <returns>0 if equal</returns>
     [Pure]
-    public int CompareTo(double? other)
+    public readonly int CompareTo(double? other)
     {
         return (other is null) ? -1 : (Value).CompareTo(other.Value);
     }
@@ -451,19 +451,19 @@ public struct Length :
     /// </summary>
     /// <param name="other">value to compare</param>
     /// <returns>0 if equal</returns>
-    [Pure] public bool Equals(double? other) => Value.Equals(other);
+    [Pure] public readonly bool Equals(double? other) => Value.Equals(other);
 
     /// <summary>
     /// Compare the default value to a double 
     /// </summary>
     /// <param name="other">value to compare</param>
     /// <returns>0 if equal</returns>
-    [Pure] public bool Equals(double other) => Value.Equals(other);
+    [Pure] public readonly bool Equals(double other) => Value.Equals(other);
 
     /// <summary>
     /// Compare the default value to a double 
     /// </summary>
     /// <param name="other">value to compare</param>
     /// <returns>0 if equal</returns>
-    [Pure] public int CompareTo(double other) => Value.CompareTo(other);
+    [Pure] public readonly int CompareTo(double other) => Value.CompareTo(other);
 }

@@ -117,7 +117,7 @@ public struct Angle :
     [Pure]
     public double From(UnitType convertTo)
     {
-        return ConvertTo360(AngleConversions.Convert(Value, UnitType.Degrees, convertTo));
+        return AngleConversions.Convert(Value, UnitType.Degrees, convertTo);
     }
 
     /// <summary>
@@ -212,18 +212,6 @@ public struct Angle :
     /// <returns>true if left is greater than or equal to right</returns>
     [Pure] public static bool operator >=(Angle left, Angle right) => Comparer<double>.Default.Compare(left.Value, right.Value) >= 0;
 
-    /// <summary>
-    /// Helper method to ensure mathematical results 'wrap' correctly at 0/360 degrees.
-    /// </summary>
-    /// <returns>proper result in the range of [0,360)</returns>
-    private static double ConvertTo360(double value)
-    {
-        value %= 360;
-        if (value < 0)
-            value += 360;
-        return value;
-    }
-
     // Math
     /// <summary>
     /// Addition operator to add two Angle objects
@@ -231,7 +219,7 @@ public struct Angle :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Angle object with a value of left + right</returns>
-    [Pure] public static Angle operator +(Angle left, Angle right) => new(ConvertTo360(left.Value + right.Value));
+    [Pure] public static Angle operator +(Angle left, Angle right) => new(left.Value + right.Value);
 
     /// <summary>
     /// Subtraction operator to subtract two Angle objects
@@ -239,7 +227,7 @@ public struct Angle :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Angle object with a value of left - right</returns>
-    [Pure] public static Angle operator -(Angle left, Angle right) => new(ConvertTo360(left.Value - right.Value));
+    [Pure] public static Angle operator -(Angle left, Angle right) => new(left.Value - right.Value);
 
     /// <summary>
     /// Multiplication operator to multiply by a double
@@ -247,7 +235,7 @@ public struct Angle :
     /// <param name="value">object to multiply</param>
     /// <param name="operand">operand to multiply object</param>
     /// <returns>A new Angle object with a value of value multiplied by the operand</returns>
-    [Pure] public static Angle operator *(Angle value, double operand) => new(ConvertTo360(value.Value * operand));
+    [Pure] public static Angle operator *(Angle value, double operand) => new(value.Value * operand);
 
     /// <summary>
     /// Division operator to divide by a double
@@ -255,7 +243,7 @@ public struct Angle :
     /// <param name="value">object to be divided</param>
     /// <param name="operand">operand to divide object</param>
     /// <returns>A new Angle object with a value of value divided by the operand</returns>
-    [Pure] public static Angle operator /(Angle value, double operand) => new(ConvertTo360(value.Value / operand));
+    [Pure] public static Angle operator /(Angle value, double operand) => new(value.Value / operand);
 
     /// <summary>
     /// Returns the absolute value of the <see cref="Angle"/>
