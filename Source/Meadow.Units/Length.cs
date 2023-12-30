@@ -157,8 +157,7 @@ public struct Length :
     /// </summary>
     /// <param name="convertTo">unit to covert to</param>
     /// <returns>the converted value</returns>
-    [Pure]
-    public readonly double From(UnitType convertTo)
+    [Pure] public readonly double From(UnitType convertTo)
     {
         return LengthConversions.Convert(Value, UnitType.Meters, convertTo);
     }
@@ -168,8 +167,7 @@ public struct Length :
     /// </summary>
     /// <param name="obj">The object to compare</param>
     /// <returns>true if equal</returns>
-    [Pure]
-    public override readonly bool Equals(object obj)
+    [Pure] public override readonly bool Equals(object obj)
     {
         if (obj is null) { return false; }
         if (Equals(this, obj)) { return true; }
