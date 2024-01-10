@@ -117,7 +117,7 @@ public struct Angle :
     [Pure]
     public double From(UnitType convertTo)
     {
-        return ConvertTo360(AngleConversions.Convert(Value, UnitType.Degrees, convertTo));
+        return AngleConversions.Convert(Value, UnitType.Degrees, convertTo);
     }
 
     /// <summary>
@@ -219,8 +219,10 @@ public struct Angle :
     private static double ConvertTo360(double value)
     {
         value %= 360;
-        if (value < 0)
+        while (value < 0)
+        {
             value += 360;
+        }
         return value;
     }
 

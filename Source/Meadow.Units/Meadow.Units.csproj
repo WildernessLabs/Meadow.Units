@@ -9,19 +9,16 @@
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/WildernessLabs/Meadow.Units</RepositoryUrl>
     <PackageTags>Meadow</PackageTags>
-    <Version>0.33.1</Version>
+    <Version>1.7.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RootNamespace>Meadow</RootNamespace>
     <Nullable>enable</Nullable>
     <Description>Unit types for Wilderness Labs Meadow</Description>
-  </PropertyGroup>
-  <PropertyGroup>
     <Authors>Wilderness Labs, Inc</Authors>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>10.0</LangVersion>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <None Include="icon.png" Pack="true" PackagePath="" />
