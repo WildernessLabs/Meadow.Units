@@ -17,13 +17,6 @@ public struct Resistance :
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
-    private static Resistance? _zero;
-
-    /// <summary>
-    /// Gets a resistance of 0 Ohms
-    /// </summary>
-    public static Resistance Zero => _zero ?? (_zero = new Resistance(0, UnitType.Ohms)).Value;
-
     /// <summary>
     /// Creates a new `Resistance` object.
     /// </summary>

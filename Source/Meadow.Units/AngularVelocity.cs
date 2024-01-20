@@ -17,13 +17,6 @@ public struct AngularVelocity :
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
-    private static AngularVelocity? _zero;
-
-    /// <summary>
-    /// Gets an angle of 0 degrees
-    /// </summary>
-    public static AngularVelocity Zero => _zero ?? (_zero = new AngularVelocity(0, UnitType.RevolutionsPerSecond)).Value;
-
     /// <summary>
     /// Creates a new `AngularVelocity` object.
     /// </summary>
