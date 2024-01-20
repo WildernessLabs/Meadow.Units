@@ -17,13 +17,6 @@ public struct Angle :
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
-    private static Angle? _zero;
-
-    /// <summary>
-    /// Gets an angle of 0 degrees
-    /// </summary>
-    public static Angle Zero => _zero ?? (_zero = new Angle(0, UnitType.Degrees)).Value;
-
     /// <summary>
     /// Creates a new `Angle` object.
     /// </summary>
