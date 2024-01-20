@@ -17,6 +17,18 @@ public struct Power :
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
+    private static Power _zero;
+
+    static Power()
+    {
+        _zero = new Power(0, UnitType.Watts);
+    }
+
+    /// <summary>
+    /// Gets a power of 0 Watts
+    /// </summary>
+    public static Power Zero => _zero;
+
     /// <summary>
     /// Creates a new `Power` object.
     /// </summary>
@@ -24,7 +36,7 @@ public struct Power :
     /// <param name="type">kilometers meters per second by default.</param>
     public Power(double value, UnitType type = UnitType.Watts)
     {
-        Value = PowerConversions.Convert(value, type, UnitType.Watts);
+        _value = PowerConversions.Convert(value, type, UnitType.Watts);
     }
 
     /// <summary>
@@ -33,13 +45,13 @@ public struct Power :
     /// <param name="power"></param>
     public Power(Power power)
     {
-        this.Value = power.Value;
+        this._value = power._value;
     }
 
     /// <summary>
     /// Internal canonical value.
     /// </summary>
-    private readonly double Value;
+    private readonly double _value;
 
     /// <summary>
     /// The type of units available to describe the Power.
@@ -193,7 +205,7 @@ public struct Power :
     [Pure]
     public double From(UnitType convertTo)
     {
-        return PowerConversions.Convert(Value, UnitType.Watts, convertTo);
+        return PowerConversions.Convert(_value, UnitType.Watts, convertTo);
     }
 
     /// <summary>
@@ -213,7 +225,7 @@ public struct Power :
     /// Get hash of object
     /// </summary>
     /// <returns>int32 hash value</returns>
-    [Pure] public override int GetHashCode() => Value.GetHashCode();
+    [Pure] public override int GetHashCode() => _value.GetHashCode();
 
     // implicit conversions
     //[Pure] public static implicit operator Power(ushort value) => new Power(value);
@@ -231,7 +243,7 @@ public struct Power :
     /// </summary>
     /// <param name="other">The object to compare</param>
     /// <returns>true if equal</returns>
-    [Pure] public bool Equals(Power other) => Value == other.Value;
+    [Pure] public bool Equals(Power other) => _value == other._value;
 
     /// <summary>
     /// Equals operator to compare two Power objects
@@ -239,7 +251,7 @@ public struct Power :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>true if equal</returns>
-    [Pure] public static bool operator ==(Power left, Power right) => Equals(left.Value, right.Value);
+    [Pure] public static bool operator ==(Power left, Power right) => Equals(left._value, right._value);
 
     /// <summary>
     /// Not equals operator to compare two Power objects
@@ -247,14 +259,14 @@ public struct Power :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>true if not equal</returns>
-    [Pure] public static bool operator !=(Power left, Power right) => !Equals(left.Value, right.Value);
+    [Pure] public static bool operator !=(Power left, Power right) => !Equals(left._value, right._value);
 
     /// <summary>
     /// Compare to another Power object
     /// </summary>
     /// <param name="other"></param>
     /// <returns>0 if equal</returns>
-    [Pure] public int CompareTo(Power other) => Equals(Value, other.Value) ? 0 : Value.CompareTo(other.Value);
+    [Pure] public int CompareTo(Power other) => Equals(_value, other._value) ? 0 : _value.CompareTo(other._value);
 
     /// <summary>
     /// Less than operator to compare two Power objects
@@ -262,7 +274,7 @@ public struct Power :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>true if left is less than right</returns>
-    [Pure] public static bool operator <(Power left, Power right) => Comparer<double>.Default.Compare(left.Value, right.Value) < 0;
+    [Pure] public static bool operator <(Power left, Power right) => Comparer<double>.Default.Compare(left._value, right._value) < 0;
 
     /// <summary>
     /// Greater than operator to compare two Power objects
@@ -270,7 +282,7 @@ public struct Power :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>true if left is greater than right</returns>
-    [Pure] public static bool operator >(Power left, Power right) => Comparer<double>.Default.Compare(left.Value, right.Value) > 0;
+    [Pure] public static bool operator >(Power left, Power right) => Comparer<double>.Default.Compare(left._value, right._value) > 0;
 
     /// <summary>
     /// Less than or equal operator to compare two Power objects
@@ -278,7 +290,7 @@ public struct Power :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>true if left is less than or equal to right</returns>
-    [Pure] public static bool operator <=(Power left, Power right) => Comparer<double>.Default.Compare(left.Value, right.Value) <= 0;
+    [Pure] public static bool operator <=(Power left, Power right) => Comparer<double>.Default.Compare(left._value, right._value) <= 0;
 
     /// <summary>
     /// Greater than or equal operator to compare two Power objects
@@ -286,7 +298,7 @@ public struct Power :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>true if left is greater than or equal to right</returns>
-    [Pure] public static bool operator >=(Power left, Power right) => Comparer<double>.Default.Compare(left.Value, right.Value) >= 0;
+    [Pure] public static bool operator >=(Power left, Power right) => Comparer<double>.Default.Compare(left._value, right._value) >= 0;
 
     // Math
     /// <summary>
@@ -295,7 +307,7 @@ public struct Power :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Power object with a value of left + right</returns>
-    [Pure] public static Power operator +(Power left, Power right) => new(left.Value + right.Value);
+    [Pure] public static Power operator +(Power left, Power right) => new(left._value + right._value);
 
     /// <summary>
     /// Subtraction operator to subtract two Power objects
@@ -303,7 +315,7 @@ public struct Power :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Power object with a value of left - right</returns>
-    [Pure] public static Power operator -(Power left, Power right) => new(left.Value - right.Value);
+    [Pure] public static Power operator -(Power left, Power right) => new(left._value - right._value);
 
     /// <summary>
     /// Multiplication operator to multiply by a double
@@ -311,7 +323,7 @@ public struct Power :
     /// <param name="value">object to multiply</param>
     /// <param name="operand">operand to multiply object</param>
     /// <returns>A new Power object with a value of value multiplied by the operand</returns>
-    [Pure] public static Power operator *(Power value, double operand) => new(value.Value * operand);
+    [Pure] public static Power operator *(Power value, double operand) => new(value._value * operand);
 
     /// <summary>
     /// Division operator to divide by a double
@@ -319,19 +331,19 @@ public struct Power :
     /// <param name="value">object to be divided</param>
     /// <param name="operand">operand to divide object</param>
     /// <returns>A new Power object with a value of value divided by the operand</returns>
-    [Pure] public static Power operator /(Power value, double operand) => new(value.Value / operand);
+    [Pure] public static Power operator /(Power value, double operand) => new(value._value / operand);
 
     /// <summary>
     /// Returns the absolute value of the <see cref="Power"/>
     /// </summary>
     /// <returns></returns>
-    [Pure] public Power Abs() { return new Power(Math.Abs(this.Value)); }
+    [Pure] public Power Abs() { return new Power(Math.Abs(this._value)); }
 
     /// <summary>
     /// Get a string representation of the object
     /// </summary>
     /// <returns>A string representing the object</returns>
-    [Pure] public override string ToString() => Value.ToString();
+    [Pure] public override string ToString() => _value.ToString();
 
     /// <summary>
     /// Get a string representation of the object
@@ -339,7 +351,7 @@ public struct Power :
     /// <param name="format">format</param>
     /// <param name="formatProvider">format provider</param>
     /// <returns>A string representing the object</returns>
-    [Pure] public string ToString(string format, IFormatProvider formatProvider) => Value.ToString(format, formatProvider);
+    [Pure] public string ToString(string format, IFormatProvider formatProvider) => _value.ToString(format, formatProvider);
 
     // IComparable
     /// <summary>
@@ -347,97 +359,97 @@ public struct Power :
     /// </summary>
     /// <param name="obj">The other Power cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] public int CompareTo(object obj) => Value.CompareTo(obj);
+    [Pure] public int CompareTo(object obj) => _value.CompareTo(obj);
 
     /// <summary>
     /// Get type code of object
     /// </summary>
     /// <returns>The TypeCode</returns>
-    [Pure] public TypeCode GetTypeCode() => Value.GetTypeCode();
+    [Pure] public TypeCode GetTypeCode() => _value.GetTypeCode();
 
     /// <summary>
     /// Convert to boolean
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>bool representation of the object</returns>
-    [Pure] public bool ToBoolean(IFormatProvider provider) => ((IConvertible)Value).ToBoolean(provider);
+    [Pure] public bool ToBoolean(IFormatProvider provider) => ((IConvertible)_value).ToBoolean(provider);
 
     /// <summary>
     /// Convert to byte
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>byte representation of the object</returns>
-    [Pure] public byte ToByte(IFormatProvider provider) => ((IConvertible)Value).ToByte(provider);
+    [Pure] public byte ToByte(IFormatProvider provider) => ((IConvertible)_value).ToByte(provider);
 
     /// <summary>
     /// Convert to char
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>char representation of the object</returns>
-    [Pure] public char ToChar(IFormatProvider provider) => ((IConvertible)Value).ToChar(provider);
+    [Pure] public char ToChar(IFormatProvider provider) => ((IConvertible)_value).ToChar(provider);
 
     /// <summary>
     /// Convert to DateTime
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>DateTime representation of the object</returns>
-    [Pure] public DateTime ToDateTime(IFormatProvider provider) => ((IConvertible)Value).ToDateTime(provider);
+    [Pure] public DateTime ToDateTime(IFormatProvider provider) => ((IConvertible)_value).ToDateTime(provider);
 
     /// <summary>
     /// Convert to Decimal
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>Decimal representation of the object</returns>
-    [Pure] public decimal ToDecimal(IFormatProvider provider) => ((IConvertible)Value).ToDecimal(provider);
+    [Pure] public decimal ToDecimal(IFormatProvider provider) => ((IConvertible)_value).ToDecimal(provider);
 
     /// <summary>
     /// Convert to double
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>double representation of the object</returns>
-    [Pure] public double ToDouble(IFormatProvider provider) => Value;
+    [Pure] public double ToDouble(IFormatProvider provider) => _value;
 
     /// <summary>
     /// Convert to in16
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>int16 representation of the object</returns>
-    [Pure] public short ToInt16(IFormatProvider provider) => ((IConvertible)Value).ToInt16(provider);
+    [Pure] public short ToInt16(IFormatProvider provider) => ((IConvertible)_value).ToInt16(provider);
 
     /// <summary>
     /// Convert to int32
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>int32 representation of the object</returns>
-    [Pure] public int ToInt32(IFormatProvider provider) => ((IConvertible)Value).ToInt32(provider);
+    [Pure] public int ToInt32(IFormatProvider provider) => ((IConvertible)_value).ToInt32(provider);
 
     /// <summary>
     /// Convert to int64
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>int64 representation of the object</returns>
-    [Pure] public long ToInt64(IFormatProvider provider) => ((IConvertible)Value).ToInt64(provider);
+    [Pure] public long ToInt64(IFormatProvider provider) => ((IConvertible)_value).ToInt64(provider);
 
     /// <summary>
     /// Convert to sbyte
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>sbyte representation of the object</returns>
-    [Pure] public sbyte ToSByte(IFormatProvider provider) => ((IConvertible)Value).ToSByte(provider);
+    [Pure] public sbyte ToSByte(IFormatProvider provider) => ((IConvertible)_value).ToSByte(provider);
 
     /// <summary>
     /// Convert to float
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>float representation of the object</returns>
-    [Pure] public float ToSingle(IFormatProvider provider) => ((IConvertible)Value).ToSingle(provider);
+    [Pure] public float ToSingle(IFormatProvider provider) => ((IConvertible)_value).ToSingle(provider);
 
     /// <summary>
     /// Convert to string
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>string representation of the object</returns>
-    [Pure] public string ToString(IFormatProvider provider) => Value.ToString(provider);
+    [Pure] public string ToString(IFormatProvider provider) => _value.ToString(provider);
 
     /// <summary>
     /// Convert to type
@@ -445,28 +457,28 @@ public struct Power :
     /// <param name="conversionType">conversion type</param>
     /// <param name="provider">format provider</param>
     /// <returns>type representation of the object</returns>
-    [Pure] public object ToType(Type conversionType, IFormatProvider provider) => ((IConvertible)Value).ToType(conversionType, provider);
+    [Pure] public object ToType(Type conversionType, IFormatProvider provider) => ((IConvertible)_value).ToType(conversionType, provider);
 
     /// <summary>
     /// Convert to uint16
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>uint16 representation of the object</returns>
-    [Pure] public ushort ToUInt16(IFormatProvider provider) => ((IConvertible)Value).ToUInt16(provider);
+    [Pure] public ushort ToUInt16(IFormatProvider provider) => ((IConvertible)_value).ToUInt16(provider);
 
     /// <summary>
     /// Convert to uint32
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>uint32 representation of the object</returns>
-    [Pure] public uint ToUInt32(IFormatProvider provider) => ((IConvertible)Value).ToUInt32(provider);
+    [Pure] public uint ToUInt32(IFormatProvider provider) => ((IConvertible)_value).ToUInt32(provider);
 
     /// <summary>
     /// Convert to uint64
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>uint64 representation of the object</returns>
-    [Pure] public ulong ToUInt64(IFormatProvider provider) => ((IConvertible)Value).ToUInt64(provider);
+    [Pure] public ulong ToUInt64(IFormatProvider provider) => ((IConvertible)_value).ToUInt64(provider);
 
     /// <summary>
     /// Compare the default value to a double 
@@ -476,7 +488,7 @@ public struct Power :
     [Pure]
     public int CompareTo(double? other)
     {
-        return (other is null) ? -1 : (Value).CompareTo(other.Value);
+        return (other is null) ? -1 : (_value).CompareTo(other.Value);
     }
 
     /// <summary>
@@ -484,19 +496,19 @@ public struct Power :
     /// </summary>
     /// <param name="other">value to compare</param>
     /// <returns>0 if equal</returns>
-    [Pure] public bool Equals(double? other) => Value.Equals(other);
+    [Pure] public bool Equals(double? other) => _value.Equals(other);
 
     /// <summary>
     /// Compare the default value to a double 
     /// </summary>
     /// <param name="other">value to compare</param>
     /// <returns>0 if equal</returns>
-    [Pure] public bool Equals(double other) => Value.Equals(other);
+    [Pure] public bool Equals(double other) => _value.Equals(other);
 
     /// <summary>
     /// Compare the default value to a double 
     /// </summary>
     /// <param name="other">value to compare</param>
     /// <returns>0 if equal</returns>
-    [Pure] public int CompareTo(double other) => Value.CompareTo(other);
+    [Pure] public int CompareTo(double other) => _value.CompareTo(other);
 }

@@ -17,6 +17,18 @@ public struct Voltage :
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
+    private static Voltage _zero;
+
+    static Voltage()
+    {
+        _zero = new Voltage(0, UnitType.Volts);
+    }
+
+    /// <summary>
+    /// Gets a voltage of 0 Volts
+    /// </summary>
+    public static Voltage Zero => _zero;
+
     /// <summary>
     /// Creates a new `Voltage` object.
     /// </summary>
