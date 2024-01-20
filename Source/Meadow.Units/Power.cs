@@ -17,13 +17,6 @@ public struct Power :
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
-    private static Power? _zero;
-
-    /// <summary>
-    /// Gets a power of 0 Watts
-    /// </summary>
-    public static Power Zero => _zero ?? (_zero = new Power(0, UnitType.Watts)).Value;
-
     /// <summary>
     /// Creates a new `Power` object.
     /// </summary>

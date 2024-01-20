@@ -17,13 +17,6 @@ public struct Length :
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
-    private static Length? _zero;
-
-    /// <summary>
-    /// Gets a Length of 0
-    /// </summary>
-    public static Length Zero => _zero ?? (_zero = new Length(0, UnitType.Meters)).Value;
-
     /// <summary>
     /// Creates a new `Length` object.
     /// </summary>
