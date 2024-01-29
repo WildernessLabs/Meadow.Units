@@ -20,6 +20,7 @@
 			0.000001, //Megavolts
 			0.000000001, //Gigavolts
 			299.792458, //Statvolts
+            1000000000, //Nanovolts
 		};
 	}
 }
