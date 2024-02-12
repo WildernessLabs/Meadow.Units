@@ -37,9 +37,10 @@ namespace Meadow.Units
         }
 
         /// <summary>
-        /// The Turbidity expressed as NeNTUelometric Turbidity Units (NTU)
+        /// The Turbidity expressed as Nephelometric Turbidity Units (NTU)
         /// </summary>
         public double NTU { get; private set; }
+
         /// <summary>
         /// The type of units available to describe the Turbidity.
         /// </summary>
