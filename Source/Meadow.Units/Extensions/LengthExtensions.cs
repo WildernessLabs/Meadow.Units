@@ -1,7 +1,7 @@
 ﻿namespace Meadow.Units;
 
 /// <summary>
-/// Provides extension methods for creating Length instances.
+/// Provides extension methods for creating <see cref="Length"/> instances.
 /// </summary>
 public static class LengthExtensions
 {

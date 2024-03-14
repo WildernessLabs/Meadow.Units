@@ -1,7 +1,7 @@
 ﻿namespace Meadow.Units;
 
 /// <summary>
-/// Provides extension methods for creating Temperature instances.
+/// Provides extension methods for creating <see cref="Temperature"/> instances.
 /// </summary>
 public static class TemperatureExtensions
 {

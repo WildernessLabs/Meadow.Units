@@ -1,7 +1,7 @@
 ﻿namespace Meadow.Units;
 
 /// <summary>
-/// Provides extension methods for creating Frequency instances.
+/// Provides extension methods for creating <see cref="Frequency"/> instances.
 /// </summary>
 public static class FrequencyExtensions
 {
