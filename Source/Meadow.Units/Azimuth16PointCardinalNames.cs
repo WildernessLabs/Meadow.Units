@@ -1,5 +1,4 @@
-﻿using System;
-namespace Meadow.Units
+﻿namespace Meadow.Units
 {
     /// <summary>
     /// Cardinal compass directions

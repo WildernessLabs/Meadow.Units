@@ -58,64 +58,40 @@ public struct Voltage :
     /// </summary>
     public enum UnitType
     {
-        /// <summary>
-        /// Volts
-        /// </summary>
+        /// <summary> Volts </summary>
         Volts,
-        /// <summary>
-        /// Millivolts
-        /// </summary>
+        /// <summary> Millivolts </summary>
         Millivolts,
-        /// <summary>
-        /// Microvolts
-        /// </summary>
+        /// <summary> Microvolts </summary>
         Microvolts,
-        /// <summary>
-        /// Kilovolts
-        /// </summary>
+        /// <summary> Kilovolts </summary>
         Kilovolts,
-        /// <summary>
-        /// Megavolts
-        /// </summary>
+        /// <summary> Megavolts </summary>
         Megavolts,
-        /// <summary>
-        /// Gigavolts
-        /// </summary>
+        /// <summary> Gigavolts </summary>
         Gigavolts,
-        /// <summary>
-        /// Statvolts
-        /// </summary>
-        Statvolts
+        /// <summary> Statvolts </summary>
+        Statvolts,
+        /// <summary> Nanovolts </summary>
+        Nanovolts,
     }
 
-    /// <summary>
-    /// Get voltage in volts
-    /// </summary>
+    /// <summary> Get voltage in volts </summary>
     public double Volts => From(UnitType.Volts);
-    /// <summary>
-    /// Get voltage in millivolts
-    /// </summary>
+    /// <summary> Get voltage in millivolts </summary>
     public double Millivolts => From(UnitType.Millivolts);
-    /// <summary>
-    /// Get voltage in microvolts
-    /// </summary>
+    /// <summary> Get voltage in microvolts </summary>
     public double Microvolts => From(UnitType.Microvolts);
-    /// <summary>
-    /// Get voltage in kilovolts
-    /// </summary>
+    /// <summary> Get voltage in kilovolts </summary>
     public double Kilovolts => From(UnitType.Kilovolts);
-    /// <summary>
-    /// Get voltage in megavolts
-    /// </summary>
+    /// <summary> Get voltage in megavolts </summary>
     public double Megavolts => From(UnitType.Megavolts);
-    /// <summary>
-    /// Get voltage in gigavolts
-    /// </summary>
+    /// <summary> Get voltage in gigavolts </summary>
     public double Gigavolts => From(UnitType.Gigavolts);
-    /// <summary>
-    /// Get voltage in statvolts
-    /// </summary>
+    /// <summary> Get voltage in statvolts </summary>
     public double Statvolts => From(UnitType.Statvolts);
+    /// <summary> Get voltage in nanovolts </summary>
+    public double Nanovolts => From(UnitType.Nanovolts);
 
     /// <summary>
     /// Get a double value for a specific unit
