@@ -25,4 +25,3 @@ public static class LengthExtensions
         return new Length(v, Length.UnitType.Meters);
     }
 }
-

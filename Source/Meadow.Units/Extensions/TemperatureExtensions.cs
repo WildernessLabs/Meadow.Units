@@ -45,4 +45,3 @@ public static class TemperatureExtensions
         return new Temperature(v, Temperature.UnitType.Celsius);
     }
 }
-
