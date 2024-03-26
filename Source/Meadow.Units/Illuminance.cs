@@ -21,7 +21,7 @@ namespace Meadow.Units
         /// Creates a new `Illuminance` object.
         /// </summary>
         /// <param name="value">The Illuminance value.</param>
-        /// <param name="type">kilometers meters per second by default.</param>
+        /// <param name="type">Lux by default.</param>
         public Illuminance(double value, UnitType type = UnitType.Lux)
         {
             Value = IlluminanceConversions.Convert(value, type, UnitType.Lux);
