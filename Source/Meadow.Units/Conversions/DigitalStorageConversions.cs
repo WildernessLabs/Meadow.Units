@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Meadow.Units.Conversions
+﻿namespace Meadow.Units.Conversions
 {
     internal static class DigitalStorageConversions
     {
@@ -17,15 +15,18 @@ namespace Meadow.Units.Conversions
         {
             1.0 / 8.0,                // Bit
             1,                        // Byte
-            Math.Pow(2.0, 10.0),      // Kilobyte
-            Math.Pow(2.0, 20.0),      // Megabyte
-            Math.Pow(2.0, 30.0),      // Gigabyte
-            Math.Pow(2.0, 40.0),      // Terabyte
-            Math.Pow(2.0, 50.0),      // Petabyte
-            Math.Pow(2.0, 60.0),      // Exabyte
-            1.0 / 8.0 / 1024.0,       // Kibit (Kibibit)
-            1.0 / 8.0 / 1024.0 / 1024.0,  // Mibit (Mebibit)
-            1.0 / 8.0 / 1024.0 / 1024.0 / 1024.0,  // Gibit (Gibibit)
+            1_000,                    // Kilobyte
+            1_000_000,                // Megabyte
+            1_000_000_000,            // Gigabyte
+            1_000_000_000_000,        // Terabyte
+            1_000_000_000_000_000,    // Petabyte
+            1_000_000_000_000_000_000,// Exabyte
+            1024,                     // KiB
+            1024 * 8,                 // Kib
+            1024 * 1024,              // MiB
+            1024 * 1024 * 8,          // Mib
+            1024 * 1024 * 1024,       // GiB
+            // 1024 * 1024 * 1204 * 8    // Gib  OVERFLOW - NOT SUPPORTED
         };
     }
 }

@@ -17,6 +17,18 @@ namespace Meadow.Units
         IComparable, IFormattable, IConvertible,
         IEquatable<double>, IComparable<double>
     {
+        private static DigitalStorage _zero;
+
+        static DigitalStorage()
+        {
+            _zero = new DigitalStorage(0, UnitType.Bytes);
+        }
+
+        /// <summary>
+        /// Gets a DigitalStorage with a zero value
+        /// </summary>
+        public static DigitalStorage Zero => _zero;
+
         /// <summary>
         /// Creates a new `DigitalStorage` object.
         /// </summary>
@@ -79,17 +91,25 @@ namespace Meadow.Units
             /// </summary>
             ExaBytes,
             /// <summary>
-            /// Represents a unit of data size in kibibits (Kibit)
+            /// Represents a unit of data size in kibibytes (KiB)
+            /// </summary>
+            KibiBytes,
+            /// <summary>
+            /// Represents a unit of data size in kibibits (Kib)
             /// </summary>
             Kibibits,
             /// <summary>
-            /// Represents a unit of data size in mebibits (Mibit)
+            /// Represents a unit of data size in mebibytes (MiB)
+            /// </summary>
+            MebiBytes,
+            /// <summary>
+            /// Represents a unit of data size in mebibits (Mib)
             /// </summary>
             Mebibits,
             /// <summary>
-            /// Represents a unit of data size in gibibits (Gibit)
+            /// Represents a unit of data size in gibibytes (GiB)
             /// </summary>
-            Gibibits,
+            GibiBytes,
         }
 
         /// <summary>
@@ -133,19 +153,29 @@ namespace Meadow.Units
         public double ExaBytes => From(UnitType.ExaBytes);
 
         /// <summary>
+        /// Get DigitalStorage in kibibytes (KiB)
+        /// </summary>
+        public double KibiBytes => From(UnitType.KibiBytes);
+
+        /// <summary>
         /// Get DigitalStorage in kibibits (Kibit)
         /// </summary>
         public double Kibibits => From(UnitType.Kibibits);
 
         /// <summary>
-        /// Get DigitalStorage in mebibits (Mibit)
+        /// Get DigitalStorage in mebibits (MiB)
+        /// </summary>
+        public double MebiBytes => From(UnitType.MebiBytes);
+
+        /// <summary>
+        /// Get DigitalStorage in mebibits (Mib)
         /// </summary>
         public double Mebibits => From(UnitType.Mebibits);
 
         /// <summary>
-        /// Get DigitalStorage in gibibits (Gibit)
+        /// Get DigitalStorage in gibibytes (GiB)
         /// </summary>
-        public double Gibibits => From(UnitType.Gibibits);
+        public double GibiBytes => From(UnitType.GibiBytes);
 
         /// <summary>
         /// Convert to a specific unit
@@ -168,7 +198,7 @@ namespace Meadow.Units
         {
             if (obj is null) { return false; }
             if (Equals(this, obj)) { return true; }
-            return obj.GetType() == GetType() && Equals((DigitalStorage)obj);
+            return obj.GetType() == GetType() && ((DigitalStorage)obj).Value == this.Value;
         }
 
         /// <summary>
