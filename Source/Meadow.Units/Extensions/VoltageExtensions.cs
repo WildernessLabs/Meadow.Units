@@ -1,7 +1,7 @@
 ﻿namespace Meadow.Units;
 
 /// <summary>
-/// Provides extension methods for creating Resistance instances.
+/// Provides extension methods for creating <see cref="Voltage"/> instances.
 /// </summary>
 public static class VoltageExtensions
 {
