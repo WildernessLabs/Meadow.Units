@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Meadow.Units.Conversions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
-using Meadow.Units.Conversions;
 
 namespace Meadow.Units
 {
@@ -17,6 +17,18 @@ namespace Meadow.Units
         IComparable, IFormattable, IConvertible,
         IEquatable<double>, IComparable<double>
     {
+        private static Illuminance _zero;
+
+        static Illuminance()
+        {
+            _zero = new Illuminance(0, UnitType.Lux);
+        }
+
+        /// <summary>
+        /// Gets a voltage of 0 Volts
+        /// </summary>
+        public static Illuminance Zero => _zero;
+
         /// <summary>
         /// Creates a new `Illuminance` object.
         /// </summary>
@@ -78,7 +90,8 @@ namespace Meadow.Units
         /// </summary>
         /// <param name="convertTo">unit to convert to</param>
         /// <returns></returns>
-        [Pure] public double From(UnitType convertTo)
+        [Pure]
+        public double From(UnitType convertTo)
         {
             return IlluminanceConversions.Convert(Value, UnitType.Lux, convertTo);
         }
@@ -88,11 +101,10 @@ namespace Meadow.Units
         /// </summary>
         /// <param name="obj">The object to compare</param>
         /// <returns>true if equal</returns>
-        [Pure] public override bool Equals(object obj)
+        [Pure]
+        public override bool Equals(object obj)
         {
-            if (obj is null) { return false; }
-            if (Equals(this, obj)) { return true; }
-            return obj.GetType() == GetType() && Equals((Illuminance)obj);
+            return this.CompareTo(obj) == 0;
         }
 
         /// <summary>
@@ -100,16 +112,6 @@ namespace Meadow.Units
         /// </summary>
         /// <returns>int32 hash value</returns>
         [Pure] public override int GetHashCode() => Value.GetHashCode();
-
-        // implicit conversions
-        //[Pure] public static implicit operator Illuminance(ushort value) => new Illuminance(value);
-        //[Pure] public static implicit operator Illuminance(short value) => new Illuminance(value);
-        //[Pure] public static implicit operator Illuminance(uint value) => new Illuminance(value);
-        //[Pure] public static implicit operator Illuminance(long value) => new Illuminance(value);
-        //[Pure] public static implicit operator Illuminance(int value) => new Illuminance(value);
-        //[Pure] public static implicit operator Illuminance(float value) => new Illuminance(value);
-        //[Pure] public static implicit operator Illuminance(double value) => new Illuminance(value);
-        //[Pure] public static implicit operator Illuminance(decimal value) => new Illuminance((double)value);
 
         // Comparison
         /// <summary>
@@ -181,7 +183,7 @@ namespace Meadow.Units
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>A new Illuminance object with a value of left + right</returns>
-        [Pure] public static Illuminance operator +(Illuminance left, Illuminance right) => new (left.Value + right.Value);
+        [Pure] public static Illuminance operator +(Illuminance left, Illuminance right) => new(left.Value + right.Value);
 
         /// <summary>
         /// Subtraction operator to subtract two Illuminance objects
@@ -189,7 +191,7 @@ namespace Meadow.Units
         /// <param name="left">left value</param>
         /// <param name="right">right value</param>
         /// <returns>A new Illuminance object with a value of left - right</returns>
-        [Pure] public static Illuminance operator -(Illuminance left, Illuminance right) => new (left.Value - right.Value);
+        [Pure] public static Illuminance operator -(Illuminance left, Illuminance right) => new(left.Value - right.Value);
 
         /// <summary>
         /// Multiplication operator to multiply by a double
@@ -197,7 +199,7 @@ namespace Meadow.Units
         /// <param name="value">object to multiply</param>
         /// <param name="operand">operand to multiply object</param>
         /// <returns>A new Illuminance object with a value of value multiplied by the operand</returns>
-        [Pure] public static Illuminance operator *(Illuminance value, double operand) => new (value.Value * operand);
+        [Pure] public static Illuminance operator *(Illuminance value, double operand) => new(value.Value * operand);
 
         /// <summary>
         /// Division operator to divide by a double
@@ -205,13 +207,13 @@ namespace Meadow.Units
         /// <param name="value">object to be divided</param>
         /// <param name="operand">operand to divide object</param>
         /// <returns>A new Illuminance object with a value of value divided by the operand</returns>
-        [Pure] public static Illuminance operator /(Illuminance value, double operand) => new (value.Value / operand);
+        [Pure] public static Illuminance operator /(Illuminance value, double operand) => new(value.Value / operand);
 
         /// <summary>
         /// Returns the absolute value of the <see cref="Illuminance"/>
         /// </summary>
         /// <returns></returns>
-        [Pure] public Illuminance Abs() => new (Math.Abs(Value));
+        [Pure] public Illuminance Abs() => new(Math.Abs(Value));
 
         /// <summary>
         /// Get a string representation of the object
@@ -229,11 +231,20 @@ namespace Meadow.Units
 
         // IComparable
         /// <summary>
-        /// Compare to another AbsoluteHumidity object
+        /// Compare to another Illuminance object
         /// </summary>
-        /// <param name="obj">The other AbsoluteHumity cast to object</param>
+        /// <param name="obj">The other Illuminance cast to object</param>
         /// <returns>0 if equal</returns>
-        [Pure] public int CompareTo(object obj) => Value.CompareTo(obj);
+        [Pure]
+        public int CompareTo(object obj)
+        {
+            if (obj is Illuminance illuminance)
+            {
+                return Value.CompareTo(illuminance.Value);
+            }
+
+            throw new ArgumentException("Object is not an Illuminance");
+        }
 
         /// <summary>
         /// Get type code of object
@@ -359,7 +370,8 @@ namespace Meadow.Units
         /// </summary>
         /// <param name="other">value to compare</param>
         /// <returns>0 if equal</returns>
-        [Pure] public int CompareTo(double? other)
+        [Pure]
+        public int CompareTo(double? other)
         {
             return (other is null) ? -1 : (Value).CompareTo(other.Value);
         }
