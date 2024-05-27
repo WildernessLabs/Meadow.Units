@@ -30,7 +30,7 @@ public struct Current :
     public static Current Zero => _zero;
 
     /// <summary>
-    /// Creates a new `Current` object.
+    /// Creates a new <see cref="Current"/> object.
     /// </summary>
     /// <param name="value">The Current value.</param>
     /// <param name="type">Amps by default.</param>
@@ -40,7 +40,7 @@ public struct Current :
     }
 
     /// <summary>
-    /// Creates a new `Current` object from an existing Current object
+    /// Creates a new <see cref="Current"/> object from an existing Current object
     /// </summary>
     /// <param name="Current"></param>
     public Current(Current Current)
@@ -97,7 +97,7 @@ public struct Current :
     /// <returns></returns>
     [Pure] public double From(UnitType convertTo)
     {
-        return CurrentConversions.Convert(Value, Current.UnitType.Amps, convertTo);
+        return CurrentConversions.Convert(Value, UnitType.Amps, convertTo);
     }
 
     /// <summary>
@@ -105,12 +105,7 @@ public struct Current :
     /// </summary>
     /// <param name="obj">The object to compare</param>
     /// <returns>true if equal</returns>
-    [Pure] public override bool Equals(object obj)
-    {
-        if (obj is null) { return false; }
-        if (Equals(this, obj)) { return true; }
-        return obj.GetType() == GetType() && Equals((Current)obj);
-    }
+    [Pure] public override bool Equals(object obj) => CompareTo(obj) == 0;
 
     /// <summary>
     /// Get hash of object
@@ -228,7 +223,7 @@ public struct Current :
     /// Returns the absolute value of the <see cref="Current"/>
     /// </summary>
     /// <returns></returns>
-    [Pure] public Current Abs() { return new Current(Math.Abs(this.Value)); }
+    [Pure] public Current Abs() { return new Current(Math.Abs(Value)); }
 
     /// <summary>
     /// Get a string representation of the object
@@ -250,7 +245,16 @@ public struct Current :
     /// </summary>
     /// <param name="obj">The other Current cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] public int CompareTo(object obj) => Value.CompareTo(obj);
+    [Pure] 
+    public int CompareTo(object obj)
+    {
+        if (obj is Current current)
+        {
+            return Value.CompareTo(current.Value);
+        }
+
+        throw new ArgumentException("Object is not a Current");
+    }
 
     /// <summary>
     /// Get type code of object
