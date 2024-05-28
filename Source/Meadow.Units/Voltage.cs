@@ -30,7 +30,7 @@ public struct Voltage :
     public static Voltage Zero => _zero;
 
     /// <summary>
-    /// Creates a new `Voltage` object.
+    /// Creates a new <see cref="Voltage"/> object.
     /// </summary>
     /// <param name="value">The Voltage value.</param>
     /// <param name="type">Volts by default.</param>
@@ -40,7 +40,7 @@ public struct Voltage :
     }
 
     /// <summary>
-    /// Creates a new `Voltage` object from an existing Voltage object
+    /// Creates a new <see cref="Voltage"/> object from an existing Voltage object
     /// </summary>
     /// <param name="voltage"></param>
     public Voltage(Voltage voltage)
@@ -101,7 +101,7 @@ public struct Voltage :
     [Pure]
     public double From(UnitType convertTo)
     {
-        return VoltageConversions.Convert(Value, Voltage.UnitType.Volts, convertTo);
+        return VoltageConversions.Convert(Value, UnitType.Volts, convertTo);
     }
 
     /// <summary>
@@ -109,13 +109,7 @@ public struct Voltage :
     /// </summary>
     /// <param name="obj">The object to compare</param>
     /// <returns>true if equal</returns>
-    [Pure]
-    public override bool Equals(object obj)
-    {
-        if (obj is null) { return false; }
-        if (Equals(this, obj)) { return true; }
-        return obj.GetType() == GetType() && Equals((Voltage)obj);
-    }
+    [Pure] public override bool Equals(object obj) => CompareTo(obj) == 0;
 
     /// <summary>
     /// Get hash of object
@@ -233,7 +227,7 @@ public struct Voltage :
     /// Returns the absolute value of the <see cref="Voltage"/>
     /// </summary>
     /// <returns></returns>
-    [Pure] public Voltage Abs() { return new Voltage(Math.Abs(this.Value)); }
+    [Pure] public Voltage Abs() { return new Voltage(Math.Abs(Value)); }
 
     /// <summary>
     /// Get a string representation of the object
@@ -255,7 +249,16 @@ public struct Voltage :
     /// </summary>
     /// <param name="obj">The other Voltage cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] public int CompareTo(object obj) => Value.CompareTo(obj);
+    [Pure] 
+    public int CompareTo(object obj)
+    {
+        if (obj is Voltage voltage)
+        {
+            return Value.CompareTo(voltage.Value);
+        }
+
+        throw new ArgumentException("Object is not a Voltage");
+    }
 
     /// <summary>
     /// Get type code of object
