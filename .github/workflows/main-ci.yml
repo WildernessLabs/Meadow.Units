@@ -16,8 +16,6 @@ jobs:
 
     - name: Checkout Meadow.Units
       uses: actions/checkout@v3
-      with:
-        path: Meadow.Units
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
