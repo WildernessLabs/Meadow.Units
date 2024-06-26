@@ -1,5 +1,7 @@
 ﻿using Meadow.Units.Conversions;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
@@ -193,12 +195,45 @@ public struct TimePeriod :
     }
 
     /// <summary>
+    /// Less than operator to compare two TimePeriod objects
+    /// </summary>
+    /// <param name="left">left value</param>
+    /// <param name="right">right value</param>
+    /// <returns>true if left is less than right</returns>
+    [Pure] public static bool operator <(TimePeriod left, TimePeriod right) => Comparer<double>.Default.Compare(left.Value, right.Value) < 0;
+
+    /// <summary>
+    /// Greater than operator to compare two TimePeriod objects
+    /// </summary>
+    /// <param name="left">left value</param>
+    /// <param name="right">right value</param>
+    /// <returns>true if left is greater than right</returns>
+    [Pure] public static bool operator >(TimePeriod left, TimePeriod right) => Comparer<double>.Default.Compare(left.Value, right.Value) > 0;
+
+    /// <summary>
+    /// Less than or equal operator to compare two TimePeriod objects
+    /// </summary>
+    /// <param name="left">left value</param>
+    /// <param name="right">right value</param>
+    /// <returns>true if left is less than or equal to right</returns>
+    [Pure] public static bool operator <=(TimePeriod left, TimePeriod right) => Comparer<double>.Default.Compare(left.Value, right.Value) <= 0;
+
+    /// <summary>
+    /// Greater than or equal operator to compare two TimePeriod objects
+    /// </summary>
+    /// <param name="left">left value</param>
+    /// <param name="right">right value</param>
+    /// <returns>true if left is greater than or equal to right</returns>
+    [Pure] public static bool operator >=(TimePeriod left, TimePeriod right) => Comparer<double>.Default.Compare(left.Value, right.Value) >= 0;
+
+    /// <summary>
     /// Addition operator
     /// </summary>
     /// <param name="left">Left operand</param>
     /// <param name="right">Right operand</param>
     /// <returns>A sum of the two TimePeriods</returns>
     [Pure] public static TimePeriod operator +(TimePeriod left, TimePeriod right) => new(left.Value + right.Value);
+
     /// <summary>
     /// Subtraction operator
     /// </summary>
