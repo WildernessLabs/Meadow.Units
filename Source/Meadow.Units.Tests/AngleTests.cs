@@ -20,22 +20,22 @@ namespace Meadow.Units.Tests
             }
         }
 
-		[Fact]
-		public void ZeroCrossTests()
-		{
-			var a1 = new Angle(270);
-			var a2 = a1 + new Angle(180);
-			Assert.Equal(90d, a2.Degrees);
+        [Fact]
+        public void ZeroCrossTests()
+        {
+            var a1 = new Angle(270);
+            var a2 = a1 + new Angle(180);
+            Assert.Equal(90d, a2.Degrees);
 
-			var a3 = new Angle(90);
-			var a4 = a3 - new Angle(180);
-			Assert.Equal(270d, a4.Degrees);
+            var a3 = new Angle(90);
+            var a4 = a3 - new Angle(180);
+            Assert.Equal(270d, a4.Degrees);
 
-			var a5 = a3 * 5;
-			Assert.Equal(90d, a5.Degrees);
-		}
+            var a5 = a3 * 5;
+            Assert.Equal(90d, a5.Degrees);
+        }
 
-		[Fact]
+        [Fact]
         public void MultiplicationTests()
         {
             var initial = _random.NextDouble() * 360;
@@ -55,6 +55,22 @@ namespace Meadow.Units.Tests
             var a = new Angle(initial);
             a /= operand;
             Assert.Equal(initial / operand, a.Degrees);
+        }
+
+        [Fact]
+        public void LtGtTests()
+        {
+            var minusTen = new Angle(-10);
+            var zero = Angle.Zero;
+            var plusTen = new Angle(10);
+
+            Assert.True(minusTen < zero);
+            Assert.True(minusTen < plusTen);
+            Assert.True(zero < plusTen);
+
+            Assert.True(zero > minusTen);
+            Assert.True(plusTen > zero);
+            Assert.True(plusTen > minusTen);
         }
     }
 }
