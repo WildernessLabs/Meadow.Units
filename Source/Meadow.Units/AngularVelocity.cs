@@ -17,20 +17,15 @@ public struct AngularVelocity :
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
-    private static AngularVelocity _zero;
-
-    static AngularVelocity()
-    {
-        _zero = new AngularVelocity(0, UnitType.RevolutionsPerSecond);
-    }
+    private static AngularVelocity? _zero;
 
     /// <summary>
     /// Gets an angle of 0 degrees
     /// </summary>
-    public static AngularVelocity Zero => _zero;
+    public static AngularVelocity Zero => _zero ?? (_zero = new AngularVelocity(0, UnitType.RevolutionsPerSecond)).Value;
 
     /// <summary>
-    /// Creates a new <see cref="AngularVelocity"/> object.
+    /// Creates a new `AngularVelocity` object.
     /// </summary>
     /// <param name="value">The AngularVelocity value.</param>
     /// <param name="type">kilometers meters per second by default.</param>
@@ -131,7 +126,12 @@ public struct AngularVelocity :
     /// <param name="obj">The object to compare</param>
     /// <returns>true if equal</returns>
     [Pure]
-    public override bool Equals(object obj) => CompareTo(obj) == 0;
+    public override bool Equals(object obj)
+    {
+        if (obj is null) { return false; }
+        if (Equals(this, obj)) { return true; }
+        return obj.GetType() == GetType() && Equals((AngularVelocity)obj);
+    }
 
     /// <summary>
     /// Get hash of object
@@ -249,7 +249,7 @@ public struct AngularVelocity :
     /// Returns the absolute value of the <see cref="AngularVelocity"/>
     /// </summary>
     /// <returns></returns>
-    [Pure] public AngularVelocity Abs() { return new AngularVelocity(Math.Abs(Value)); }
+    [Pure] public AngularVelocity Abs() { return new AngularVelocity(Math.Abs(this.Value)); }
 
     /// <summary>
     /// Get a string representation of the object
@@ -271,16 +271,7 @@ public struct AngularVelocity :
     /// </summary>
     /// <param name="obj">The other AngularVelocity cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
-    public int CompareTo(object obj)
-    {
-        if (obj is AngularVelocity angularVelocity)
-        {
-            return Value.CompareTo(angularVelocity.Value);
-        }
-
-        throw new ArgumentException("Object is not an AngularVelocity");
-    }
+    [Pure] public int CompareTo(object obj) => Value.CompareTo(obj);
 
     /// <summary>
     /// Get type code of object

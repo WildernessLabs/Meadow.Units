@@ -199,7 +199,20 @@ public struct Angle :
     /// <returns>true if left is greater than or equal to right</returns>
     [Pure] public static bool operator >=(Angle left, Angle right) => Comparer<double>.Default.Compare(left.Value, right.Value) >= 0;
 
-    // Math
+    /// <summary>
+    /// Helper method to ensure mathematical results 'wrap' correctly at 0/360 degrees.
+    /// </summary>
+    /// <returns>proper result in the range of [0,360)</returns>
+    private static double ConvertTo360(double value)
+    {
+        value %= 360;
+        while (value < 0)
+        {
+            value += 360;
+        }
+        return value;
+    }
+
     /// <summary>
     /// Addition operator to add two Angle objects
     /// </summary>
