@@ -23,7 +23,7 @@ public struct Temperature :
     /// <summary>
     /// Absolute Zero temperature. 
     /// </summary>
-    public static Temperature AbsoluteZero = new (0, UnitType.Kelvin);
+    public static Temperature AbsoluteZero = new(0, UnitType.Kelvin);
 
     /// <summary>
     /// Creates a new <see cref="Temperature"/> object.
@@ -113,7 +113,12 @@ public struct Temperature :
     /// </summary>
     /// <param name="obj">The object to compare</param>
     /// <returns>true if equal</returns>
-    [Pure] public override bool Equals(object obj) => CompareTo(obj) == 0;
+    [Pure]
+    public override bool Equals(object obj)
+    {
+        if (obj is not Temperature) { return false; }
+        return CompareTo(obj) == 0;
+    }
 
     /// <summary>
     /// Get hash of object
@@ -253,7 +258,7 @@ public struct Temperature :
     /// </summary>
     /// <param name="obj">The other Temperature cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
+    [Pure]
     public int CompareTo(object obj)
     {
         if (obj is Temperature temperature)
@@ -391,7 +396,7 @@ public struct Temperature :
     [Pure]
     public int CompareTo(double? other)
     {
-        return (other is null) ? -1 : (Value).CompareTo(other.Value);
+        return (other is null) ? -1 : Value.CompareTo(other.Value);
     }
 
     /// <summary>
