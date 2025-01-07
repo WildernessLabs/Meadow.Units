@@ -36,7 +36,7 @@ public struct Length :
     /// <param name="type">Meters by default.</param>
     public Length(double value, UnitType type = UnitType.Meters)
     {
-        Value = LengthConversions.Convert(value, type, UnitType.Meters);
+        _value = LengthConversions.Convert(value, type, UnitType.Meters);
     }
 
     /// <summary>
@@ -45,13 +45,13 @@ public struct Length :
     /// <param name="length"></param>
     public Length(Length length)
     {
-        Value = length.Value;
+        this._value = length._value;
     }
 
     /// <summary>
     /// Internal canonical value.
     /// </summary>
-    private readonly double Value;
+    private readonly double _value;
 
     /// <summary>
     /// The type of units available to describe the Length.
@@ -140,7 +140,7 @@ public struct Length :
     /// <returns>the converted value</returns>
     [Pure] public readonly double From(UnitType convertTo)
     {
-        return LengthConversions.Convert(Value, UnitType.Meters, convertTo);
+        return LengthConversions.Convert(_value, UnitType.Meters, convertTo);
     }
 
     /// <summary>
@@ -154,7 +154,7 @@ public struct Length :
     /// Get hash of object
     /// </summary>
     /// <returns>int32 hash value</returns>
-    [Pure] public readonly override int GetHashCode() => Value.GetHashCode();
+    [Pure] public override readonly int GetHashCode() => _value.GetHashCode();
 
     // implicit conversions
     //[Pure] public static implicit operator Length(ushort value) => new Length(value);
@@ -172,7 +172,7 @@ public struct Length :
     /// </summary>
     /// <param name="other">The object to compare</param>
     /// <returns>true if equal</returns>
-    [Pure] public readonly bool Equals(Length other) => Value == other.Value;
+    [Pure] public readonly bool Equals(Length other) => _value == other._value;
 
     /// <summary>
     /// Equals operator to compare two Length objects
@@ -180,7 +180,7 @@ public struct Length :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>true if equal</returns>
-    [Pure] public static bool operator ==(Length left, Length right) => Equals(left.Value, right.Value);
+    [Pure] public static bool operator ==(Length left, Length right) => Equals(left._value, right._value);
 
     /// <summary>
     /// Not equals operator to compare two Length objects
@@ -188,14 +188,14 @@ public struct Length :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>true if not equal</returns>
-    [Pure] public static bool operator !=(Length left, Length right) => !Equals(left.Value, right.Value);
+    [Pure] public static bool operator !=(Length left, Length right) => !Equals(left._value, right._value);
 
     /// <summary>
     /// Compare to another Length object
     /// </summary>
     /// <param name="other"></param>
     /// <returns>0 if equal</returns>
-    [Pure] public readonly int CompareTo(Length other) => Equals(Value, other.Value) ? 0 : Value.CompareTo(other.Value);
+    [Pure] public readonly int CompareTo(Length other) => Equals(_value, other._value) ? 0 : _value.CompareTo(other._value);
 
     /// <summary>
     /// Less than operator to compare two Length objects
@@ -203,7 +203,7 @@ public struct Length :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>true if left is less than right</returns>
-    [Pure] public static bool operator <(Length left, Length right) => Comparer<double>.Default.Compare(left.Value, right.Value) < 0;
+    [Pure] public static bool operator <(Length left, Length right) => Comparer<double>.Default.Compare(left._value, right._value) < 0;
 
     /// <summary>
     /// Greater than operator to compare two Length objects
@@ -211,7 +211,7 @@ public struct Length :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>true if left is greater than right</returns>
-    [Pure] public static bool operator >(Length left, Length right) => Comparer<double>.Default.Compare(left.Value, right.Value) > 0;
+    [Pure] public static bool operator >(Length left, Length right) => Comparer<double>.Default.Compare(left._value, right._value) > 0;
 
     /// <summary>
     /// Less than or equal operator to compare two Length objects
@@ -219,7 +219,7 @@ public struct Length :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>true if left is less than or equal to right</returns>
-    [Pure] public static bool operator <=(Length left, Length right) => Comparer<double>.Default.Compare(left.Value, right.Value) <= 0;
+    [Pure] public static bool operator <=(Length left, Length right) => Comparer<double>.Default.Compare(left._value, right._value) <= 0;
 
     /// <summary>
     /// Greater than or equal operator to compare two Length objects
@@ -227,7 +227,7 @@ public struct Length :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>true if left is greater than or equal to right</returns>
-    [Pure] public static bool operator >=(Length left, Length right) => Comparer<double>.Default.Compare(left.Value, right.Value) >= 0;
+    [Pure] public static bool operator >=(Length left, Length right) => Comparer<double>.Default.Compare(left._value, right._value) >= 0;
 
     // Math
     /// <summary>
@@ -236,7 +236,7 @@ public struct Length :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Length object with a value of left + right</returns>
-    [Pure] public static Length operator +(Length left, Length right) => new(left.Value + right.Value);
+    [Pure] public static Length operator +(Length left, Length right) => new(left._value + right._value);
 
     /// <summary>
     /// Subtraction operator to subtract two Length objects
@@ -244,7 +244,7 @@ public struct Length :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Length object with a value of left - right</returns>
-    [Pure] public static Length operator -(Length left, Length right) => new(left.Value - right.Value);
+    [Pure] public static Length operator -(Length left, Length right) => new(left._value - right._value);
 
     /// <summary>
     /// Multiplication operator to multiply by a double
@@ -252,7 +252,7 @@ public struct Length :
     /// <param name="value">object to multiply</param>
     /// <param name="operand">operand to multiply object</param>
     /// <returns>A new Length object with a value of value multiplied by the operand</returns>
-    [Pure] public static Length operator *(Length value, double operand) => new(value.Value * operand);
+    [Pure] public static Length operator *(Length value, double operand) => new(value._value * operand);
 
     /// <summary>
     /// Division operator to divide by a double
@@ -260,19 +260,19 @@ public struct Length :
     /// <param name="value">object to be divided</param>
     /// <param name="operand">operand to divide object</param>
     /// <returns>A new Length object with a value of value divided by the operand</returns>
-    [Pure] public static Length operator /(Length value, double operand) => new(value.Value / operand);
+    [Pure] public static Length operator /(Length value, double operand) => new(value._value / operand);
 
     /// <summary>
     /// Returns the absolute value of the <see cref="Length"/>
     /// </summary>
     /// <returns></returns>
-    [Pure] public readonly Length Abs() { return new Length(Math.Abs(Value)); }
+    [Pure] public readonly Length Abs() { return new Length(Math.Abs(this._value)); }
 
     /// <summary>
     /// Get a string representation of the object
     /// </summary>
     /// <returns>A string representing the object</returns>
-    [Pure] public readonly override string ToString() => Value.ToString();
+    [Pure] public override readonly string ToString() => _value.ToString();
 
     /// <summary>
     /// Get a string representation of the object
@@ -280,7 +280,7 @@ public struct Length :
     /// <param name="format">format</param>
     /// <param name="formatProvider">format provider</param>
     /// <returns>A string representing the object</returns>
-    [Pure] public readonly string ToString(string format, IFormatProvider formatProvider) => Value.ToString(format, formatProvider);
+    [Pure] public readonly string ToString(string format, IFormatProvider formatProvider) => _value.ToString(format, formatProvider);
 
     // IComparable
     /// <summary>
@@ -288,106 +288,97 @@ public struct Length :
     /// </summary>
     /// <param name="obj">The other Length cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
-    public readonly int CompareTo(object obj)
-    {
-        if (obj is Length length)
-        {
-            return Value.CompareTo(length.Value);
-        }
-
-        throw new ArgumentException("Object is not a Length");
-    }
+    [Pure] public readonly int CompareTo(object obj) => _value.CompareTo(obj);
 
     /// <summary>
     /// Get type code of object
     /// </summary>
     /// <returns>The TypeCode</returns>
-    [Pure] public readonly TypeCode GetTypeCode() => Value.GetTypeCode();
+    [Pure] public readonly TypeCode GetTypeCode() => _value.GetTypeCode();
 
     /// <summary>
     /// Convert to boolean
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>bool representation of the object</returns>
-    [Pure] public readonly bool ToBoolean(IFormatProvider provider) => ((IConvertible)Value).ToBoolean(provider);
+    [Pure] public readonly bool ToBoolean(IFormatProvider provider) => ((IConvertible)_value).ToBoolean(provider);
 
     /// <summary>
     /// Convert to byte
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>byte representation of the object</returns>
-    [Pure] public readonly byte ToByte(IFormatProvider provider) => ((IConvertible)Value).ToByte(provider);
+    [Pure] public readonly byte ToByte(IFormatProvider provider) => ((IConvertible)_value).ToByte(provider);
 
     /// <summary>
     /// Convert to char
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>char representation of the object</returns>
-    [Pure] public readonly char ToChar(IFormatProvider provider) => ((IConvertible)Value).ToChar(provider);
+    [Pure] public readonly char ToChar(IFormatProvider provider) => ((IConvertible)_value).ToChar(provider);
 
     /// <summary>
     /// Convert to DateTime
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>DateTime representation of the object</returns>
-    [Pure] public readonly DateTime ToDateTime(IFormatProvider provider) => ((IConvertible)Value).ToDateTime(provider);
+    [Pure] public readonly DateTime ToDateTime(IFormatProvider provider) => ((IConvertible)_value).ToDateTime(provider);
 
     /// <summary>
     /// Convert to Decimal
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>Decimal representation of the object</returns>
-    [Pure] public readonly decimal ToDecimal(IFormatProvider provider) => ((IConvertible)Value).ToDecimal(provider);
+    [Pure] public readonly decimal ToDecimal(IFormatProvider provider) => ((IConvertible)_value).ToDecimal(provider);
 
     /// <summary>
     /// Convert to double
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>double representation of the object</returns>
-    [Pure] public readonly double ToDouble(IFormatProvider provider) => Value;
+    [Pure] public readonly double ToDouble(IFormatProvider provider) => _value;
 
     /// <summary>
     /// Convert to in16
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>int16 representation of the object</returns>
-    [Pure] public readonly short ToInt16(IFormatProvider provider) => ((IConvertible)Value).ToInt16(provider);
+    [Pure] public readonly short ToInt16(IFormatProvider provider) => ((IConvertible)_value).ToInt16(provider);
 
     /// <summary>
     /// Convert to int32
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>int32 representation of the object</returns>
-    [Pure] public readonly int ToInt32(IFormatProvider provider) => ((IConvertible)Value).ToInt32(provider);
+    [Pure] public readonly int ToInt32(IFormatProvider provider) => ((IConvertible)_value).ToInt32(provider);
 
     /// <summary>
     /// Convert to int64
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>int64 representation of the object</returns>
-    [Pure] public readonly long ToInt64(IFormatProvider provider) => ((IConvertible)Value).ToInt64(provider);
+    [Pure] public readonly long ToInt64(IFormatProvider provider) => ((IConvertible)_value).ToInt64(provider);
 
     /// <summary>
     /// Convert to sbyte
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>sbyte representation of the object</returns>
-    [Pure] public readonly sbyte ToSByte(IFormatProvider provider) => ((IConvertible)Value).ToSByte(provider);
+    [Pure] public readonly sbyte ToSByte(IFormatProvider provider) => ((IConvertible)_value).ToSByte(provider);
 
     /// <summary>
     /// Convert to float
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>float representation of the object</returns>
-    [Pure] public readonly float ToSingle(IFormatProvider provider) => ((IConvertible)Value).ToSingle(provider);
+    [Pure] public readonly float ToSingle(IFormatProvider provider) => ((IConvertible)_value).ToSingle(provider);
 
     /// <summary>
     /// Convert to string
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>string representation of the object</returns>
-    [Pure] public readonly string ToString(IFormatProvider provider) => Value.ToString(provider);
+    [Pure] public readonly string ToString(IFormatProvider provider) => _value.ToString(provider);
 
     /// <summary>
     /// Convert to type
@@ -395,28 +386,28 @@ public struct Length :
     /// <param name="conversionType">type to covert to</param>
     /// <param name="provider">format provider</param>
     /// <returns>type representation of the object</returns>
-    [Pure] public readonly object ToType(Type conversionType, IFormatProvider provider) => ((IConvertible)Value).ToType(conversionType, provider);
+    [Pure] public readonly object ToType(Type conversionType, IFormatProvider provider) => ((IConvertible)_value).ToType(conversionType, provider);
 
     /// <summary>
     /// Convert to uint16
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>uint16 representation of the object</returns>
-    [Pure] public readonly ushort ToUInt16(IFormatProvider provider) => ((IConvertible)Value).ToUInt16(provider);
+    [Pure] public readonly ushort ToUInt16(IFormatProvider provider) => ((IConvertible)_value).ToUInt16(provider);
 
     /// <summary>
     /// Convert to uint32
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>uint32 representation of the object</returns>
-    [Pure] public readonly uint ToUInt32(IFormatProvider provider) => ((IConvertible)Value).ToUInt32(provider);
+    [Pure] public readonly uint ToUInt32(IFormatProvider provider) => ((IConvertible)_value).ToUInt32(provider);
 
     /// <summary>
     /// Convert to uint64
     /// </summary>
     /// <param name="provider">format provider</param>
     /// <returns>uint64 representation of the object</returns>
-    [Pure] public readonly ulong ToUInt64(IFormatProvider provider) => ((IConvertible)Value).ToUInt64(provider);
+    [Pure] public readonly ulong ToUInt64(IFormatProvider provider) => ((IConvertible)_value).ToUInt64(provider);
 
     /// <summary>
     /// Compare the default value to a double 
@@ -426,7 +417,7 @@ public struct Length :
     [Pure]
     public readonly int CompareTo(double? other)
     {
-        return (other is null) ? -1 : (Value).CompareTo(other.Value);
+        return (other is null) ? -1 : (_value).CompareTo(other.Value);
     }
 
     /// <summary>
@@ -434,19 +425,19 @@ public struct Length :
     /// </summary>
     /// <param name="other">value to compare</param>
     /// <returns>0 if equal</returns>
-    [Pure] public readonly bool Equals(double? other) => Value.Equals(other);
+    [Pure] public readonly bool Equals(double? other) => _value.Equals(other);
 
     /// <summary>
     /// Compare the default value to a double 
     /// </summary>
     /// <param name="other">value to compare</param>
     /// <returns>0 if equal</returns>
-    [Pure] public readonly bool Equals(double other) => Value.Equals(other);
+    [Pure] public readonly bool Equals(double other) => _value.Equals(other);
 
     /// <summary>
     /// Compare the default value to a double 
     /// </summary>
     /// <param name="other">value to compare</param>
     /// <returns>0 if equal</returns>
-    [Pure] public readonly int CompareTo(double other) => Value.CompareTo(other);
+    [Pure] public readonly int CompareTo(double other) => _value.CompareTo(other);
 }
