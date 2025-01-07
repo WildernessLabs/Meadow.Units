@@ -30,7 +30,7 @@ public struct Power :
     public static Power Zero => _zero;
 
     /// <summary>
-    /// Creates a new `Power` object.
+    /// Creates a new <see cref="Power"/> object.
     /// </summary>
     /// <param name="value">The Power value.</param>
     /// <param name="type">kilometers meters per second by default.</param>
@@ -40,7 +40,7 @@ public struct Power :
     }
 
     /// <summary>
-    /// Creates a new `Power` object from an existing Power object
+    /// Creates a new <see cref="Power"/> object from an existing Power object
     /// </summary>
     /// <param name="power"></param>
     public Power(Power power)
@@ -58,74 +58,40 @@ public struct Power :
     /// </summary>
     public enum UnitType
     {
-        /// <summary>
-        /// Gigawatts
-        /// </summary>
+        /// <summary> Gigawatts </summary>
         Gigawatts,
-        /// <summary>
-        /// Megawatts
-        /// </summary>
+        /// <summary> Megawatts </summary>
         Megawatts,
-        /// <summary>
-        /// Kilowatts
-        /// </summary>
+        /// <summary> Kilowatts </summary>
         Kilowatts,
-        /// <summary>
-        /// Watts
-        /// </summary>
+        /// <summary> Watts </summary>
         Watts,
-        /// <summary>
-        /// Milliwatts
-        /// </summary>
+        /// <summary> Milliwatts </summary>
         Milliwatts,
-        /// <summary>
-        /// Horsepower - metric
-        /// </summary>
+        /// <summary> Horsepower - metric </summary>
         HorsePowerMetric,
-        /// <summary>
-        /// Horsepower - IT
-        /// </summary>
+        /// <summary> Horsepower - IT </summary>
         HorsePowerIT,
-        /// <summary>
-        /// Calories per second
-        /// </summary>
+        /// <summary> Calories per second </summary>
         CaloriesPerSecond,
-        /// <summary>
-        /// Calories per minute
-        /// </summary>
+        /// <summary> Calories per minute </summary>
         CaloriesPerMinute,
-        /// <summary>
-        /// Calories per hour
-        /// </summary>
+        /// <summary> Calories per hour </summary>
         CaloriesPerHour,
-        /// <summary>
-        /// BTUs per second
-        /// </summary>
+        /// <summary> BTUs per second </summary>
         BTUsPerSecond,
-        /// <summary>
-        /// BTUs per minute
-        /// </summary>
+        /// <summary> BTUs per minute </summary>
         BTUsPerMinute,
-        /// <summary>
-        /// BTUs per hour
-        /// </summary>
+        /// <summary> BTUs per hour </summary>
         BTUsPerHour,
-        /// <summary>
-        /// Foot-pounds per second
-        /// </summary>
+        /// <summary> Foot-pounds per second </summary>
         FootPoundsPerSecond,
-        /// <summary>
-        /// Foot-pounds per minute
-        /// </summary>
+        /// <summary> Foot-pounds per minute </summary>
         FootPoundsPerMinute,
-        /// <summary>
-        /// Foot-pounds per hour
-        /// </summary>
+        /// <summary> Foot-pounds per hour </summary>
         FootPoundsPerHour,
-        /// <summary>
-        /// Tons refrigeration
-        /// </summary>
-        TonsRefridgeration
+        /// <summary> Tons refrigeration </summary>
+        TonsRefrigeration
     }
 
     /// <summary>
@@ -195,7 +161,7 @@ public struct Power :
     /// <summary>
     /// Power in tons refrigeration
     /// </summary>
-    public double TonsRefridgeration => From(UnitType.TonsRefridgeration);
+    public double TonsRefridgeration => From(UnitType.TonsRefrigeration);
 
     /// <summary>
     /// Get a double value for a specific unit
@@ -213,13 +179,7 @@ public struct Power :
     /// </summary>
     /// <param name="obj">The object to compare</param>
     /// <returns>true if equal</returns>
-    [Pure]
-    public override bool Equals(object obj)
-    {
-        if (obj is null) { return false; }
-        if (Equals(this, obj)) { return true; }
-        return obj.GetType() == GetType() && Equals((Power)obj);
-    }
+    [Pure] public override bool Equals(object obj) => CompareTo(obj) == 0;
 
     /// <summary>
     /// Get hash of object

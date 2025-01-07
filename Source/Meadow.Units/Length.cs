@@ -30,7 +30,7 @@ public struct Length :
     public static Length Zero => _zero;
 
     /// <summary>
-    /// Creates a new `Length` object.
+    /// Creates a new <see cref="Length"/> object.
     /// </summary>
     /// <param name="value">The Length value.</param>
     /// <param name="type">Meters by default.</param>
@@ -40,7 +40,7 @@ public struct Length :
     }
 
     /// <summary>
-    /// Creates a new `Length` object from an existing Length object
+    /// Creates a new <see cref="Length"/> object from an existing Length object
     /// </summary>
     /// <param name="length"></param>
     public Length(Length length)
@@ -58,53 +58,29 @@ public struct Length :
     /// </summary>
     public enum UnitType
     {
-        /// <summary>
-        /// Kilometers
-        /// </summary>
+        /// <summary> Kilometers </summary>
         Kilometers,
-        /// <summary>
-        /// Meters
-        /// </summary>
+        /// <summary> Meters </summary>
         Meters,
-        /// <summary>
-        /// Centimeters
-        /// </summary>
+        /// <summary> Centimeters </summary>
         Centimeters,
-        /// <summary>
-        /// Decimeters
-        /// </summary>
+        /// <summary> Decimeters </summary>
         Decimeters,
-        /// <summary>
-        /// Millimeters
-        /// </summary>
+        /// <summary> Millimeters </summary>
         Millimeters,
-        /// <summary>
-        /// Microns
-        /// </summary>
+        /// <summary> Microns </summary>
         Microns,
-        /// <summary>
-        /// Nanometers
-        /// </summary>
+        /// <summary> Nanometers </summary>
         Nanometers,
-        /// <summary>
-        /// Miles
-        /// </summary>
+        /// <summary> Miles </summary>
         Miles,
-        /// <summary>
-        /// Nautical miles
-        /// </summary>
+        /// <summary> Nautical miles </summary>
         NauticalMiles,
-        /// <summary>
-        /// Yards
-        /// </summary>
+        /// <summary> Yards </summary>
         Yards,
-        /// <summary>
-        /// Feet
-        /// </summary>
+        /// <summary> Feet </summary>
         Feet,
-        /// <summary>
-        /// Inches
-        /// </summary>
+        /// <summary> Inches </summary>
         Inches,
     }
 
@@ -162,8 +138,7 @@ public struct Length :
     /// </summary>
     /// <param name="convertTo">unit to covert to</param>
     /// <returns>the converted value</returns>
-    [Pure]
-    public readonly double From(UnitType convertTo)
+    [Pure] public readonly double From(UnitType convertTo)
     {
         return LengthConversions.Convert(_value, UnitType.Meters, convertTo);
     }
@@ -173,13 +148,7 @@ public struct Length :
     /// </summary>
     /// <param name="obj">The object to compare</param>
     /// <returns>true if equal</returns>
-    [Pure]
-    public override readonly bool Equals(object obj)
-    {
-        if (obj is null) { return false; }
-        if (Equals(this, obj)) { return true; }
-        return obj.GetType() == GetType() && Equals((Length)obj);
-    }
+    [Pure] public readonly override bool Equals(object obj) => CompareTo(obj) == 0;
 
     /// <summary>
     /// Get hash of object

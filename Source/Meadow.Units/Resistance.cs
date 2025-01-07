@@ -30,7 +30,7 @@ public struct Resistance :
     public static Resistance Zero => _zero;
 
     /// <summary>
-    /// Creates a new `Resistance` object.
+    /// Creates a new <see cref="Resistance"/> object.
     /// </summary>
     /// <param name="value">The Resistance value.</param>
     /// <param name="type">Ohms by default.</param>
@@ -40,7 +40,7 @@ public struct Resistance :
     }
 
     /// <summary>
-    /// Creates a new `Resistance` object from an existing Resistance object
+    /// Creates a new <see cref="Resistance"/> object from an existing Resistance object
     /// </summary>
     /// <param name="resistance"></param>
     public Resistance(Resistance resistance)
@@ -58,21 +58,13 @@ public struct Resistance :
     /// </summary>
     public enum UnitType
     {
-        /// <summary>
-        /// MilliOhms
-        /// </summary>
+        /// <summary> MilliOhms </summary>
         Milliohms,
-        /// <summary>
-        /// Ohms
-        /// </summary>
+        /// <summary> Ohms </summary>
         Ohms,
-        /// <summary>
-        /// Kiloohms
-        /// </summary>
+        /// <summary> Kiloohms </summary>
         Kiloohms,
-        /// <summary>
-        /// Megaohms
-        /// </summary>
+        /// <summary> Megaohms </summary>
         Megaohms
     }
 
@@ -80,14 +72,17 @@ public struct Resistance :
     /// Get resistance in MilliOhms
     /// </summary>
     public double Milliohms => From(UnitType.Milliohms);
+
     /// <summary>
     /// Get resistance in Ohms
     /// </summary>
     public double Ohms => From(UnitType.Ohms);
+    
     /// <summary>
     /// Get resistance in kiloOhms
     /// </summary>
     public double Kiloohms => From(UnitType.Kiloohms);
+    
     /// <summary>
     /// Get resistance in megaOhms
     /// </summary>
@@ -109,13 +104,7 @@ public struct Resistance :
     /// </summary>
     /// <param name="obj">The object to compare</param>
     /// <returns>true if equal</returns>
-    [Pure]
-    public override bool Equals(object obj)
-    {
-        if (obj is null) { return false; }
-        if (Equals(this, obj)) { return true; }
-        return obj.GetType() == GetType() && Equals((Resistance)obj);
-    }
+    [Pure] public override bool Equals(object obj) => CompareTo(obj) == 0;
 
     /// <summary>
     /// Get hash of object

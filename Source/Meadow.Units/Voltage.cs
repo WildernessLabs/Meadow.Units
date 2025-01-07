@@ -30,7 +30,7 @@ public struct Voltage :
     public static Voltage Zero => _zero;
 
     /// <summary>
-    /// Creates a new `Voltage` object.
+    /// Creates a new <see cref="Voltage"/> object.
     /// </summary>
     /// <param name="value">The Voltage value.</param>
     /// <param name="type">Volts by default.</param>
@@ -40,7 +40,7 @@ public struct Voltage :
     }
 
     /// <summary>
-    /// Creates a new `Voltage` object from an existing Voltage object
+    /// Creates a new <see cref="Voltage"/> object from an existing Voltage object
     /// </summary>
     /// <param name="voltage"></param>
     public Voltage(Voltage voltage)
@@ -58,64 +58,40 @@ public struct Voltage :
     /// </summary>
     public enum UnitType
     {
-        /// <summary>
-        /// Volts
-        /// </summary>
+        /// <summary> Volts </summary>
         Volts,
-        /// <summary>
-        /// Millivolts
-        /// </summary>
+        /// <summary> Millivolts </summary>
         Millivolts,
-        /// <summary>
-        /// Microvolts
-        /// </summary>
+        /// <summary> Microvolts </summary>
         Microvolts,
-        /// <summary>
-        /// Kilovolts
-        /// </summary>
+        /// <summary> Kilovolts </summary>
         Kilovolts,
-        /// <summary>
-        /// Megavolts
-        /// </summary>
+        /// <summary> Megavolts </summary>
         Megavolts,
-        /// <summary>
-        /// Gigavolts
-        /// </summary>
+        /// <summary> Gigavolts </summary>
         Gigavolts,
-        /// <summary>
-        /// Statvolts
-        /// </summary>
-        Statvolts
+        /// <summary> Statvolts </summary>
+        Statvolts,
+        /// <summary> Nanovolts </summary>
+        Nanovolts,
     }
 
-    /// <summary>
-    /// Get voltage in volts
-    /// </summary>
+    /// <summary> Get voltage in volts </summary>
     public double Volts => From(UnitType.Volts);
-    /// <summary>
-    /// Get voltage in millivolts
-    /// </summary>
+    /// <summary> Get voltage in millivolts </summary>
     public double Millivolts => From(UnitType.Millivolts);
-    /// <summary>
-    /// Get voltage in microvolts
-    /// </summary>
+    /// <summary> Get voltage in microvolts </summary>
     public double Microvolts => From(UnitType.Microvolts);
-    /// <summary>
-    /// Get voltage in kilovolts
-    /// </summary>
+    /// <summary> Get voltage in kilovolts </summary>
     public double Kilovolts => From(UnitType.Kilovolts);
-    /// <summary>
-    /// Get voltage in megavolts
-    /// </summary>
+    /// <summary> Get voltage in megavolts </summary>
     public double Megavolts => From(UnitType.Megavolts);
-    /// <summary>
-    /// Get voltage in gigavolts
-    /// </summary>
+    /// <summary> Get voltage in gigavolts </summary>
     public double Gigavolts => From(UnitType.Gigavolts);
-    /// <summary>
-    /// Get voltage in statvolts
-    /// </summary>
+    /// <summary> Get voltage in statvolts </summary>
     public double Statvolts => From(UnitType.Statvolts);
+    /// <summary> Get voltage in nanovolts </summary>
+    public double Nanovolts => From(UnitType.Nanovolts);
 
     /// <summary>
     /// Get a double value for a specific unit
@@ -125,7 +101,7 @@ public struct Voltage :
     [Pure]
     public double From(UnitType convertTo)
     {
-        return VoltageConversions.Convert(Value, Voltage.UnitType.Volts, convertTo);
+        return VoltageConversions.Convert(Value, UnitType.Volts, convertTo);
     }
 
     /// <summary>
@@ -133,13 +109,7 @@ public struct Voltage :
     /// </summary>
     /// <param name="obj">The object to compare</param>
     /// <returns>true if equal</returns>
-    [Pure]
-    public override bool Equals(object obj)
-    {
-        if (obj is null) { return false; }
-        if (Equals(this, obj)) { return true; }
-        return obj.GetType() == GetType() && Equals((Voltage)obj);
-    }
+    [Pure] public override bool Equals(object obj) => CompareTo(obj) == 0;
 
     /// <summary>
     /// Get hash of object
@@ -257,7 +227,7 @@ public struct Voltage :
     /// Returns the absolute value of the <see cref="Voltage"/>
     /// </summary>
     /// <returns></returns>
-    [Pure] public Voltage Abs() { return new Voltage(Math.Abs(this.Value)); }
+    [Pure] public Voltage Abs() { return new Voltage(Math.Abs(Value)); }
 
     /// <summary>
     /// Get a string representation of the object
@@ -279,7 +249,16 @@ public struct Voltage :
     /// </summary>
     /// <param name="obj">The other Voltage cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] public int CompareTo(object obj) => Value.CompareTo(obj);
+    [Pure] 
+    public int CompareTo(object obj)
+    {
+        if (obj is Voltage voltage)
+        {
+            return Value.CompareTo(voltage.Value);
+        }
+
+        throw new ArgumentException("Object is not a Voltage");
+    }
 
     /// <summary>
     /// Get type code of object

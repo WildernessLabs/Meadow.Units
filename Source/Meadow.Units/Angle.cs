@@ -30,7 +30,7 @@ public struct Angle :
     public static Angle Zero => _zero;
 
     /// <summary>
-    /// Creates a new `Angle` object.
+    /// Creates a new <see cref="Angle"/> object.
     /// </summary>
     /// <param name="value">The Angle value.</param>
     /// <param name="type">Degrees by default.</param>
@@ -40,7 +40,7 @@ public struct Angle :
     }
 
     /// <summary>
-    /// Creates a new `Angle` object from an existing angle object
+    /// Creates a new <see cref="Angle"/> object from an existing angle object
     /// </summary>
     /// <param name="angle"></param>
     public Angle(Angle angle)
@@ -58,29 +58,17 @@ public struct Angle :
     /// </summary>
     public enum UnitType
     {
-        /// <summary>
-        /// Revolutions
-        /// </summary>
+        /// <summary> Revolutions </summary>
         Revolutions,
-        /// <summary>
-        /// Degrees
-        /// </summary>
+        /// <summary> Degrees </summary>
         Degrees,
-        /// <summary>
-        /// Radians
-        /// </summary>
+        /// <summary> Radians </summary>
         Radians,
-        /// <summary>
-        /// Gradians
-        /// </summary>
+        /// <summary> Gradians </summary>
         Gradians,
-        /// <summary>
-        /// Minutes
-        /// </summary>
+        /// <summary> Minutes </summary>
         Minutes,
-        /// <summary>
-        /// Seconds
-        /// </summary>
+        /// <summary> Seconds </summary>
         Seconds
     }
 
@@ -130,13 +118,7 @@ public struct Angle :
     /// </summary>
     /// <param name="obj">The object to compare</param>
     /// <returns>true if equal</returns>
-    [Pure]
-    public override bool Equals(object obj)
-    {
-        if (obj is null) { return false; }
-        if (Equals(this, obj)) { return true; }
-        return obj.GetType() == GetType() && Equals((Angle)obj);
-    }
+    [Pure] public override bool Equals(object obj) => CompareTo(obj) == 0;
 
     /// <summary>
     /// Get hash of object
@@ -217,7 +199,20 @@ public struct Angle :
     /// <returns>true if left is greater than or equal to right</returns>
     [Pure] public static bool operator >=(Angle left, Angle right) => Comparer<double>.Default.Compare(left._value, right._value) >= 0;
 
-    // Math
+    /// <summary>
+    /// Helper method to ensure mathematical results 'wrap' correctly at 0/360 degrees.
+    /// </summary>
+    /// <returns>proper result in the range of [0,360)</returns>
+    private static double ConvertTo360(double value)
+    {
+        value %= 360;
+        while (value < 0)
+        {
+            value += 360;
+        }
+        return value;
+    }
+
     /// <summary>
     /// Addition operator to add two Angle objects
     /// </summary>
