@@ -17,15 +17,20 @@ public struct Length :
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
-    private static Length? _zero;
+    private static Length _zero;
+
+    static Length()
+    {
+        _zero = new Length(0, UnitType.Meters);
+    }
 
     /// <summary>
-    /// Gets a Length of 0
+    /// Gets a length with a value of zero
     /// </summary>
-    public static Length Zero => _zero ?? (_zero = new Length(0, UnitType.Meters)).Value;
+    public static Length Zero => _zero;
 
     /// <summary>
-    /// Creates a new `Length` object.
+    /// Creates a new <see cref="Length"/> object.
     /// </summary>
     /// <param name="value">The Length value.</param>
     /// <param name="type">Meters by default.</param>
@@ -35,12 +40,12 @@ public struct Length :
     }
 
     /// <summary>
-    /// Creates a new `Length` object from an existing Length object
+    /// Creates a new <see cref="Length"/> object from an existing Length object
     /// </summary>
     /// <param name="length"></param>
     public Length(Length length)
     {
-        this.Value = length.Value;
+        Value = length.Value;
     }
 
     /// <summary>
@@ -53,53 +58,29 @@ public struct Length :
     /// </summary>
     public enum UnitType
     {
-        /// <summary>
-        /// Kilometers
-        /// </summary>
+        /// <summary> Kilometers </summary>
         Kilometers,
-        /// <summary>
-        /// Meters
-        /// </summary>
+        /// <summary> Meters </summary>
         Meters,
-        /// <summary>
-        /// Centimeters
-        /// </summary>
+        /// <summary> Centimeters </summary>
         Centimeters,
-        /// <summary>
-        /// Decimeters
-        /// </summary>
+        /// <summary> Decimeters </summary>
         Decimeters,
-        /// <summary>
-        /// Millimeters
-        /// </summary>
+        /// <summary> Millimeters </summary>
         Millimeters,
-        /// <summary>
-        /// Microns
-        /// </summary>
+        /// <summary> Microns </summary>
         Microns,
-        /// <summary>
-        /// Nanometers
-        /// </summary>
+        /// <summary> Nanometers </summary>
         Nanometers,
-        /// <summary>
-        /// Miles
-        /// </summary>
+        /// <summary> Miles </summary>
         Miles,
-        /// <summary>
-        /// Nautical miles
-        /// </summary>
+        /// <summary> Nautical miles </summary>
         NauticalMiles,
-        /// <summary>
-        /// Yards
-        /// </summary>
+        /// <summary> Yards </summary>
         Yards,
-        /// <summary>
-        /// Feet
-        /// </summary>
+        /// <summary> Feet </summary>
         Feet,
-        /// <summary>
-        /// Inches
-        /// </summary>
+        /// <summary> Inches </summary>
         Inches,
     }
 
@@ -157,8 +138,7 @@ public struct Length :
     /// </summary>
     /// <param name="convertTo">unit to covert to</param>
     /// <returns>the converted value</returns>
-    [Pure]
-    public readonly double From(UnitType convertTo)
+    [Pure] public readonly double From(UnitType convertTo)
     {
         return LengthConversions.Convert(Value, UnitType.Meters, convertTo);
     }
@@ -168,19 +148,13 @@ public struct Length :
     /// </summary>
     /// <param name="obj">The object to compare</param>
     /// <returns>true if equal</returns>
-    [Pure]
-    public override readonly bool Equals(object obj)
-    {
-        if (obj is null) { return false; }
-        if (Equals(this, obj)) { return true; }
-        return obj.GetType() == GetType() && Equals((Length)obj);
-    }
+    [Pure] public readonly override bool Equals(object obj) => CompareTo(obj) == 0;
 
     /// <summary>
     /// Get hash of object
     /// </summary>
     /// <returns>int32 hash value</returns>
-    [Pure] public override readonly int GetHashCode() => Value.GetHashCode();
+    [Pure] public readonly override int GetHashCode() => Value.GetHashCode();
 
     // implicit conversions
     //[Pure] public static implicit operator Length(ushort value) => new Length(value);
@@ -292,13 +266,13 @@ public struct Length :
     /// Returns the absolute value of the <see cref="Length"/>
     /// </summary>
     /// <returns></returns>
-    [Pure] public readonly Length Abs() { return new Length(Math.Abs(this.Value)); }
+    [Pure] public readonly Length Abs() { return new Length(Math.Abs(Value)); }
 
     /// <summary>
     /// Get a string representation of the object
     /// </summary>
     /// <returns>A string representing the object</returns>
-    [Pure] public override readonly string ToString() => Value.ToString();
+    [Pure] public readonly override string ToString() => Value.ToString();
 
     /// <summary>
     /// Get a string representation of the object
@@ -314,7 +288,16 @@ public struct Length :
     /// </summary>
     /// <param name="obj">The other Length cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] public readonly int CompareTo(object obj) => Value.CompareTo(obj);
+    [Pure] 
+    public readonly int CompareTo(object obj)
+    {
+        if (obj is Length length)
+        {
+            return Value.CompareTo(length.Value);
+        }
+
+        throw new ArgumentException("Object is not a Length");
+    }
 
     /// <summary>
     /// Get type code of object

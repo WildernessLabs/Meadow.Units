@@ -17,15 +17,20 @@ public struct Angle :
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
-    private static Angle? _zero;
+    private static Angle _zero;
+
+    static Angle()
+    {
+        _zero = new Angle(0, UnitType.Degrees);
+    }
 
     /// <summary>
-    /// Gets an angle of 0 degrees
+    /// Gets an angle with a value of zero
     /// </summary>
-    public static Angle Zero => _zero ?? (_zero = new Angle(0, UnitType.Degrees)).Value;
+    public static Angle Zero => _zero;
 
     /// <summary>
-    /// Creates a new `Angle` object.
+    /// Creates a new <see cref="Angle"/> object.
     /// </summary>
     /// <param name="value">The Angle value.</param>
     /// <param name="type">Degrees by default.</param>
@@ -35,7 +40,7 @@ public struct Angle :
     }
 
     /// <summary>
-    /// Creates a new `Angle` object from an existing angle object
+    /// Creates a new <see cref="Angle"/> object from an existing angle object
     /// </summary>
     /// <param name="angle"></param>
     public Angle(Angle angle)
@@ -53,29 +58,17 @@ public struct Angle :
     /// </summary>
     public enum UnitType
     {
-        /// <summary>
-        /// Revolutions
-        /// </summary>
+        /// <summary> Revolutions </summary>
         Revolutions,
-        /// <summary>
-        /// Degrees
-        /// </summary>
+        /// <summary> Degrees </summary>
         Degrees,
-        /// <summary>
-        /// Radians
-        /// </summary>
+        /// <summary> Radians </summary>
         Radians,
-        /// <summary>
-        /// Gradians
-        /// </summary>
+        /// <summary> Gradians </summary>
         Gradians,
-        /// <summary>
-        /// Minutes
-        /// </summary>
+        /// <summary> Minutes </summary>
         Minutes,
-        /// <summary>
-        /// Seconds
-        /// </summary>
+        /// <summary> Seconds </summary>
         Seconds
     }
 
@@ -125,13 +118,7 @@ public struct Angle :
     /// </summary>
     /// <param name="obj">The object to compare</param>
     /// <returns>true if equal</returns>
-    [Pure]
-    public override bool Equals(object obj)
-    {
-        if (obj is null) { return false; }
-        if (Equals(this, obj)) { return true; }
-        return obj.GetType() == GetType() && Equals((Angle)obj);
-    }
+    [Pure] public override bool Equals(object obj) => CompareTo(obj) == 0;
 
     /// <summary>
     /// Get hash of object
@@ -232,7 +219,7 @@ public struct Angle :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Angle object with a value of left + right</returns>
-    [Pure] public static Angle operator +(Angle left, Angle right) => new(ConvertTo360(left.Value + right.Value));
+    [Pure] public static Angle operator +(Angle left, Angle right) => new(left.Value + right.Value);
 
     /// <summary>
     /// Subtraction operator to subtract two Angle objects
@@ -240,7 +227,7 @@ public struct Angle :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Angle object with a value of left - right</returns>
-    [Pure] public static Angle operator -(Angle left, Angle right) => new(ConvertTo360(left.Value - right.Value));
+    [Pure] public static Angle operator -(Angle left, Angle right) => new(left.Value - right.Value);
 
     /// <summary>
     /// Multiplication operator to multiply by a double
@@ -248,7 +235,7 @@ public struct Angle :
     /// <param name="value">object to multiply</param>
     /// <param name="operand">operand to multiply object</param>
     /// <returns>A new Angle object with a value of value multiplied by the operand</returns>
-    [Pure] public static Angle operator *(Angle value, double operand) => new(ConvertTo360(value.Value * operand));
+    [Pure] public static Angle operator *(Angle value, double operand) => new(value.Value * operand);
 
     /// <summary>
     /// Division operator to divide by a double
@@ -256,13 +243,13 @@ public struct Angle :
     /// <param name="value">object to be divided</param>
     /// <param name="operand">operand to divide object</param>
     /// <returns>A new Angle object with a value of value divided by the operand</returns>
-    [Pure] public static Angle operator /(Angle value, double operand) => new(ConvertTo360(value.Value / operand));
+    [Pure] public static Angle operator /(Angle value, double operand) => new(value.Value / operand);
 
     /// <summary>
     /// Returns the absolute value of the <see cref="Angle"/>
     /// </summary>
     /// <returns></returns>
-    [Pure] public Angle Abs() { return new Angle(Math.Abs(this.Value)); }
+    [Pure] public Angle Abs() { return new Angle(Math.Abs(Value)); }
 
     /// <summary>
     /// Get a string representation of the object
@@ -284,7 +271,16 @@ public struct Angle :
     /// </summary>
     /// <param name="obj">The other Angle cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] public int CompareTo(object obj) => Value.CompareTo(obj);
+    [Pure] 
+    public int CompareTo(object obj)
+    {
+        if (obj is Angle angle)
+        {
+            return Value.CompareTo(angle.Value);
+        }
+
+        throw new ArgumentException("Object is not an Angle");
+    }
 
     /// <summary>
     /// Get type code of object

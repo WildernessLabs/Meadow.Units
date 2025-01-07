@@ -1,38 +1,45 @@
 ﻿using System;
-namespace Meadow.Units.Conversions
+namespace Meadow.Units.Conversions;
+
+internal static class TempConversions
 {
-    internal static class TempConversions
+    public static Func<double, double> FToC = (value) => (value - 32d) * (5d / 9d);
+    public static Func<double, double> KToC = (value) => value - 273.15d;
+    public static Func<double, double> CToF = (value) => value * (9d / 5d) + 32d;
+    public static Func<double, double> CToK = (value) => value + 273.15d;
+    public static Func<double, double> FToK = (value) => FToC(value) + 273.15d;
+    public static Func<double, double> KToF = (value) => CToF(value - 273.15);
+
+
+    public static double Convert(double value, Temperature.UnitType from, Temperature.UnitType to)
     {
-        // To Base (`C°`)
-        public static Func<double, double> FToC = (value) => (value - 32D) * (5D / 9D);
-        public static Func<double, double> KToC = (value) => value - 273.15D;
+        if (from == to) { return value; }
 
-        // From Base
-        public static Func<double, double> CToF = (value) => value * (9D / 5D) + 32D;
-        public static Func<double, double> CToK = (value) => value + 273.15D;
+        switch (from)
+        {
+            case Temperature.UnitType.Celsius:
+                return to switch
+                {
+                    Temperature.UnitType.Kelvin => CToK(value),
+                    Temperature.UnitType.Fahrenheit => CToF(value),
+                    _ => value
+                };
+            case Temperature.UnitType.Fahrenheit:
+                return to switch
+                {
+                    Temperature.UnitType.Kelvin => FToK(value),
+                    Temperature.UnitType.Celsius => FToC(value),
+                    _ => value
+                };
+            case Temperature.UnitType.Kelvin:
+                return to switch
+                {
+                    Temperature.UnitType.Fahrenheit => KToF(value),
+                    Temperature.UnitType.Celsius => KToC(value),
+                    _ => value
+                };
+        }
 
-
-		public static double Convert(double value, Temperature.UnitType from, Temperature.UnitType to)
-		{
-			if (from == to) { return value; }
-
-			if (from == Temperature.UnitType.Celsius && to == Temperature.UnitType.Fahrenheit) {
-				return CToK(value);
-			}
-			if (from == Temperature.UnitType.Fahrenheit && to == Temperature.UnitType.Celsius) {
-
-            }
-
-			return value * temperatureConversions[(int)to] / temperatureConversions[(int)from];
-		}
-
-		//must align to enum
-		private static readonly double[] temperatureConversions =
-		{
-			1,//Celsius,
-			-32*(5D/9D),//Fahrenheit, // NO WAY TO GET THIS TO WORK?
-			//(9D / 5D) + 32D,
-			273.15D//Kelvin,
-		};
-	}
+        throw new NotSupportedException();
+    }
 }
