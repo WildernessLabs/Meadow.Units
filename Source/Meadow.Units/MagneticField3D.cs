@@ -15,7 +15,7 @@ namespace Meadow.Units;
 [StructLayout(LayoutKind.Sequential)]
 public struct MagneticField3D :
     IFormattable, IComparable,
-    IEquatable<(double X, double Y, double Z)>, 
+    IEquatable<(double X, double Y, double Z)>,
     IComparable<(double, double, double)>
 {
     /// <summary>
@@ -88,7 +88,8 @@ public struct MagneticField3D :
     /// </summary>
     /// <param name="other">The object to compare</param>
     /// <returns>true if equal</returns>
-    [Pure] public bool Equals(MagneticField3D other) =>
+    [Pure]
+    public bool Equals(MagneticField3D other) =>
         X == other.X &&
         Y == other.Y &&
         Z == other.Z;
@@ -108,7 +109,7 @@ public struct MagneticField3D :
     /// <param name="right">right value</param>
     /// <returns>true if not equal</returns>
     [Pure] public static bool operator !=(MagneticField3D left, MagneticField3D right) => !Equals(left, right);
-  
+
     /// <summary>
     /// Less than operator to compare two MagneticField3D objects
     /// </summary>
@@ -148,7 +149,8 @@ public struct MagneticField3D :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new MagneticField3D object with a value of left + right</returns>
-    [Pure] public static MagneticField3D operator +(MagneticField3D left, MagneticField3D right)
+    [Pure]
+    public static MagneticField3D operator +(MagneticField3D left, MagneticField3D right)
     {
         var x = left.X + right.X;
         var y = left.Y + right.Y;
@@ -163,7 +165,8 @@ public struct MagneticField3D :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new MagneticField3D object with a value of left - right</returns>
-    [Pure] public static MagneticField3D operator -(MagneticField3D left, MagneticField3D right)
+    [Pure]
+    public static MagneticField3D operator -(MagneticField3D left, MagneticField3D right)
     {
         var x = left.X - right.X;
         var y = left.Y - right.Y;
@@ -196,8 +199,8 @@ public struct MagneticField3D :
     {
         if (obj is MagneticField3D magneticField3D)
         {
-            return X.CompareTo(magneticField3D.X) | 
-                   Y.CompareTo(magneticField3D.Y) | 
+            return X.CompareTo(magneticField3D.X) |
+                   Y.CompareTo(magneticField3D.Y) |
                    Z.CompareTo(magneticField3D.Z);
         }
 

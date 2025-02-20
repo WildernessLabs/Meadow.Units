@@ -144,7 +144,7 @@ public struct Charge :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Charge object with a value of left + right</returns>
-    [Pure] public static Charge operator +(Charge left, Charge right) => new (left.Coulombs + right.Coulombs);
+    [Pure] public static Charge operator +(Charge left, Charge right) => new(left.Coulombs + right.Coulombs);
 
     /// <summary>
     /// Subtraction operator to subtract two Charge objects
@@ -152,7 +152,7 @@ public struct Charge :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Charge object with a value of left - right</returns>
-    [Pure] public static Charge operator -(Charge left, Charge right) => new (left.Coulombs - right.Coulombs);
+    [Pure] public static Charge operator -(Charge left, Charge right) => new(left.Coulombs - right.Coulombs);
 
     /// <summary>
     /// Multiplication operator to multiply by a double
@@ -160,7 +160,7 @@ public struct Charge :
     /// <param name="value">object to multiply</param>
     /// <param name="operand">operand to multiply object</param>
     /// <returns>A new Charge object with a value of value multiplied by the operand</returns>
-    [Pure] public static Charge operator *(Charge value, double operand) => new (value.Coulombs * operand);
+    [Pure] public static Charge operator *(Charge value, double operand) => new(value.Coulombs * operand);
 
     /// <summary>
     /// Division operator to divide by a double
@@ -168,7 +168,7 @@ public struct Charge :
     /// <param name="value">object to be divided</param>
     /// <param name="operand">operand to divide object</param>
     /// <returns>A new Charge object with a value of value divided by the operand</returns>
-    [Pure] public static Charge operator /(Charge value, double operand) => new (value.Coulombs / operand);
+    [Pure] public static Charge operator /(Charge value, double operand) => new(value.Coulombs / operand);
 
     /// <summary>
     /// Returns the absolute value of the <see cref="Charge"/>
@@ -196,7 +196,7 @@ public struct Charge :
     /// </summary>
     /// <param name="obj">The other Charge cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
+    [Pure]
     public int CompareTo(object obj)
     {
         if (obj is Charge charge)
@@ -331,7 +331,8 @@ public struct Charge :
     /// </summary>
     /// <param name="other">value to compare</param>
     /// <returns>0 if equal</returns>
-    [Pure] public int CompareTo(double? other)
+    [Pure]
+    public int CompareTo(double? other)
     {
         return (other is null) ? -1 : (Coulombs).CompareTo(other.Value);
     }

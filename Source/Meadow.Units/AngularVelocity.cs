@@ -271,7 +271,7 @@ public struct AngularVelocity :
     /// </summary>
     /// <param name="obj">The other AngularVelocity cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
+    [Pure]
     public int CompareTo(object obj)
     {
         if (obj is AngularVelocity angularVelocity)

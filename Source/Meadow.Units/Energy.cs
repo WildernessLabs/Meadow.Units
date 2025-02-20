@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Meadow.Units.Conversions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
-using Meadow.Units.Conversions;
 
 namespace Meadow.Units;
 
@@ -120,13 +120,14 @@ public struct Energy :
     /// Get energy value as watt seconds
     /// </summary>
     public double WattSecond => From(UnitType.WattSeconds);
-        
+
     /// <summary>
     /// Get a double value for a specific unit
     /// </summary>
     /// <param name="convertTo">unit to covert to</param>
     /// <returns>the converted value</returns>
-    [Pure] public double From(UnitType convertTo)
+    [Pure]
+    public double From(UnitType convertTo)
     {
         return EnergyConversions.Convert(Value, UnitType.Joules, convertTo);
     }
@@ -224,7 +225,7 @@ public struct Energy :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Energy object with a value of left + right</returns>
-    [Pure] public static Energy operator +(Energy left, Energy right) => new (left.Value + right.Value);
+    [Pure] public static Energy operator +(Energy left, Energy right) => new(left.Value + right.Value);
 
     /// <summary>
     /// Subtraction operator to subtract two Energy objects
@@ -232,7 +233,7 @@ public struct Energy :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Energy object with a value of left - right</returns>
-    [Pure] public static Energy operator -(Energy left, Energy right) => new (left.Value - right.Value);
+    [Pure] public static Energy operator -(Energy left, Energy right) => new(left.Value - right.Value);
 
     /// <summary>
     /// Multiplication operator to multiply by a double
@@ -240,7 +241,7 @@ public struct Energy :
     /// <param name="value">object to multiply</param>
     /// <param name="operand">operand to multiply object</param>
     /// <returns>A new Energy object with a value of value multiplied by the operand</returns>
-    [Pure] public static Energy operator *(Energy value, double operand) => new (value.Value * operand);
+    [Pure] public static Energy operator *(Energy value, double operand) => new(value.Value * operand);
 
     /// <summary>
     /// Division operator to divide by a double
@@ -248,13 +249,13 @@ public struct Energy :
     /// <param name="value">object to be divided</param>
     /// <param name="operand">operand to divide object</param>
     /// <returns>A new Energy object with a value of value divided by the operand</returns>
-    [Pure] public static Energy operator /(Energy value, double operand) => new (value.Value / operand);
+    [Pure] public static Energy operator /(Energy value, double operand) => new(value.Value / operand);
 
     /// <summary>
     /// Returns the absolute value of the <see cref="Energy"/>
     /// </summary>
     /// <returns></returns>
-    [Pure] public Energy Abs() => new (Math.Abs(Value)); 
+    [Pure] public Energy Abs() => new(Math.Abs(Value));
 
     /// <summary>
     /// Get a string representation of the object
@@ -276,7 +277,7 @@ public struct Energy :
     /// </summary>
     /// <param name="obj">The other Energy cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
+    [Pure]
     public int CompareTo(object obj)
     {
         if (obj is Energy energy)
@@ -411,7 +412,8 @@ public struct Energy :
     /// </summary>
     /// <param name="other">value to compare</param>
     /// <returns>0 if equal</returns>
-    [Pure] public int CompareTo(double? other)
+    [Pure]
+    public int CompareTo(double? other)
     {
         return (other is null) ? -1 : (Value).CompareTo(other.Value);
     }

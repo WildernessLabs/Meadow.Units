@@ -65,7 +65,7 @@ public struct Acceleration3D :
     /// Y component of acceleration
     /// </summary>
     public Acceleration Y { get; set; }
-    
+
     /// <summary>
     /// Z component of acceleration
     /// </summary>
@@ -90,7 +90,8 @@ public struct Acceleration3D :
     /// </summary>
     /// <param name="other"></param>
     /// <returns>true if equal</returns>
-    [Pure] public bool Equals(Acceleration3D other) =>
+    [Pure]
+    public bool Equals(Acceleration3D other) =>
         X == other.X &&
         Y == other.Y &&
         Z == other.Z;
@@ -150,7 +151,8 @@ public struct Acceleration3D :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Acceleration3D object with a value of left + right</returns>
-    [Pure] public static Acceleration3D operator +(Acceleration3D left, Acceleration3D right)
+    [Pure]
+    public static Acceleration3D operator +(Acceleration3D left, Acceleration3D right)
     {
         var x = left.X + right.X;
         var y = left.Y + right.Y;
@@ -166,7 +168,8 @@ public struct Acceleration3D :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Acceleration3D object with a value of left - right</returns>
-    [Pure] public static Acceleration3D operator -(Acceleration3D left, Acceleration3D right)
+    [Pure]
+    public static Acceleration3D operator -(Acceleration3D left, Acceleration3D right)
     {
         var x = left.X - right.X;
         var y = left.Y - right.Y;
@@ -200,8 +203,8 @@ public struct Acceleration3D :
     {
         if (obj is Acceleration3D acceleration3D)
         {
-            return X.CompareTo(acceleration3D.X) | 
-                   Y.CompareTo(acceleration3D.Y) | 
+            return X.CompareTo(acceleration3D.X) |
+                   Y.CompareTo(acceleration3D.Y) |
                    Z.CompareTo(acceleration3D.X);
         }
 
@@ -227,8 +230,8 @@ public struct Acceleration3D :
     /// <returns>0 if equal</returns>
     public int CompareTo((double, double, double) other)
     {
-        return X.CompareTo(other.Item1) | 
-               Y.CompareTo(other.Item2) | 
+        return X.CompareTo(other.Item1) |
+               Y.CompareTo(other.Item2) |
                Z.CompareTo(other.Item3);
     }
 }

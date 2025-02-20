@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Meadow.Units.Conversions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
-using Meadow.Units.Conversions;
 
 namespace Meadow.Units;
 
@@ -132,7 +132,8 @@ public struct Speed :
     /// </summary>
     /// <param name="convertTo">unit to covert to</param>
     /// <returns>the converted value</returns>
-    [Pure] public double From(UnitType convertTo)
+    [Pure]
+    public double From(UnitType convertTo)
     {
         return SpeedConversions.Convert(Value, UnitType.KilometersPerSecond, convertTo);
     }
@@ -230,7 +231,7 @@ public struct Speed :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Speed object with a value of left + right</returns>
-    [Pure] public static Speed operator +(Speed left, Speed right) => new (left.Value + right.Value);
+    [Pure] public static Speed operator +(Speed left, Speed right) => new(left.Value + right.Value);
 
     /// <summary>
     /// Subtraction operator to subtract two Speed objects
@@ -238,7 +239,7 @@ public struct Speed :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Speed object with a value of left - right</returns>
-    [Pure] public static Speed operator -(Speed left, Speed right) => new (left.Value - right.Value);
+    [Pure] public static Speed operator -(Speed left, Speed right) => new(left.Value - right.Value);
 
     /// <summary>
     /// Multiplication operator to multiply by a double
@@ -246,7 +247,7 @@ public struct Speed :
     /// <param name="value">object to multiply</param>
     /// <param name="operand">operand to multiply object</param>
     /// <returns>A new Speed object with a value of value multiplied by the operand</returns>
-    [Pure] public static Speed operator *(Speed value, double operand) => new (value.Value * operand);
+    [Pure] public static Speed operator *(Speed value, double operand) => new(value.Value * operand);
 
     /// <summary>
     /// Division operator to divide by a double
@@ -254,7 +255,7 @@ public struct Speed :
     /// <param name="value">object to be divided</param>
     /// <param name="operand">operand to divide object</param>
     /// <returns>A new Speed object with a value of value divided by the operand</returns>
-    [Pure] public static Speed operator /(Speed value, double operand) => new (value.Value / operand);
+    [Pure] public static Speed operator /(Speed value, double operand) => new(value.Value / operand);
 
     /// <summary>
     /// Returns the absolute value of the <see cref="Speed"/>
@@ -282,7 +283,7 @@ public struct Speed :
     /// </summary>
     /// <param name="obj">The other Speed cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
+    [Pure]
     public int CompareTo(object obj)
     {
         if (obj is Speed speed)
@@ -417,7 +418,8 @@ public struct Speed :
     /// </summary>
     /// <param name="other">value to compare</param>
     /// <returns>0 if equal</returns>
-    [Pure] public int CompareTo(double? other)
+    [Pure]
+    public int CompareTo(double? other)
     {
         return (other is null) ? -1 : (Value).CompareTo(other.Value);
     }

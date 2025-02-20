@@ -193,7 +193,7 @@ public struct PotentialHydrogen :
     /// </summary>
     /// <param name="obj">The other PotentialHydrogen cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
+    [Pure]
     public int CompareTo(object obj)
     {
         if (obj is PotentialHydrogen potentialHydrogen)

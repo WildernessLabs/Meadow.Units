@@ -240,7 +240,7 @@ public struct ReactivePower :
     /// </summary>
     /// <param name="obj">The otherReactivePower cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
+    [Pure]
     public int CompareTo(object obj)
     {
         if (obj is ReactivePower reactivePower)

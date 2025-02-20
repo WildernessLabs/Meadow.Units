@@ -4,7 +4,8 @@ internal static class VoltageConversions
 {
     public static double Convert(double value, Voltage.UnitType from, Voltage.UnitType to)
     {
-        if (from == to) {
+        if (from == to)
+        {
             return value;
         }
         return value * voltageConversions[(int)to] / voltageConversions[(int)from];
