@@ -11,7 +11,8 @@ public static class AzimuthConversions
     /// Compass 16 Cardinals to degrees
     /// </summary>
     // To Base (`CompassDegrees`)
-    public static Func<Azimuth16PointCardinalNames, double> Compass16CardinalsToDegrees = (value) => {
+    public static Func<Azimuth16PointCardinalNames, double> Compass16CardinalsToDegrees = (value) =>
+    {
         return value switch
         {
             Azimuth16PointCardinalNames.N => 0d,
@@ -37,7 +38,8 @@ public static class AzimuthConversions
     /// <summary>
     /// Degrees to compass cardinal names
     /// </summary>
-    public static Func<double, Azimuth16PointCardinalNames> DegressToCompass16PointCardinalName = (value) => {
+    public static Func<double, Azimuth16PointCardinalNames> DegressToCompass16PointCardinalName = (value) =>
+    {
         /*
         N 348.75 - 11.25
         NNE 11.25 - 33.75

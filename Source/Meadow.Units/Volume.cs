@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Meadow.Units.Conversions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
-using Meadow.Units.Conversions;
 
 namespace Meadow.Units;
 
@@ -73,32 +73,32 @@ public struct Volume :
     /// Get volume in fluid ounces
     /// </summary>
     public double Ounces => From(UnitType.Ounces);
-    
+
     /// <summary>
     /// Get volume in cubic feet
     /// </summary>
     public double CubicFeet => From(UnitType.CubicFeet);
-    
+
     /// <summary>
     /// Get volume in cubic inches
     /// </summary>
     public double CubicInches => From(UnitType.CubicInches);
-    
+
     /// <summary>
     /// Get volume in liters
     /// </summary>
     public double Liters => From(UnitType.Liters);
-    
+
     /// <summary>
     /// Get volume in centiliters
     /// </summary>
     public double Centiliters => From(UnitType.Centiliters);
-    
+
     /// <summary>
     /// Get volume in milliliters
     /// </summary>
     public double Milliliters => From(UnitType.Milliliters);
-    
+
     /// <summary>
     /// Get volume in cubic meters
     /// </summary>
@@ -109,7 +109,8 @@ public struct Volume :
     /// </summary>
     /// <param name="convertTo">unit to covert to</param>
     /// <returns>the converted value</returns>
-    [Pure] public double From(UnitType convertTo)
+    [Pure]
+    public double From(UnitType convertTo)
     {
         return VolumeConversions.Convert(Value, UnitType.Liters, convertTo);
     }
@@ -207,7 +208,7 @@ public struct Volume :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Volume object with a value of left + right</returns>
-    [Pure] public static Volume operator +(Volume left, Volume right) => new (left.Value + right.Value);
+    [Pure] public static Volume operator +(Volume left, Volume right) => new(left.Value + right.Value);
 
     /// <summary>
     /// Subtraction operator to subtract two Volume objects
@@ -215,7 +216,7 @@ public struct Volume :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Volume object with a value of left - right</returns>
-    [Pure] public static Volume operator -(Volume left, Volume right) => new (left.Value - right.Value);
+    [Pure] public static Volume operator -(Volume left, Volume right) => new(left.Value - right.Value);
 
     /// <summary>
     /// Multiplication operator to multiply by a double
@@ -223,7 +224,7 @@ public struct Volume :
     /// <param name="value">object to multiply</param>
     /// <param name="operand">operand to multiply object</param>
     /// <returns>A new Volume object with a value of value multiplied by the operand</returns>
-    [Pure] public static Volume operator *(Volume value, double operand) => new (value.Value * operand);
+    [Pure] public static Volume operator *(Volume value, double operand) => new(value.Value * operand);
 
     /// <summary>
     /// Division operator to divide by a double
@@ -231,7 +232,7 @@ public struct Volume :
     /// <param name="value">object to be divided</param>
     /// <param name="operand">operand to divide object</param>
     /// <returns>A new Volume object with a value of value divided by the operand</returns>
-    [Pure] public static Volume operator /(Volume value, double operand) => new (value.Value / operand);
+    [Pure] public static Volume operator /(Volume value, double operand) => new(value.Value / operand);
 
     /// <summary>
     /// Returns the absolute value of the <see cref="Volume"/>
@@ -259,7 +260,7 @@ public struct Volume :
     /// </summary>
     /// <param name="obj">The other Volume cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
+    [Pure]
     public int CompareTo(object obj)
     {
         if (obj is Volume volume)
@@ -394,7 +395,8 @@ public struct Volume :
     /// </summary>
     /// <param name="other">value to compare</param>
     /// <returns>0 if equal</returns>
-    [Pure] public int CompareTo(double? other)
+    [Pure]
+    public int CompareTo(double? other)
     {
         return (other is null) ? -1 : (Value).CompareTo(other.Value);
     }

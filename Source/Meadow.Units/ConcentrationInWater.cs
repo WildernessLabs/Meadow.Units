@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Meadow.Units.Conversions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
-using Meadow.Units.Conversions;
 
 namespace Meadow.Units;
 
@@ -270,7 +270,7 @@ public struct ConcentrationInWater :
     /// </summary>
     /// <param name="obj">The other ConcentrationInWater cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
+    [Pure]
     public int CompareTo(object obj)
     {
         if (obj is ConcentrationInWater concentrationInWater)

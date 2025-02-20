@@ -77,12 +77,12 @@ public struct Resistance :
     /// Get resistance in Ohms
     /// </summary>
     public double Ohms => From(UnitType.Ohms);
-    
+
     /// <summary>
     /// Get resistance in kiloOhms
     /// </summary>
     public double Kiloohms => From(UnitType.Kiloohms);
-    
+
     /// <summary>
     /// Get resistance in megaOhms
     /// </summary>
@@ -228,7 +228,7 @@ public struct Resistance :
     /// </summary>
     /// <param name="obj">The other Resistance cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
+    [Pure]
     public int CompareTo(object obj)
     {
         if (obj is Resistance resistance)

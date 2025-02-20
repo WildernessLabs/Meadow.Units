@@ -274,7 +274,7 @@ public struct Azimuth :
     /// </summary>
     /// <param name="obj">The other Azimuth cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
+    [Pure]
     public int CompareTo(object obj)
     {
         if (obj is Azimuth azimuth)

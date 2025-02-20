@@ -16,7 +16,8 @@ internal static class PressureConversions
 
     public static double Convert(double value, Pressure.UnitType from, Pressure.UnitType to)
     {
-        if (from == to) {
+        if (from == to)
+        {
             return value;
         }
         return value * pressureConversions[(int)to] / pressureConversions[(int)from];

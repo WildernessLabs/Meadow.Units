@@ -333,7 +333,7 @@ public struct DigitalStorage :
     /// </summary>
     /// <param name="obj">The other DigitalStorage cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
+    [Pure]
     public int CompareTo(object obj)
     {
         if (obj is DigitalStorage digitalStorage)
