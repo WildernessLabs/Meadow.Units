@@ -22,5 +22,7 @@ internal static class ConcentrationInWaterConversions
         10000000.0,   // ppb
         10000000.0,   // ug/L
         10000000000.0,   // ppt
+        10, // g/L
+        0.01 // kg/L
     };
 }
