@@ -78,6 +78,14 @@ public struct ConcentrationInWater :
         /// Parts per 1,000,000,000,000
         /// </summary>
         PartsPerTrillion,
+        /// <summary>
+        /// Grams per liter (g/L)
+        /// </summary>
+        GramsPerLiter,
+        /// <summary>
+        /// Kilograms per liter (kg/L)
+        /// </summary>
+        KilogramsPerLiter,
     }
 
     /// <summary>
@@ -112,6 +120,14 @@ public struct ConcentrationInWater :
     /// Get ConcentrationInWater in Milligrams Per Liter
     /// </summary>
     public double MilligramsPerLiter => From(UnitType.MilligramsPerLiter);
+    /// <summary>
+    /// Get ConcentrationInWater in Milligrams Per Liter
+    /// </summary>
+    public double GramsPerLiter => From(UnitType.GramsPerLiter);
+    /// <summary>
+    /// Get ConcentrationInWater in Milligrams Per Liter
+    /// </summary>
+    public double KilogramsPerLiter => From(UnitType.KilogramsPerLiter);
 
     /// <summary>
     /// Get ConcentrationInWater for a specific unit
