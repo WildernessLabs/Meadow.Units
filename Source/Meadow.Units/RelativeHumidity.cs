@@ -145,7 +145,7 @@ public struct RelativeHumidity :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new RelativeHumidity object with a value of left + right</returns>
-    [Pure] public static RelativeHumidity operator +(RelativeHumidity left, RelativeHumidity right) => new (left.Percent + right.Percent);
+    [Pure] public static RelativeHumidity operator +(RelativeHumidity left, RelativeHumidity right) => new(left.Percent + right.Percent);
 
     /// <summary>
     /// Subtraction operator to subtract two RelativeHumidity objects
@@ -153,7 +153,7 @@ public struct RelativeHumidity :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new RelativeHumidity object with a value of left - right</returns>
-    [Pure] public static RelativeHumidity operator -(RelativeHumidity left, RelativeHumidity right) => new (left.Percent - right.Percent);
+    [Pure] public static RelativeHumidity operator -(RelativeHumidity left, RelativeHumidity right) => new(left.Percent - right.Percent);
 
     /// <summary>
     /// Multiplication operator to multiply by a double
@@ -161,7 +161,7 @@ public struct RelativeHumidity :
     /// <param name="value">object to multiply</param>
     /// <param name="operand">operand to multiply object</param>
     /// <returns>A new RelativeHumidity object with a value of value multiplied by the operand</returns>
-    [Pure] public static RelativeHumidity operator *(RelativeHumidity value, double operand) => new (value.Percent * operand);
+    [Pure] public static RelativeHumidity operator *(RelativeHumidity value, double operand) => new(value.Percent * operand);
 
     /// <summary>
     /// Division operator to divide by a double
@@ -169,7 +169,7 @@ public struct RelativeHumidity :
     /// <param name="value">object to be divided</param>
     /// <param name="operand">operand to divide object</param>
     /// <returns>A new RelativeHumidity object with a value of value divided by the operand</returns>
-    [Pure] public static RelativeHumidity operator /(RelativeHumidity value, double operand) => new (value.Percent / operand);
+    [Pure] public static RelativeHumidity operator /(RelativeHumidity value, double operand) => new(value.Percent / operand);
 
     /// <summary>
     /// Returns the absolute value of the <see cref="RelativeHumidity"/>
@@ -197,7 +197,7 @@ public struct RelativeHumidity :
     /// </summary>
     /// <param name="obj">The other RelativeHumidity cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
+    [Pure]
     public int CompareTo(object obj)
     {
         if (obj is RelativeHumidity relativeHumidity)
@@ -332,7 +332,8 @@ public struct RelativeHumidity :
     /// </summary>
     /// <param name="other">value to compare</param>
     /// <returns>0 if equal</returns>
-    [Pure] public int CompareTo(double? other)
+    [Pure]
+    public int CompareTo(double? other)
     {
         return (other is null) ? -1 : (Percent).CompareTo(other.Value);
     }

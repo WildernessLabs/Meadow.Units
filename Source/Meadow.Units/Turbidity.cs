@@ -23,7 +23,7 @@ public struct Turbidity :
     /// <param name="type">Turbidity unit.</param>
     public Turbidity(double value, UnitType type = UnitType.NTU)
     {
-        if(value < 0) throw new ArgumentOutOfRangeException($"Turbidity cannot be less than 0");
+        if (value < 0) throw new ArgumentOutOfRangeException($"Turbidity cannot be less than 0");
         NTU = value;
     }
 
@@ -195,7 +195,7 @@ public struct Turbidity :
     /// </summary>
     /// <param name="obj">The other Turbidity cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
+    [Pure]
     public int CompareTo(object obj)
     {
         if (obj is Turbidity turbidity)

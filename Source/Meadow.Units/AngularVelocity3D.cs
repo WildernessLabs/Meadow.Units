@@ -81,13 +81,14 @@ public struct AngularVelocity3D :
     /// </summary>
     /// <returns>hash as 32 bit integer</returns>
     [Pure] public override int GetHashCode() => (X.GetHashCode() + Y.GetHashCode() + Z.GetHashCode()) / 3;
-        
+
     /// <summary>
     /// Compare two 3DAngularVelocity objects
     /// </summary>
     /// <param name="other">object to compare</param>
     /// <returns>true if equal</returns>
-    [Pure] public bool Equals(AngularVelocity3D other) =>
+    [Pure]
+    public bool Equals(AngularVelocity3D other) =>
         X == other.X &&
         Y == other.Y &&
         Z == other.Z;
@@ -107,7 +108,7 @@ public struct AngularVelocity3D :
     /// <param name="right">right value</param>
     /// <returns>true if not equal</returns>
     [Pure] public static bool operator !=(AngularVelocity3D left, AngularVelocity3D right) => !Equals(left, right);
-  
+
     /// <summary>
     /// Less than operator to compare two AngularVelocity3D objects
     /// </summary>
@@ -147,7 +148,8 @@ public struct AngularVelocity3D :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new AngularVelocity3D object with a value of left + right</returns>
-    [Pure] public static AngularVelocity3D operator +(AngularVelocity3D left, AngularVelocity3D right)
+    [Pure]
+    public static AngularVelocity3D operator +(AngularVelocity3D left, AngularVelocity3D right)
     {
         var x = left.X + right.X;
         var y = left.Y + right.Y;
@@ -162,7 +164,8 @@ public struct AngularVelocity3D :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new AngularVelocity3D object with a value of left - right</returns>
-    [Pure] public static AngularVelocity3D operator -(AngularVelocity3D left, AngularVelocity3D right)
+    [Pure]
+    public static AngularVelocity3D operator -(AngularVelocity3D left, AngularVelocity3D right)
     {
         var x = left.X - right.X;
         var y = left.Y - right.Y;

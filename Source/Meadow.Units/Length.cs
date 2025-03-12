@@ -138,7 +138,8 @@ public struct Length :
     /// </summary>
     /// <param name="convertTo">unit to covert to</param>
     /// <returns>the converted value</returns>
-    [Pure] public readonly double From(UnitType convertTo)
+    [Pure]
+    public readonly double From(UnitType convertTo)
     {
         return LengthConversions.Convert(Value, UnitType.Meters, convertTo);
     }
@@ -288,7 +289,7 @@ public struct Length :
     /// </summary>
     /// <param name="obj">The other Length cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
+    [Pure]
     public readonly int CompareTo(object obj)
     {
         if (obj is Length length)

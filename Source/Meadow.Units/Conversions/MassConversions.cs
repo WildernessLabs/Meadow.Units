@@ -4,7 +4,7 @@ internal static class MassConversions
 {
     public static double Convert(double value, Mass.UnitType from, Mass.UnitType to)
     {
-        if(from == to)
+        if (from == to)
         {
             return value;
         }

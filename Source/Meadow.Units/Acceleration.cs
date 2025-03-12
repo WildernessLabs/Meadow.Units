@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Meadow.Units.Conversions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
-using Meadow.Units.Conversions;
 
 namespace Meadow.Units;
 
@@ -68,22 +68,22 @@ public struct Acceleration :
     /// Get acceleration in meters per second squared
     /// </summary>
     public double MetersPerSecondSquared => From(UnitType.MetersPerSecondSquared);
-    
+
     /// <summary>
     /// Get acceleration in centimeters per second squared
     /// </summary>
     public double CentimetersPerSecondSquared => From(UnitType.CentimetersPerSecondSquared);
-    
+
     /// <summary>
     /// Get acceleration in g
     /// </summary>
     public double Gravity => From(UnitType.Gravity);
-    
+
     /// <summary>
     /// Get acceleration in feet per second squared
     /// </summary>
     public double FeetPerSecondSquared => From(UnitType.FeetPerSecondSquared);
-    
+
     /// <summary>
     /// Get acceleration in inches per second squared
     /// </summary>
@@ -94,7 +94,8 @@ public struct Acceleration :
     /// </summary>
     /// <param name="convertTo">acceleration unit to convert to</param>
     /// <returns></returns>
-    [Pure] public double From(UnitType convertTo)
+    [Pure]
+    public double From(UnitType convertTo)
     {
         return AccelerationConversions.Convert(Value, UnitType.MetersPerSecondSquared, convertTo);
     }
@@ -192,7 +193,7 @@ public struct Acceleration :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Acceleration object with a value of left + right</returns>
-    [Pure] public static Acceleration operator +(Acceleration left, Acceleration right) => new (left.Value + right.Value);
+    [Pure] public static Acceleration operator +(Acceleration left, Acceleration right) => new(left.Value + right.Value);
 
     /// <summary>
     /// Subtraction operator to subtract two Acceleration objects
@@ -200,7 +201,7 @@ public struct Acceleration :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Acceleration object with a value of left - right</returns>
-    [Pure] public static Acceleration operator -(Acceleration left, Acceleration right) => new (left.Value - right.Value);
+    [Pure] public static Acceleration operator -(Acceleration left, Acceleration right) => new(left.Value - right.Value);
 
     /// <summary>
     /// Multiplication operator to multiply by a double
@@ -208,7 +209,7 @@ public struct Acceleration :
     /// <param name="value">object to multiply</param>
     /// <param name="operand">operand to multiply object</param>
     /// <returns>A new Acceleration object with a value of value multiplied by the operand</returns>
-    [Pure] public static Acceleration operator *(Acceleration value, double operand) => new (value.Value * operand);
+    [Pure] public static Acceleration operator *(Acceleration value, double operand) => new(value.Value * operand);
 
     /// <summary>
     /// Division operator to divide by a double
@@ -216,7 +217,7 @@ public struct Acceleration :
     /// <param name="value">object to be divided</param>
     /// <param name="operand">operand to divide object</param>
     /// <returns>A new Acceleration object with a value of value divided by the operand</returns>
-    [Pure] public static Acceleration operator /(Acceleration value, double operand) => new (value.Value / operand);
+    [Pure] public static Acceleration operator /(Acceleration value, double operand) => new(value.Value / operand);
 
     /// <summary>
     /// Returns the absolute value of the <see cref="Acceleration"/>
@@ -379,7 +380,8 @@ public struct Acceleration :
     /// </summary>
     /// <param name="other">value to compare</param>
     /// <returns>0 if equal</returns>
-    [Pure] public int CompareTo(double? other)
+    [Pure]
+    public int CompareTo(double? other)
     {
         return (other is null) ? -1 : (Value).CompareTo(other.Value);
     }

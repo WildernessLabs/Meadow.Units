@@ -88,7 +88,8 @@ public struct AngularAcceleration3D :
     /// </summary>
     /// <param name="other">The object to compare</param>
     /// <returns>true if equal</returns>
-    [Pure] public bool Equals(AngularAcceleration3D other) =>
+    [Pure]
+    public bool Equals(AngularAcceleration3D other) =>
         X == other.X &&
         Y == other.Y &&
         Z == other.Z;
@@ -108,7 +109,7 @@ public struct AngularAcceleration3D :
     /// <param name="right">right value</param>
     /// <returns>true if not equal</returns>
     [Pure] public static bool operator !=(AngularAcceleration3D left, AngularAcceleration3D right) => !Equals(left, right);
-  
+
     /// <summary>
     /// Less than operator to compare two AngularAcceleration3D objects
     /// </summary>
@@ -148,7 +149,8 @@ public struct AngularAcceleration3D :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new AngularAcceleration3D object with a value of left + right</returns>
-    [Pure] public static AngularAcceleration3D operator +(AngularAcceleration3D left, AngularAcceleration3D right)
+    [Pure]
+    public static AngularAcceleration3D operator +(AngularAcceleration3D left, AngularAcceleration3D right)
     {
         var x = left.X + right.X;
         var y = left.Y + right.Y;
@@ -163,7 +165,8 @@ public struct AngularAcceleration3D :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new AngularAcceleration3D object with a value of left - right</returns>
-    [Pure] public static AngularAcceleration3D operator -(AngularAcceleration3D left, AngularAcceleration3D right)
+    [Pure]
+    public static AngularAcceleration3D operator -(AngularAcceleration3D left, AngularAcceleration3D right)
     {
         var x = left.X - right.X;
         var y = left.Y - right.Y;
@@ -221,8 +224,8 @@ public struct AngularAcceleration3D :
     /// <returns>0 if equal</returns>
     public int CompareTo((double, double, double) other)
     {
-        return X.CompareTo(other.Item1) | 
-               Y.CompareTo(other.Item2) | 
+        return X.CompareTo(other.Item1) |
+               Y.CompareTo(other.Item2) |
                Z.CompareTo(other.Item3);
     }
 }

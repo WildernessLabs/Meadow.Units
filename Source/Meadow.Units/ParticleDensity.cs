@@ -209,7 +209,7 @@ public struct ParticleDensity :
     /// </summary>
     /// <param name="obj">The other ParticleDensity cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
+    [Pure]
     public int CompareTo(object obj)
     {
         if (obj is ParticleDensity particleDensity)

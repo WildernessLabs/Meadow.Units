@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Meadow.Units.Conversions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
-using Meadow.Units.Conversions;
 
 namespace Meadow.Units;
 
@@ -73,32 +73,32 @@ public struct Torque :
     /// Get torque in foot pounds
     /// </summary>
     public double FootPound => From(UnitType.FootPound);
-    
+
     /// <summary>
     /// Get torque in kilogram meters
     /// </summary>
     public double KilogramMeter => From(UnitType.KilogramMeter);
-    
+
     /// <summary>
     /// Get torque in kilogram centimeters
     /// </summary>
     public double KilogramCentimeter => From(UnitType.KilogramCentimeter);
-    
+
     /// <summary>
     /// Get torque in gram centimeters
     /// </summary>
     public double GramCentimeter => From(UnitType.GramCentimeter);
-    
+
     /// <summary>
     /// Get torque in inch pounds
     /// </summary>
     public double InchPound => From(UnitType.InchPound);
-    
+
     /// <summary>
     /// Get torque in inch ounces
     /// </summary>
     public double InchOunce => From(UnitType.InchOunce);
-    
+
     /// <summary>
     /// Get torque in dyne centimeters
     /// </summary>
@@ -109,7 +109,8 @@ public struct Torque :
     /// </summary>
     /// <param name="convertTo">unit to covert to</param>
     /// <returns>the converted value</returns>
-    [Pure] public double From(UnitType convertTo)
+    [Pure]
+    public double From(UnitType convertTo)
     {
         return TorqueConversions.Convert(Value, UnitType.NewtonMeter, convertTo);
     }
@@ -207,7 +208,7 @@ public struct Torque :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Torque object with a value of left + right</returns>
-    [Pure] public static Torque operator +(Torque left, Torque right) => new (left.Value + right.Value);
+    [Pure] public static Torque operator +(Torque left, Torque right) => new(left.Value + right.Value);
 
     /// <summary>
     /// Subtraction operator to subtract two Torque objects
@@ -215,7 +216,7 @@ public struct Torque :
     /// <param name="left">left value</param>
     /// <param name="right">right value</param>
     /// <returns>A new Torque object with a value of left - right</returns>
-    [Pure] public static Torque operator -(Torque left, Torque right) => new (left.Value - right.Value);
+    [Pure] public static Torque operator -(Torque left, Torque right) => new(left.Value - right.Value);
 
     /// <summary>
     /// Multiplication operator to multiply by a double
@@ -223,7 +224,7 @@ public struct Torque :
     /// <param name="value">object to multiply</param>
     /// <param name="operand">operand to multiply object</param>
     /// <returns>A new Torque object with a value of value multiplied by the operand</returns>
-    [Pure] public static Torque operator *(Torque value, double operand) => new (value.Value * operand);
+    [Pure] public static Torque operator *(Torque value, double operand) => new(value.Value * operand);
 
     /// <summary>
     /// Division operator to divide by a double
@@ -231,7 +232,7 @@ public struct Torque :
     /// <param name="value">object to be divided</param>
     /// <param name="operand">operand to divide object</param>
     /// <returns>A new Torque object with a value of value divided by the operand</returns>
-    [Pure] public static Torque operator /(Torque value, double operand) => new (value.Value / operand);
+    [Pure] public static Torque operator /(Torque value, double operand) => new(value.Value / operand);
 
     /// <summary>
     /// Returns the absolute value of the <see cref="Torque"/>
@@ -259,7 +260,7 @@ public struct Torque :
     /// </summary>
     /// <param name="obj">The other Torque cast to object</param>
     /// <returns>0 if equal</returns>
-    [Pure] 
+    [Pure]
     public int CompareTo(object obj)
     {
         if (obj is Torque torque)
@@ -394,7 +395,8 @@ public struct Torque :
     /// </summary>
     /// <param name="other">value to compare</param>
     /// <returns>0 if equal</returns>
-    [Pure] public int CompareTo(double? other)
+    [Pure]
+    public int CompareTo(double? other)
     {
         return (other is null) ? -1 : (Value).CompareTo(other.Value);
     }
