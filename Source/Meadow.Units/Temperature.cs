@@ -16,7 +16,10 @@ namespace Meadow.Units;
 [Serializable]
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
+[TypeConverter(typeof(TemperatureTypeConverter))]
+//[JsonConverter(typeof(TemperatureJsonConverter))]
 public struct Temperature :
+    IUnit<Temperature, Temperature.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -78,6 +81,30 @@ public struct Temperature :
         /// <summary> Kelvin </summary>
         Kelvin,
     }
+
+    /// <summary>
+    /// Creates a Temperature instance from a canonical (Celsius) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Temperature FromCanonical(double value)
+    {
+        // Assuming Celsius is your canonical form
+        return new Temperature(value, UnitType.Celsius);
+    }
+
+    /// <summary>
+    /// Gets teh value of the Temperature in Canonical (Celsius) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        // Return the internal value which is already in Celsius
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Celsius;
 
     //========================
     // TO property conversions

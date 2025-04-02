@@ -14,6 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Libraries_and_Frameworks\Serialization.MicroJson\Driver\Serialization.MicroJson.csproj" />
+    <ProjectReference Include="..\Meadow.Units.Serialization.MicroJson\Meadow.Units.Serialization.MicroJson.csproj" />
+    <ProjectReference Include="..\Meadow.Units.Serialization.System.Text\Meadow.Units.Serialization.System.Text.csproj" />
     <ProjectReference Include="..\Meadow.Units\Meadow.Units.csproj" />
   </ItemGroup>
 </Project>
