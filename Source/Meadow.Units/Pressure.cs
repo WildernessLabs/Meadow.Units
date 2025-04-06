@@ -85,6 +85,9 @@ public struct Pressure :
         return Value;
     }
 
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Bar;
+
     /// <summary>
     /// Gets the pressure value expressed as a unit _Bar_ (`Bar`)
     /// </summary>
