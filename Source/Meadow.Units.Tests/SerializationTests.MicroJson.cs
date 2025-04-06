@@ -11,7 +11,7 @@ public partial class SerializationTests
     {
         var strategy = new MicroJsonUnitJsonConverter();
         Temperature t1 = 50.Fahrenheit();
-        var json = MicroJson.Serialize(t1, serializationStrategy: strategy);
+        var json = MicroJson.Serialize(t1, unitJsonConverter: strategy);
         Assert.NotNull(json);
         var t2 = MicroJson.Deserialize<Temperature>(json, strategy);
         Assert.Equal(t1, t2);
@@ -22,7 +22,7 @@ public partial class SerializationTests
     {
         var strategy = new MicroJsonUnitJsonConverter();
         var t1 = new Temperature[] { 50.Fahrenheit(), 51.Fahrenheit(), 52.Fahrenheit() };
-        var json = MicroJson.Serialize(t1, serializationStrategy: strategy);
+        var json = MicroJson.Serialize(t1, unitJsonConverter: strategy);
         Assert.NotNull(json);
         var t2 = MicroJson.Deserialize<Temperature[]>(json, strategy);
         Assert.Equal(t1, t2);
