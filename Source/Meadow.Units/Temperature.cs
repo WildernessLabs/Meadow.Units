@@ -16,8 +16,6 @@ namespace Meadow.Units;
 [Serializable]
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
-[TypeConverter(typeof(TemperatureTypeConverter))]
-//[JsonConverter(typeof(TemperatureJsonConverter))]
 public struct Temperature :
     IUnit<Temperature, Temperature.UnitType>,
     IComparable, IFormattable, IConvertible,
@@ -94,7 +92,7 @@ public struct Temperature :
     }
 
     /// <summary>
-    /// Gets teh value of the Temperature in Canonical (Celsius) units
+    /// Gets the value of the Temperature in Canonical (Celsius) units
     /// </summary>
     /// <returns></returns>
     public double ToCanonical()

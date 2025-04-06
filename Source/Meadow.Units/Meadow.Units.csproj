@@ -25,7 +25,4 @@
   <ItemGroup>
     <None Include="icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Serialization\" />
-  </ItemGroup>
 </Project>

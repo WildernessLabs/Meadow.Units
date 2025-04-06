@@ -6,30 +6,24 @@ namespace Meadow.Common;
 /// <summary>
 /// Factory methods for unit creation
 /// </summary>
-internal class UnitFactory
+public class UnitFactory
 {
+
     /// <summary>
-    /// Generic method to create a unit from its canonical value.
-    /// Note: For .NET Standard 2.1 this requires a runtime check since static interface methods aren't available.
+    /// Method to create a unit from its canonical value.
     /// </summary>
-    public static TUnit FromCanonical<TUnit, TUnitType>(double value)
-        where TUnit : struct, IUnit<TUnit, TUnitType>
-        where TUnitType : struct, Enum
+    /// <param name="value">The canonical value to use for creation</param>
+    /// <param name="unitTypeName">The name of the Unit to be created</param>
+    public static object CreateUnitFromCanonicalValue(double value, string unitTypeName)
     {
-        Type unitType = typeof(TUnit);
-
-        if (unitType == typeof(Temperature))
-            return (TUnit)(object)FromCelsius(value);
-
-        if (unitType == typeof(Voltage))
-            return (TUnit)(object)FromVolts(value);
-
-        if (unitType == typeof(Length))
-            return (TUnit)(object)FromMeters(value);
-
-        // Add other unit types as needed
-
-        throw new NotSupportedException($"Unit type {unitType.Name} is not supported");
+        return unitTypeName switch
+        {
+            nameof(Temperature) => new Temperature(value),
+            nameof(Voltage) => new Voltage(value),
+            nameof(Length) => new Length(value),
+            nameof(Pressure) => new Pressure(value),
+            _ => throw new NotSupportedException($"Unit type name {unitTypeName} is not supported.")
+        };
     }
 
     /// <summary>
