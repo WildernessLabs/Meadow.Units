@@ -13,16 +13,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
+    
+    # need Foundation for MicroJson
+    - name: Checkout Meadow.Foundation
+      uses: actions/checkout@v4
+      with:
+        repository: WildernessLabs/Meadow.Foundation
+        path: Meadow.Logging
+        ref: develop
+        
     - name: Checkout Meadow.Units
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         path: Meadow.Units
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 7.0.x
+        dotnet-version: 8.0.x
 
     - name: Build
       run: dotnet build -c Release Meadow.Units/Source/Meadow.Units/Meadow.Units.sln
