@@ -15,6 +15,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Pressure :
+    IUnit<Pressure, Pressure.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -62,6 +63,30 @@ public struct Pressure :
         /// <summary> Kilopascal </summary>
         KiloPascal
     }
+
+    /// <summary>
+    /// Creates a Pressure instance from a canonical (Bar) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Pressure FromCanonical(double value)
+    {
+        // Assuming Celsius is your canonical form
+        return new Pressure(value, UnitType.Bar);
+    }
+
+    /// <summary>
+    /// Gets the value of the Pressure in Canonical (Bar) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        // Return the internal value which is already in Celsius
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Bar;
 
     /// <summary>
     /// Gets the pressure value expressed as a unit _Bar_ (`Bar`)

@@ -18,8 +18,9 @@
     <Authors>Wilderness Labs, Inc</Authors>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>10.0</LangVersion>
+    <LangVersion>latest</LangVersion>
       <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+      <Configurations>Debug;Release;Debug-ProjectRef</Configurations>
   </PropertyGroup>
   <ItemGroup>
     <None Include="icon.png" Pack="true" PackagePath="" />
