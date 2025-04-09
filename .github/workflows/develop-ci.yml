@@ -22,15 +22,17 @@ jobs:
         path: Meadow.Foundation
         ref: develop
         
+    - name: Checkout Meadow.Contracts
+      uses: actions/checkout@v4
+      with:
+        repository: WildernessLabs/Meadow.Foundation
+        path: Meadow.Contracts
+        ref: develop
+
     - name: Checkout Meadow.Units
       uses: actions/checkout@v4
       with:
         path: Meadow.Units
-
-    - name: Checkout Meadow.Contracts
-      uses: actions/checkout@v4
-      with:
-        path: Meadow.Contracts
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
