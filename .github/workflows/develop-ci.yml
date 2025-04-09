@@ -38,4 +38,6 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: Build
-      run: dotnet build -c Release Meadow.Units/Source/Meadow.Units.sln
+      run: |
+        cd Meadow.Units/Source 
+        dotnet build -c Release Meadow.Units.sln
