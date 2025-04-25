@@ -25,7 +25,7 @@ jobs:
     - name: Checkout Meadow.Contracts
       uses: actions/checkout@v4
       with:
-        repository: WildernessLabs/Meadow.Foundation
+        repository: WildernessLabs/Meadow.Contracts
         path: Meadow.Contracts
         ref: develop
 
