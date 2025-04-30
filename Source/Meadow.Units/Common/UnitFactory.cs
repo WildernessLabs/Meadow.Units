@@ -18,10 +18,11 @@ public class UnitFactory
     {
         return unitTypeName switch
         {
-            nameof(Temperature) => new Temperature(value),
-            nameof(Voltage) => new Voltage(value),
-            nameof(Length) => new Length(value),
-            nameof(Pressure) => new Pressure(value),
+            nameof(Temperature) => new Temperature(value, Temperature.UnitType.Celsius),
+            nameof(Voltage) => new Voltage(value, Voltage.UnitType.Volts),
+            nameof(Length) => new Length(value, Length.UnitType.Meters),
+            nameof(Pressure) => new Pressure(value, Pressure.UnitType.Bar),
+            nameof(VolumetricFlow) => new VolumetricFlow(value, VolumetricFlow.UnitType.CubicMetersPerSecond),
             _ => throw new NotSupportedException($"Unit type name {unitTypeName} is not supported.")
         };
     }

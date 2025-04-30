@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Libraries_and_Frameworks\Serialization.MicroJson\Driver\Serialization.MicroJson.csproj" />
-    <ProjectReference Include="..\Meadow.Units\Meadow.Units.csproj" />
   </ItemGroup>
 
 </Project>

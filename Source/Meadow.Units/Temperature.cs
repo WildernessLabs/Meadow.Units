@@ -87,7 +87,6 @@ public struct Temperature :
     /// <returns></returns>
     public static Temperature FromCanonical(double value)
     {
-        // Assuming Celsius is your canonical form
         return new Temperature(value, UnitType.Celsius);
     }
 
@@ -103,9 +102,6 @@ public struct Temperature :
 
     /// <inheritdoc/>
     public UnitType GetCanonicalUnitType() => UnitType.Celsius;
-
-    //========================
-    // TO property conversions
 
     /// <summary>
     /// Gets the temperature value expressed as a unit _Celsius/Centrigrade_ (`°C`).

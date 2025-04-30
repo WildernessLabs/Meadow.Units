@@ -10,9 +10,10 @@ namespace Meadow.Units;
 /// Implements standard interfaces for comparison, formatting, and conversion operations.
 /// </summary>
 public struct VolumetricFlow :
+    IUnit<VolumetricFlow, VolumetricFlow.UnitType>,
     IComparable, IFormattable
 {
-    private static VolumetricFlow _zero;
+    private static readonly VolumetricFlow _zero;
 
     static VolumetricFlow()
     {
@@ -66,6 +67,29 @@ public struct VolumetricFlow :
         /// <summary>GallonsPerHour</summary>
         GallonsPerHour,
     }
+
+    /// <summary>
+    /// Creates a VolumetricFlow instance from a canonical (CubicMetersPerSecond) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static VolumetricFlow FromCanonical(double value)
+    {
+        return new VolumetricFlow(value, UnitType.CubicMetersPerSecond);
+    }
+
+    /// <summary>
+    /// Gets the value of the VolumetricFlow in Canonical (CubicMetersPerSecond) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        // Return the internal value which is already in CubicMetersPerSecond
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.CubicMetersPerSecond;
 
     /// <summary>
     /// Gets the flow rate in cubic meters per second (m³/s).
