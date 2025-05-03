@@ -14,10 +14,11 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Voltage :
+    IUnit<Voltage, Voltage.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
-    private static Voltage _zero;
+    private static readonly Voltage _zero;
 
     static Voltage()
     {
@@ -75,6 +76,28 @@ public struct Voltage :
         /// <summary> Nanovolts </summary>
         Nanovolts,
     }
+
+    /// <summary>
+    /// Creates a Voltage instance from a canonical (Volts) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Voltage FromCanonical(double value)
+    {
+        return new Voltage(value, UnitType.Volts);
+    }
+
+    /// <summary>
+    /// Gets the value of the Voltage in Canonical (Volts) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Volts;
 
     /// <summary> Get voltage in volts </summary>
     public double Volts => From(UnitType.Volts);
