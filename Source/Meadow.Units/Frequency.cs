@@ -14,10 +14,11 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Frequency :
+    IUnit<Frequency, Frequency.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
-    private static Frequency _zero;
+    private static readonly Frequency _zero;
 
     static Frequency()
     {
@@ -67,6 +68,28 @@ public struct Frequency :
         /// <summary> Hertz </summary>
         Hertz,
     }
+
+    /// <summary>
+    /// Creates a Frequency instance from a canonical (Hertz) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Frequency FromCanonical(double value)
+    {
+        return new Frequency(value, UnitType.Hertz);
+    }
+
+    /// <summary>
+    /// Gets the value of the Frequency in Canonical (Hertz) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Hertz;
 
     /// <summary>
     /// Get frequency value as gigahertz

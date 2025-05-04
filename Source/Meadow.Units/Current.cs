@@ -14,10 +14,11 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Current :
+    IUnit<Current, Current.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
-    private static Current _zero;
+    private static readonly Current _zero;
 
     static Current()
     {
@@ -71,6 +72,28 @@ public struct Current :
         /// <summary> Giga-amperes </summary>
         Gigaamps,
     }
+
+    /// <summary>
+    /// Creates a Current instance from a canonical (Amps) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Current FromCanonical(double value)
+    {
+        return new Current(value, UnitType.Amps);
+    }
+
+    /// <summary>
+    /// Gets the value of the Current in Canonical (Amps) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Amps;
 
     /// <summary> Get current in amps </summary>
     public double Amps => From(UnitType.Amps);

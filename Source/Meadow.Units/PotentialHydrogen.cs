@@ -13,6 +13,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct PotentialHydrogen :
+    IUnit<PotentialHydrogen, PotentialHydrogen.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -39,6 +40,7 @@ public struct PotentialHydrogen :
     /// The Potential Hydrogen expressed as pH.
     /// </summary>
     public double pH { get; private set; }
+
     /// <summary>
     /// The type of units available to describe the PotentialHydrogen.
     /// </summary>
@@ -47,6 +49,28 @@ public struct PotentialHydrogen :
         /// <summary> Potential Hydrogen (pH) </summary>
         pH
     }
+
+    /// <summary>
+    /// Creates a PotentialHydrogen instance from a canonical (pH) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static PotentialHydrogen FromCanonical(double value)
+    {
+        return new PotentialHydrogen(value, UnitType.pH);
+    }
+
+    /// <summary>
+    /// Gets the value of the PotentialHydrogen in Canonical (pH) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return pH;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.pH;
 
     /// <summary>
     /// Compare to another PotentialHydrogen object
@@ -60,16 +84,6 @@ public struct PotentialHydrogen :
     /// </summary>
     /// <returns>int32 hash value</returns>
     [Pure] public override int GetHashCode() => pH.GetHashCode();
-
-    // implicit conversions
-    //[Pure] public static implicit operator PotentialHydrogen(ushort value) => new PotentialHydrogen(value);
-    //[Pure] public static implicit operator PotentialHydrogen(short value) => new PotentialHydrogen(value);
-    //[Pure] public static implicit operator PotentialHydrogen(uint value) => new PotentialHydrogen(value);
-    //[Pure] public static implicit operator PotentialHydrogen(long value) => new PotentialHydrogen(value);
-    //[Pure] public static implicit operator PotentialHydrogen(int value) => new PotentialHydrogen(value);
-    //[Pure] public static implicit operator PotentialHydrogen(float value) => new PotentialHydrogen(value);
-    //[Pure] public static implicit operator PotentialHydrogen(double value) => new PotentialHydrogen(value);
-    //[Pure] public static implicit operator PotentialHydrogen(decimal value) => new PotentialHydrogen((double)value);
 
     // Comparison
     /// <summary>
