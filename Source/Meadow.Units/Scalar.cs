@@ -201,9 +201,9 @@ public struct Scalar :
     [Pure]
     public int CompareTo(object obj)
     {
-        if (obj is Scalar Scalar)
+        if (obj is Scalar scalar)
         {
-            return value.CompareTo(Scalar.value);
+            return value.CompareTo(scalar.value);
         }
         throw new ArgumentException("Object is not a Scalar");
     }

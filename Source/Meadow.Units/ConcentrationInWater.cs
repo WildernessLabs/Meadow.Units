@@ -14,9 +14,22 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct ConcentrationInWater :
+    IUnit<ConcentrationInWater, ConcentrationInWater.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
+    private static readonly ConcentrationInWater _zero;
+
+    static ConcentrationInWater()
+    {
+        _zero = new ConcentrationInWater(0, UnitType.PartsPerMillion);
+    }
+
+    /// <summary>
+    /// Gets a ConcentrationInWater of 0
+    /// </summary>
+    public static ConcentrationInWater Zero => _zero;
+
     /// <summary>
     /// Creates a new <see cref="ConcentrationInWater"/> object.
     /// </summary>
@@ -87,6 +100,28 @@ public struct ConcentrationInWater :
         /// </summary>
         KilogramsPerLiter,
     }
+
+    /// <summary>
+    /// Creates a ConcentrationInWater instance from a canonical (PartsPerMillion) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static ConcentrationInWater FromCanonical(double value)
+    {
+        return new ConcentrationInWater(value, UnitType.PartsPerMillion);
+    }
+
+    /// <summary>
+    /// Gets the value of the ConcentrationInWater in Canonical (PartsPerMillion) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.PartsPerMillion;
 
     /// <summary>
     /// Get ConcentrationInWater in parts per 100
