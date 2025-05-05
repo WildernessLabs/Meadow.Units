@@ -13,7 +13,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RootNamespace>Meadow.Units</RootNamespace>
     <Nullable>enable</Nullable>
-    <LangVersion>12.0</LangVersion>
+    <LangVersion>12</LangVersion>
     <Description>Unit types for Wilderness Labs Meadow</Description>
     <Authors>Wilderness Labs, Inc</Authors>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
