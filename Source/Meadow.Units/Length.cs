@@ -14,10 +14,11 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Length :
+    IUnit<Length, Length.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
-    private static Length _zero;
+    private static readonly Length _zero;
 
     static Length()
     {
@@ -83,6 +84,28 @@ public struct Length :
         /// <summary> Inches </summary>
         Inches,
     }
+
+    /// <summary>
+    /// Creates a Length instance from a canonical (Meters) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Length FromCanonical(double value)
+    {
+        return new Length(value, UnitType.Meters);
+    }
+
+    /// <summary>
+    /// Gets the value of the Length in Canonical (Meters) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Meters;
 
     /// <summary>
     /// Get length value as Kilometers
