@@ -67,7 +67,10 @@ public class MicroJsonUnitJsonConverter : IUnitJsonConverter
             if (itemJson == null)
             {
                 // For non-unit items in a collection, use default serialization
-                itemJson = MicroJson.Serialize(item, convertNamesToCamelCase: convertNamesToCamelCase);
+                itemJson = MicroJson.Serialize(item, new SerializerOptions
+                {
+                    ConvertNamesToCamelCase = convertNamesToCamelCase
+                });
             }
 
             result.Append(itemJson);
