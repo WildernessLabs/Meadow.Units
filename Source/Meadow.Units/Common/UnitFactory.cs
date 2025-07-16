@@ -20,7 +20,7 @@ public class UnitFactory
             "voltage" => new Voltage(value, Voltage.UnitType.Volts),
             "length" => new Length(value, Length.UnitType.Meters),
             "pressure" => new Pressure(value, Pressure.UnitType.Bar),
-            "volumetricFlow" => new VolumetricFlow(value, VolumetricFlow.UnitType.CubicMetersPerSecond),
+            "volumetricflow" => new VolumetricFlow(value, VolumetricFlow.UnitType.CubicMetersPerSecond),
             _ => throw new NotSupportedException($"Unit type name {unitTypeName} is not supported.")
         };
     }
