@@ -62,7 +62,7 @@ public static class InputToUnitConverter
     /// <param name="offset">The offset value to add after scaling</param>
     /// <returns>The converted unit value as an object</returns>
     /// <exception cref="NotSupportedException">Thrown when the specified unit type name is not supported for conversion</exception>
-    public static object ConvertCurrentToUnit(Current current, string unitType, double scale, double offset)
+    public static IUnit ConvertCurrentToUnit(Current current, string unitType, double scale, double offset)
     {
         return unitType.ToLower() switch
         {
