@@ -1,7 +1,8 @@
-﻿using Meadow.Units;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+
+namespace Meadow.Units;
 
 /// <summary>
 /// Represents a Scalar measurement.
@@ -219,4 +220,14 @@ public struct Scalar :
     /// <inheritdoc/>
     [Pure] public string ToString(IFormatProvider provider) => value.ToString(provider);
 
+    /// <summary>
+    /// Converts a <see cref="Scalar"/> instance to a <see cref="double"/> value.
+    /// </summary>
+    /// <param name="value">The <see cref="Scalar"/> instance to convert.</param>
+    public static explicit operator double(Scalar value) => value.value;
+    /// <summary>
+    /// Converts a <see cref="double"/> value to a <see cref="Scalar"/> instance.
+    /// </summary>
+    /// <param name="value">The <see cref="double"/> value to convert.</param>
+    public static explicit operator Scalar(double value) => new Scalar(value);
 }
