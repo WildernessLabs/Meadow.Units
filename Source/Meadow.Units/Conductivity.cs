@@ -14,14 +14,27 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Conductivity :
+    IUnit<Conductivity, Conductivity.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
+    private static readonly Conductivity _zero;
+
+    static Conductivity()
+    {
+        _zero = new Conductivity(0, UnitType.SiemensPerCentimeter);
+    }
+
+    /// <summary>
+    /// Gets a Conductivity of 0 SiemensPerCentimeter
+    /// </summary>
+    public static Conductivity Zero => _zero;
+
     /// <summary>
     /// Creates a new <see cref="Conductivity"/> object.
     /// </summary>
     /// <param name="value">The Conductivity value.</param>
-    /// <param name="type">Amps by default.</param>
+    /// <param name="type">SiemensPerCentimeter by default.</param>
     public Conductivity(double value, UnitType type = UnitType.SiemensPerCentimeter)
     {
         Value = ConductivityConversions.Convert(value, type, UnitType.SiemensPerCentimeter);
@@ -71,6 +84,28 @@ public struct Conductivity :
         /// </summary>
         MicroSiemensPerMeter,
     }
+
+    /// <summary>
+    /// Creates a Conductivity instance from a canonical (SiemensPerCentimeter) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Conductivity FromCanonical(double value)
+    {
+        return new Conductivity(value, UnitType.SiemensPerCentimeter);
+    }
+
+    /// <summary>
+    /// Gets the value of the Conductivity in Canonical (SiemensPerCentimeter) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.SiemensPerCentimeter;
 
     /// <summary>
     /// Get Conductivity in Siemens Per Centimeter

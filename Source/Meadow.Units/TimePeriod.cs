@@ -14,10 +14,11 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct TimePeriod :
+    IUnit<TimePeriod, TimePeriod.UnitType>,
     IComparable, IFormattable,
     IComparable<TimePeriod>, IComparable<TimeSpan>
 {
-    private static TimePeriod _zero;
+    private static readonly TimePeriod _zero;
 
     static TimePeriod()
     {
@@ -95,6 +96,28 @@ public struct TimePeriod :
     }
 
     /// <summary>
+    /// Creates a TimePeriod instance from a canonical (seconds) value
+    /// </summary>
+    /// <param name="seconds"></param>
+    /// <returns></returns>
+    public static TimePeriod FromCanonical(double seconds)
+    {
+        return new TimePeriod(seconds, UnitType.Seconds);
+    }
+
+    /// <summary>
+    /// Gets the value of the TimePeriod in Canonical (seconds) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Seconds;
+
+    /// <summary>
     /// Gets the time period value in nanoseconds.
     /// </summary>
     public readonly double Nanoseconds => From(UnitType.Nanoseconds);
@@ -150,6 +173,19 @@ public struct TimePeriod :
     public static TimePeriod FromSeconds(double seconds)
     {
         return new TimePeriod(seconds, UnitType.Seconds);
+    }
+
+    /// <summary>
+    /// Creates a <see cref="TimePeriod"/> instance from a specified file time.
+    /// </summary>
+    /// <remarks>File time is commonly used in Windows-based systems to represent time values. This method
+    /// converts the file time to a <see cref="TimePeriod"/> using nanoseconds as the unit of measurement.</remarks>
+    /// <param name="fileTime">The file time, expressed as the number of 100-nanosecond intervals since January 1, 1601 (UTC).</param>
+    /// <returns>A <see cref="TimePeriod"/> representing the specified file time, converted to nanoseconds.</returns>
+    [Pure]
+    public static TimePeriod FromFileTime(long fileTime)
+    {
+        return new TimePeriod(fileTime * 100, UnitType.Nanoseconds);
     }
 
     /// <summary>

@@ -13,6 +13,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Turbidity :
+    IUnit<Turbidity, Turbidity.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -51,6 +52,28 @@ public struct Turbidity :
     }
 
     /// <summary>
+    /// Creates a Turbidity instance from a canonical (NTU) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Turbidity FromCanonical(double value)
+    {
+        return new Turbidity(value, UnitType.NTU);
+    }
+
+    /// <summary>
+    /// Gets the value of the Turbidity in Canonical (NTU) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return NTU;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.NTU;
+
+    /// <summary>
     /// Compare to another Turbidity object
     /// </summary>
     /// <param name="obj">The object to compare</param>
@@ -62,16 +85,6 @@ public struct Turbidity :
     /// </summary>
     /// <returns>int32 hash value</returns>
     [Pure] public override int GetHashCode() => NTU.GetHashCode();
-
-    // implicit conversions
-    //[Pure] public static implicit operator Turbidity(ushort value) => new Turbidity(value);
-    //[Pure] public static implicit operator Turbidity(short value) => new Turbidity(value);
-    //[Pure] public static implicit operator Turbidity(uint value) => new Turbidity(value);
-    //[Pure] public static implicit operator Turbidity(long value) => new Turbidity(value);
-    //[Pure] public static implicit operator Turbidity(int value) => new Turbidity(value);
-    //[Pure] public static implicit operator Turbidity(float value) => new Turbidity(value);
-    //[Pure] public static implicit operator Turbidity(double value) => new Turbidity(value);
-    //[Pure] public static implicit operator Turbidity(decimal value) => new Turbidity((double)value);
 
     // Comparison
     /// <summary>

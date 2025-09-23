@@ -17,6 +17,18 @@ public struct PotentialHydrogen :
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
+    private static readonly PotentialHydrogen _neutral;
+
+    static PotentialHydrogen()
+    {
+        _neutral = new PotentialHydrogen(7, UnitType.pH);
+    }
+
+    /// <summary>
+    /// Gets a voltage of 0 Volts
+    /// </summary>
+    public static PotentialHydrogen Neutral => _neutral;
+
     /// <summary>
     /// Creates a new <see cref="PotentialHydrogen"/> object.
     /// </summary>
