@@ -19,10 +19,12 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
    </PropertyGroup>
 
 	<ItemGroup>
 		<None Include="..\..\icon.png" Pack="true" PackagePath="" />
+		<None Include=".\Readme.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 
 </Project>
