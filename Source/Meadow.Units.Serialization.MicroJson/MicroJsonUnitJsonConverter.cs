@@ -93,12 +93,12 @@ public class MicroJsonUnitJsonConverter : IUnitJsonConverter
         var unitInterfaceType = GetUnitInterfaceType(type)
             ?? throw new Exception("Not a Unit type");
 
-        // Get the canonical value using the ToCanonical method
-        var toCanonicalMethod = unitInterfaceType.GetMethod("ToCanonical");
+        // Get the canonical value using the ToCanonical method (defined on the concrete type, inherited from IUnit)
+        var toCanonicalMethod = type.GetMethod("ToCanonical");
         double value = (double)toCanonicalMethod.Invoke(obj, null);
 
-        // Get the canonical unit type using GetCanonicalUnitType method
-        MethodInfo getCanonicalUnitTypeMethod = unitInterfaceType.GetMethod("GetCanonicalUnitType");
+        // Get the canonical unit type using GetCanonicalUnitType method (defined on IUnit<,>)
+        MethodInfo getCanonicalUnitTypeMethod = type.GetMethod("GetCanonicalUnitType");
         object unitTypeEnum = getCanonicalUnitTypeMethod.Invoke(obj, null);
         string unitType = unitTypeEnum.ToString();
 
