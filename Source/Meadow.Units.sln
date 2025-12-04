@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meadow.Units.Serialization.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meadow.Units.Tests", "Meadow.Units.Tests\Meadow.Units.Tests.csproj", "{4F7BE5D2-1BDD-95F4-AF92-58561CB2C63D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meadow.Units.Generators", "Meadow.Units.Generators\Meadow.Units.Generators.csproj", "{A8E3F1C4-6B7D-4E9A-8F2C-3D5E8A7B9C1D}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serialization.MicroJson", "..\..\Meadow.Foundation\Source\Meadow.Foundation.Libraries_and_Frameworks\Serialization.MicroJson\Driver\Serialization.MicroJson.csproj", "{D470EC1F-1E03-D25D-C98F-545830E86FE4}"
 EndProject
 Global
@@ -36,6 +38,10 @@ Global
 		{4F7BE5D2-1BDD-95F4-AF92-58561CB2C63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F7BE5D2-1BDD-95F4-AF92-58561CB2C63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F7BE5D2-1BDD-95F4-AF92-58561CB2C63D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8E3F1C4-6B7D-4E9A-8F2C-3D5E8A7B9C1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8E3F1C4-6B7D-4E9A-8F2C-3D5E8A7B9C1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8E3F1C4-6B7D-4E9A-8F2C-3D5E8A7B9C1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8E3F1C4-6B7D-4E9A-8F2C-3D5E8A7B9C1D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D470EC1F-1E03-D25D-C98F-545830E86FE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D470EC1F-1E03-D25D-C98F-545830E86FE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D470EC1F-1E03-D25D-C98F-545830E86FE4}.Release|Any CPU.ActiveCfg = Release|Any CPU

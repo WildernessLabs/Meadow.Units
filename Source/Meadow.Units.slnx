@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Solution Items/" />
+  <Project Path="../../Meadow.Foundation/Source/Meadow.Foundation.Libraries_and_Frameworks/Serialization.MicroJson/Driver/Serialization.MicroJson.csproj" />
+  <Project Path="Meadow.Units.Generators/Meadow.Units.Generators.csproj" />
+  <Project Path="Meadow.Units.Serialization.MicroJson/Meadow.Units.Serialization.MicroJson.csproj" />
+  <Project Path="Meadow.Units.Serialization.System.Text/Meadow.Units.Serialization.System.Text.csproj" />
+  <Project Path="Meadow.Units.Tests/Meadow.Units.Tests.csproj" />
+  <Project Path="Meadow.Units/Meadow.Units.csproj">
+    <Deploy />
+  </Project>
+</Solution>
