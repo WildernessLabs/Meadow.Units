@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Resistance :
+    IUnit<Resistance, Resistance.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -67,6 +68,28 @@ public struct Resistance :
         /// <summary> Megaohms </summary>
         Megaohms
     }
+
+    /// <summary>
+    /// Creates a Resistance instance from a canonical (Ohms) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Resistance FromCanonical(double value)
+    {
+        return new Resistance(value, UnitType.Ohms);
+    }
+
+    /// <summary>
+    /// Gets the value of the Resistance in Canonical (Ohms) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Ohms;
 
     /// <summary>
     /// Get resistance in MilliOhms

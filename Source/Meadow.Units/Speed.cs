@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Speed :
+    IUnit<Speed, Speed.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -73,6 +74,28 @@ public struct Speed :
         /// <summary> Mach </summary>
         Mach,
     }
+
+    /// <summary>
+    /// Creates a Speed instance from a canonical (KilometersPerSecond) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Speed FromCanonical(double value)
+    {
+        return new Speed(value, UnitType.KilometersPerSecond);
+    }
+
+    /// <summary>
+    /// Gets the value of the Speed in Canonical (KilometersPerSecond) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.KilometersPerSecond;
 
     /// <summary>
     /// Get speed in feet per second

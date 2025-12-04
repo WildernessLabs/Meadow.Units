@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct AbsoluteHumidity :
+    IUnit<AbsoluteHumidity, AbsoluteHumidity.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -51,6 +52,28 @@ public struct AbsoluteHumidity :
         /// <summary> Kilograms per cubic meter </summary>
         KilogramsPerCubicMeter,
     }
+
+    /// <summary>
+    /// Creates an AbsoluteHumidity instance from a canonical (GramsPerCubicMeter) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static AbsoluteHumidity FromCanonical(double value)
+    {
+        return new AbsoluteHumidity(value, UnitType.GramsPerCubicMeter);
+    }
+
+    /// <summary>
+    /// Gets the value of the AbsoluteHumidity in Canonical (GramsPerCubicMeter) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.GramsPerCubicMeter;
 
     /// <summary>
     /// Get value of object in grams per cubic meter

@@ -18,6 +18,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Azimuth :
+    IUnit<Azimuth, Azimuth.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -67,6 +68,28 @@ public struct Azimuth :
         /// </summary>
         Compass16CardinalPointNames
     }
+
+    /// <summary>
+    /// Creates an Azimuth instance from a canonical (DecimalDegrees) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Azimuth FromCanonical(double value)
+    {
+        return new Azimuth(value);
+    }
+
+    /// <summary>
+    /// Gets the value of the Azimuth in Canonical (DecimalDegrees) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.DecimalDegrees;
 
     //========================
     // TO property conversions

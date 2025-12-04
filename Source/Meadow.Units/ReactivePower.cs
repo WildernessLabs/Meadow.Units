@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct ReactivePower :
+    IUnit<ReactivePower, ReactivePower.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -57,6 +58,28 @@ public struct ReactivePower :
         /// <summary> Millivolt Ampere </summary>
         MillivoltAmperes,
     }
+
+    /// <summary>
+    /// Creates a ReactivePower instance from a canonical (VoltAmperes) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static ReactivePower FromCanonical(double value)
+    {
+        return new ReactivePower(value, UnitType.VoltAmperes);
+    }
+
+    /// <summary>
+    /// Gets the value of the ReactivePower in Canonical (VoltAmperes) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.VoltAmperes;
 
     /// <summary>
     ///ReactivePower in Millovolt Amperes

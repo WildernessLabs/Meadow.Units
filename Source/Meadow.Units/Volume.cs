@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Volume :
+    IUnit<Volume, Volume.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -63,6 +64,28 @@ public struct Volume :
         /// <summary> Cubic meters </summary>
         CubicMeters,
     }
+
+    /// <summary>
+    /// Creates a Volume instance from a canonical (Liters) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Volume FromCanonical(double value)
+    {
+        return new Volume(value, UnitType.Liters);
+    }
+
+    /// <summary>
+    /// Gets the value of the Volume in Canonical (Liters) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Liters;
 
     /// <summary>
     /// Get volume in US gallons

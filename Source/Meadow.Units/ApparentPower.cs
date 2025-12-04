@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct ApparentPower :
+    IUnit<ApparentPower, ApparentPower.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -67,6 +68,28 @@ public struct ApparentPower :
         /// </summary>
         MillivoltAmperes,
     }
+
+    /// <summary>
+    /// Creates an ApparentPower instance from a canonical (VoltAmperes) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static ApparentPower FromCanonical(double value)
+    {
+        return new ApparentPower(value, UnitType.VoltAmperes);
+    }
+
+    /// <summary>
+    /// Gets the value of the ApparentPower in Canonical (VoltAmperes) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.VoltAmperes;
 
     /// <summary>
     ///ApparentPower in Millovolt Amperes

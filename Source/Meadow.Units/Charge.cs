@@ -13,6 +13,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Charge :
+    IUnit<Charge, Charge.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -50,6 +51,28 @@ public struct Charge :
         /// </summary>
         Coulombs
     }
+
+    /// <summary>
+    /// Creates a Charge instance from a canonical (Coulombs) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Charge FromCanonical(double value)
+    {
+        return new Charge(value, UnitType.Coulombs);
+    }
+
+    /// <summary>
+    /// Gets the value of the Charge in Canonical (Coulombs) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Coulombs;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Coulombs;
 
     /// <summary>
     /// Compare to another Charge object

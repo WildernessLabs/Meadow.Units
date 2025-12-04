@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Energy :
+    IUnit<Energy, Energy.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -83,6 +84,28 @@ public struct Energy :
         /// </summary>
         WattSeconds
     }
+
+    /// <summary>
+    /// Creates an Energy instance from a canonical (Joules) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Energy FromCanonical(double value)
+    {
+        return new Energy(value, UnitType.Joules);
+    }
+
+    /// <summary>
+    /// Gets the value of the Energy in Canonical (Joules) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Joules;
 
     /// <summary>
     /// Get energy value as BTUs

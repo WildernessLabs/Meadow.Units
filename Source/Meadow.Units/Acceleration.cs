@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Acceleration :
+    IUnit<Acceleration, Acceleration.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -63,6 +64,28 @@ public struct Acceleration :
         /// <summary> Inches per second squared </summary>
         InchesPerSecondSquared,
     }
+
+    /// <summary>
+    /// Creates an Acceleration instance from a canonical (MetersPerSecondSquared) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Acceleration FromCanonical(double value)
+    {
+        return new Acceleration(value, UnitType.MetersPerSecondSquared);
+    }
+
+    /// <summary>
+    /// Gets the value of the Acceleration in Canonical (MetersPerSecondSquared) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.MetersPerSecondSquared;
 
     /// <summary>
     /// Get acceleration in meters per second squared

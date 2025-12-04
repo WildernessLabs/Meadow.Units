@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Power :
+    IUnit<Power, Power.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -93,6 +94,28 @@ public struct Power :
         /// <summary> Tons refrigeration </summary>
         TonsRefrigeration
     }
+
+    /// <summary>
+    /// Creates a Power instance from a canonical (Watts) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Power FromCanonical(double value)
+    {
+        return new Power(value, UnitType.Watts);
+    }
+
+    /// <summary>
+    /// Gets the value of the Power in Canonical (Watts) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Watts;
 
     /// <summary>
     /// Power in gigawatts

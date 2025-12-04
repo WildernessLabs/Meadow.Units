@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct AngularVelocity :
+    IUnit<AngularVelocity, AngularVelocity.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -83,6 +84,28 @@ public struct AngularVelocity :
         /// </summary>
         DegreesPerMinute
     }
+
+    /// <summary>
+    /// Creates an AngularVelocity instance from a canonical (RevolutionsPerSecond) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static AngularVelocity FromCanonical(double value)
+    {
+        return new AngularVelocity(value, UnitType.RevolutionsPerSecond);
+    }
+
+    /// <summary>
+    /// Gets the value of the AngularVelocity in Canonical (RevolutionsPerSecond) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.RevolutionsPerSecond;
 
     /// <summary>
     /// Get angular velocity in revolutions per second

@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct DigitalStorage :
+    IUnit<DigitalStorage, DigitalStorage.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -111,6 +112,28 @@ public struct DigitalStorage :
         /// </summary>
         GibiBytes,
     }
+
+    /// <summary>
+    /// Creates a DigitalStorage instance from a canonical (Bytes) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static DigitalStorage FromCanonical(double value)
+    {
+        return new DigitalStorage(value, UnitType.Bytes);
+    }
+
+    /// <summary>
+    /// Gets the value of the DigitalStorage in Canonical (Bytes) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Bytes;
 
     /// <summary>
     /// Get DigitalStorage in bits

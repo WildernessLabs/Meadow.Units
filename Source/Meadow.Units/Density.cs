@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Density :
+    IUnit<Density, Density.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -91,6 +92,28 @@ public struct Density :
         /// </summary>
         Water
     }
+
+    /// <summary>
+    /// Creates a Density instance from a canonical (KilogramsPerMetersCubed) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Density FromCanonical(double value)
+    {
+        return new Density(value, UnitType.KilogramsPerMetersCubed);
+    }
+
+    /// <summary>
+    /// Gets the value of the Density in Canonical (KilogramsPerMetersCubed) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.KilogramsPerMetersCubed;
 
     /// <summary>
     /// Get the density in micrograms per meters cubed

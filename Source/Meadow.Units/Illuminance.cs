@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Illuminance :
+    IUnit<Illuminance, Illuminance.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -65,6 +66,28 @@ public struct Illuminance :
         /// <summary> Foot candles </summary>
         FootCandles,
     }
+
+    /// <summary>
+    /// Creates an Illuminance instance from a canonical (Lux) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Illuminance FromCanonical(double value)
+    {
+        return new Illuminance(value, UnitType.Lux);
+    }
+
+    /// <summary>
+    /// Gets the value of the Illuminance in Canonical (Lux) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Lux;
 
     /// <summary>
     /// Get illuminance value as kiloLux

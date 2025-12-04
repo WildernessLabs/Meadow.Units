@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Torque :
+    IUnit<Torque, Torque.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -63,6 +64,28 @@ public struct Torque :
         /// <summary> Dyne centimeters </summary>
         DyneCentimeter
     }
+
+    /// <summary>
+    /// Creates a Torque instance from a canonical (NewtonMeter) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Torque FromCanonical(double value)
+    {
+        return new Torque(value, UnitType.NewtonMeter);
+    }
+
+    /// <summary>
+    /// Gets the value of the Torque in Canonical (NewtonMeter) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.NewtonMeter;
 
     /// <summary>
     /// Get torque in newton meters

@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct ParticleDensity :
+    IUnit<ParticleDensity, ParticleDensity.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -53,6 +54,28 @@ public struct ParticleDensity :
         /// <summary> Particles per milliliter </summary>
         ParticlesPerMilliliter,
     }
+
+    /// <summary>
+    /// Creates a ParticleDensity instance from a canonical (ParticlesPerLiter) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static ParticleDensity FromCanonical(double value)
+    {
+        return new ParticleDensity(value, UnitType.ParticlesPerLiter);
+    }
+
+    /// <summary>
+    /// Gets the value of the ParticleDensity in Canonical (ParticlesPerLiter) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.ParticlesPerLiter;
 
     /// <summary>
     /// Get the particle density in particles per liter

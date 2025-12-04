@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct AngularAcceleration :
+    IUnit<AngularAcceleration, AngularAcceleration.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -65,6 +66,28 @@ public struct AngularAcceleration :
         /// </summary>
         DegreesPerMinuteSquared
     }
+
+    /// <summary>
+    /// Creates an AngularAcceleration instance from a canonical (RevolutionsPerSecondSquared) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static AngularAcceleration FromCanonical(double value)
+    {
+        return new AngularAcceleration(value, UnitType.RevolutionsPerSecondSquared);
+    }
+
+    /// <summary>
+    /// Gets the value of the AngularAcceleration in Canonical (RevolutionsPerSecondSquared) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.RevolutionsPerSecondSquared;
 
     /// <summary>
     /// Get angular acceleration in revolutions per second squared

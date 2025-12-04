@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct ReactiveEnergy :
+    IUnit<ReactiveEnergy, ReactiveEnergy.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -67,6 +68,28 @@ public struct ReactiveEnergy :
         /// </summary>
         MillivoltAmpereHours,
     }
+
+    /// <summary>
+    /// Creates a ReactiveEnergy instance from a canonical (VoltAmpereHours) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static ReactiveEnergy FromCanonical(double value)
+    {
+        return new ReactiveEnergy(value, UnitType.VoltAmpereHours);
+    }
+
+    /// <summary>
+    /// Gets the value of the ReactiveEnergy in Canonical (VoltAmpereHours) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.VoltAmpereHours;
 
     /// <summary>
     ///ReactiveEnergy in Millovolt Ampere Hours

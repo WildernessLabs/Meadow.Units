@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Concentration :
+    IUnit<Concentration, Concentration.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -63,6 +64,28 @@ public struct Concentration :
         /// </summary>
         PartsPerBillion,
     }
+
+    /// <summary>
+    /// Creates a Concentration instance from a canonical (PartsPerMillion) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Concentration FromCanonical(double value)
+    {
+        return new Concentration(value, UnitType.PartsPerMillion);
+    }
+
+    /// <summary>
+    /// Gets the value of the Concentration in Canonical (PartsPerMillion) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.PartsPerMillion;
 
     /// <summary>
     /// Get Concentration in parts per 100

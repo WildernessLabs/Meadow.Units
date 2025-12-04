@@ -15,6 +15,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct RelativeHumidity :
+    IUnit<RelativeHumidity, RelativeHumidity.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -51,6 +52,28 @@ public struct RelativeHumidity :
         /// </summary>
         Percent
     }
+
+    /// <summary>
+    /// Creates a RelativeHumidity instance from a canonical (Percent) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static RelativeHumidity FromCanonical(double value)
+    {
+        return new RelativeHumidity(value, UnitType.Percent);
+    }
+
+    /// <summary>
+    /// Gets the value of the RelativeHumidity in Canonical (Percent) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Percent;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Percent;
 
     /// <summary>
     /// Compare to another RelativeHumidity object

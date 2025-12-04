@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct MagneticField :
+    IUnit<MagneticField, MagneticField.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -63,6 +64,28 @@ public struct MagneticField :
         /// <summary> Gauss </summary>
         Gauss
     }
+
+    /// <summary>
+    /// Creates a MagneticField instance from a canonical (Tesla) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static MagneticField FromCanonical(double value)
+    {
+        return new MagneticField(value, UnitType.Tesla);
+    }
+
+    /// <summary>
+    /// Gets the value of the MagneticField in Canonical (Tesla) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Tesla;
 
     /// <summary>
     /// Get the magnetic field value as MegaTesla

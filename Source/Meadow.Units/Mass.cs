@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Mass :
+    IUnit<Mass, Mass.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -65,6 +66,28 @@ public struct Mass :
         /// <summary> Carats </summary>
         Carats
     }
+
+    /// <summary>
+    /// Creates a Mass instance from a canonical (Grams) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Mass FromCanonical(double value)
+    {
+        return new Mass(value, UnitType.Grams);
+    }
+
+    /// <summary>
+    /// Gets the value of the Mass in Canonical (Grams) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Grams;
 
     /// <summary>
     /// Mass in grams

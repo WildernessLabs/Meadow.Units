@@ -14,6 +14,7 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 public struct Angle :
+    IUnit<Angle, Angle.UnitType>,
     IComparable, IFormattable, IConvertible,
     IEquatable<double>, IComparable<double>
 {
@@ -71,6 +72,28 @@ public struct Angle :
         /// <summary> Seconds </summary>
         Seconds
     }
+
+    /// <summary>
+    /// Creates an Angle instance from a canonical (Degrees) value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static Angle FromCanonical(double value)
+    {
+        return new Angle(value, UnitType.Degrees);
+    }
+
+    /// <summary>
+    /// Gets the value of the Angle in Canonical (Degrees) units
+    /// </summary>
+    /// <returns></returns>
+    public double ToCanonical()
+    {
+        return Value;
+    }
+
+    /// <inheritdoc/>
+    public UnitType GetCanonicalUnitType() => UnitType.Degrees;
 
     /// <summary>
     /// Get angle in revolutions
