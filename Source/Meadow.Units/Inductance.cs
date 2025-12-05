@@ -15,7 +15,10 @@ namespace Meadow.Units;
 [ImmutableObject(true)]
 [StructLayout(LayoutKind.Sequential)]
 [GenerateUnitBoilerplate]
-public partial struct Inductance
+public partial struct Inductance :
+    IUnit<Inductance, Inductance.UnitType>,
+    IComparable, IFormattable, IConvertible,
+    IEquatable<double>, IComparable<double>
 {
     private static readonly Inductance _zero;
 
