@@ -27,4 +27,10 @@
 		<None Include=".\Readme.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\Meadow.Units.Generators\Meadow.Units.Generators.csproj"
+		                  OutputItemType="Analyzer"
+		                  ReferenceOutputAssembly="false" />
+	</ItemGroup>
+
 </Project>

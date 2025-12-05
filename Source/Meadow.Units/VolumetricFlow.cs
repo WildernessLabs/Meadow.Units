@@ -1,6 +1,5 @@
 ﻿using Meadow.Units.Conversions;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 
 namespace Meadow.Units;
@@ -9,7 +8,8 @@ namespace Meadow.Units;
 /// Represents a volumetric flow measurement.
 /// Implements standard interfaces for comparison, formatting, and conversion operations.
 /// </summary>
-public struct VolumetricFlow :
+[GenerateUnitBoilerplate]
+public partial struct VolumetricFlow :
     IUnit<VolumetricFlow, VolumetricFlow.UnitType>,
     IComparable, IFormattable
 {
@@ -133,114 +133,6 @@ public struct VolumetricFlow :
     }
 
     /// <summary>
-    /// Determines whether the specified object is equal to the current unit.
-    /// </summary>
-    /// <param name="obj">The object to compare with the current unit.</param>
-    /// <returns>true if the specified object is equal to the current unit; otherwise, false.</returns>
-    [Pure] public override bool Equals(object obj) => CompareTo(obj) == 0;
-
-    /// <summary>
-    /// Returns the hash code for this unit.
-    /// </summary>
-    /// <returns>A hash code value generated from the underlying numerical value.</returns>
-    [Pure] public override int GetHashCode() => Value.GetHashCode();
-
-    /// <summary>
-    /// Determines whether the specified unit is equal to the current unit.
-    /// </summary>
-    /// <param name="other">The unit to compare with the current unit.</param>
-    /// <returns>true if the units are equal; otherwise, false.</returns>
-    [Pure] public bool Equals(VolumetricFlow other) => Value == other.Value;
-
-    /// <summary>
-    /// Determines whether two units are equal.
-    /// </summary>
-    /// <param name="left">The first unit to compare.</param>
-    /// <param name="right">The second unit to compare.</param>
-    /// <returns>true if the units are equal; otherwise, false.</returns>
-    [Pure] public static bool operator ==(VolumetricFlow left, VolumetricFlow right) => Equals(left.Value, right.Value);
-
-    /// <summary>
-    /// Determines whether two units are not equal.
-    /// </summary>
-    /// <param name="left">The first unit to compare.</param>
-    /// <param name="right">The second unit to compare.</param>
-    /// <returns>true if the units are not equal; otherwise, false.</returns>
-    [Pure] public static bool operator !=(VolumetricFlow left, VolumetricFlow right) => !Equals(left.Value, right.Value);
-
-    /// <summary>
-    /// Compares the current unit with another unit.
-    /// </summary>
-    /// <param name="other">The unit to compare with the current unit.</param>
-    /// <returns>A value that indicates the relative order of the units being compared. Returns 0 if equal, 
-    /// less than 0 if less than the other value, or greater than 0 if greater than the other value.</returns>
-    [Pure] public int CompareTo(VolumetricFlow other) => Equals(Value, other.Value) ? 0 : Value.CompareTo(other.Value);
-
-    /// <summary>
-    /// Determines whether the first unit is less than the second unit.
-    /// </summary>
-    /// <param name="left">The first unit to compare.</param>
-    /// <param name="right">The second unit to compare.</param>
-    /// <returns>true if the first unit is less than the second unit; otherwise, false.</returns>
-    [Pure] public static bool operator <(VolumetricFlow left, VolumetricFlow right) => Comparer<double>.Default.Compare(left.Value, right.Value) < 0;
-
-    /// <summary>
-    /// Determines whether the first unit is greater than the second unit.
-    /// </summary>
-    /// <param name="left">The first unit to compare.</param>
-    /// <param name="right">The second unit to compare.</param>
-    /// <returns>true if the first unit is greater than the second unit; otherwise, false.</returns>
-    [Pure] public static bool operator >(VolumetricFlow left, VolumetricFlow right) => Comparer<double>.Default.Compare(left.Value, right.Value) > 0;
-
-    /// <summary>
-    /// Determines whether the first unit is less than or equal to the second unit.
-    /// </summary>
-    /// <param name="left">The first unit to compare.</param>
-    /// <param name="right">The second unit to compare.</param>
-    /// <returns>true if the first unit is less than or equal to the second unit; otherwise, false.</returns>
-    [Pure] public static bool operator <=(VolumetricFlow left, VolumetricFlow right) => Comparer<double>.Default.Compare(left.Value, right.Value) <= 0;
-
-    /// <summary>
-    /// Determines whether the first unit is greater than or equal to the second unit.
-    /// </summary>
-    /// <param name="left">The first unit to compare.</param>
-    /// <param name="right">The second unit to compare.</param>
-    /// <returns>true if the first unit is greater than or equal to the second unit; otherwise, false.</returns>
-    [Pure] public static bool operator >=(VolumetricFlow left, VolumetricFlow right) => Comparer<double>.Default.Compare(left.Value, right.Value) >= 0;
-
-    /// <summary>
-    /// Adds two volumetric flow values.
-    /// </summary>
-    /// <param name="left">The first value to add.</param>
-    /// <param name="right">The second value to add.</param>
-    /// <returns>The sum of the two volumetric flow values.</returns>
-    [Pure] public static VolumetricFlow operator +(VolumetricFlow left, VolumetricFlow right) => new(left.Value + right.Value);
-
-    /// <summary>
-    /// Subtracts one volumetric flow value from another.
-    /// </summary>
-    /// <param name="left">The value to subtract from.</param>
-    /// <param name="right">The value to subtract.</param>
-    /// <returns>The difference between the two volumetric flow values.</returns>
-    [Pure] public static VolumetricFlow operator -(VolumetricFlow left, VolumetricFlow right) => new(left.Value - right.Value);
-
-    /// <summary>
-    /// Multiplies a volumetric flow value by a scalar value.
-    /// </summary>
-    /// <param name="value">The volumetric flow value to multiply.</param>
-    /// <param name="operand">The scalar value to multiply by.</param>
-    /// <returns>The product of the volumetric flow and scalar values.</returns>
-    [Pure] public static VolumetricFlow operator *(VolumetricFlow value, double operand) => new(value.Value * operand);
-
-    /// <summary>
-    /// Divides a volumetric flow value by a scalar value.
-    /// </summary>
-    /// <param name="value">The volumetric flow value to divide.</param>
-    /// <param name="operand">The scalar value to divide by.</param>
-    /// <returns>The quotient of the volumetric flow value and scalar value.</returns>
-    [Pure] public static VolumetricFlow operator /(VolumetricFlow value, double operand) => new(value.Value / operand);
-
-    /// <summary>
     /// Compares the current unit with another object.
     /// </summary>
     /// <param name="obj">The object to compare with the current unit.</param>
@@ -256,15 +148,6 @@ public struct VolumetricFlow :
         throw new ArgumentException("Object is not a VolumetricFlow");
     }
 
-    /// <summary>
-    /// Returns the TypeCode for the underlying value type.
-    /// </summary>
-    /// <returns>The TypeCode for the underlying double value.</returns>
-    [Pure] public TypeCode GetTypeCode() => Value.GetTypeCode();
-
     /// <inheritdoc/>
     [Pure] public string ToString(string format, IFormatProvider formatProvider) => Value.ToString(format, formatProvider);
-    /// <inheritdoc/>
-    [Pure] public string ToString(IFormatProvider provider) => Value.ToString(provider);
-
 }
