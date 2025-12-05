@@ -152,6 +152,15 @@ public partial struct TimePeriod :
     /// </summary>
     public readonly double Days => From(UnitType.Days);
 
+    /// <summary>
+    /// Adds the specified <see cref="TimePeriod"/> to the current <see cref="TimePeriod"/>.
+    /// </summary>
+    /// <param name="period">The <see cref="TimePeriod"/> to add.</param>
+    /// <returns>A new <see cref="TimePeriod"/> that is the sum of the current instance and the specified <see cref="TimePeriod"/>.</returns>
+    public TimePeriod Add(TimePeriod period)
+    {
+        return new TimePeriod(Value + period.Value);
+    }
 
     /// <summary>
     /// Converts the current <see cref="TimePeriod"/> value to the specified unit type.
