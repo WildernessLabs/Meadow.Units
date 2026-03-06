@@ -24,7 +24,7 @@ public partial struct Charge :
     /// <param name="type">Coulombs by default.</param>
     public Charge(double value, UnitType type = UnitType.Coulombs)
     {
-        Coulombs = value;
+        Value = value;
     }
 
     /// <summary>
@@ -33,7 +33,7 @@ public partial struct Charge :
     /// <param name="Charge"></param>
     public Charge(Charge Charge)
     {
-        Coulombs = Charge.Coulombs;
+        Value = Charge.Value;
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ public partial struct Charge :
     /// <summary>
     /// The Charge in coulombs
     /// </summary>
-    public double Coulombs { get; private set; }
+    public double Coulombs => Value;
 
     /// <summary>
     /// The type of units available to describe the Charge.

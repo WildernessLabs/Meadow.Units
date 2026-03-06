@@ -26,7 +26,7 @@ public partial struct RelativeHumidity :
     /// <param name="type">Relative humidity unit.</param>
     public RelativeHumidity(double value, UnitType type = UnitType.Percent)
     {
-        Percent = value;
+        Value = value;
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ public partial struct RelativeHumidity :
     /// <param name="relativeHumidity"></param>
     public RelativeHumidity(RelativeHumidity relativeHumidity)
     {
-        Percent = relativeHumidity.Percent;
+        Value = relativeHumidity.Value;
     }
 
     /// <summary>
@@ -46,7 +46,7 @@ public partial struct RelativeHumidity :
     /// <summary>
     /// The relative expressed as a value percent.
     /// </summary>
-    public double Percent { get; private set; }
+    public double Percent => Value;
     /// <summary>
     /// The type of units available to describe the RelativeHumidity.
     /// </summary>
