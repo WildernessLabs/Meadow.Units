@@ -25,7 +25,7 @@ public partial struct Turbidity :
     public Turbidity(double value, UnitType type = UnitType.NTU)
     {
         if (value < 0) throw new ArgumentOutOfRangeException($"Turbidity cannot be less than 0");
-        NTU = value;
+        Value = value;
     }
 
     /// <summary>
@@ -34,7 +34,7 @@ public partial struct Turbidity :
     /// <param name="Turbidity"></param>
     public Turbidity(Turbidity Turbidity)
     {
-        NTU = Turbidity.NTU;
+        Value = Turbidity.Value;
     }
 
     /// <summary>
@@ -45,7 +45,7 @@ public partial struct Turbidity :
     /// <summary>
     /// The Turbidity expressed as Nephelometric Turbidity Units (NTU)
     /// </summary>
-    public double NTU { get; private set; }
+    public double NTU => Value;
 
     /// <summary>
     /// The type of units available to describe the Turbidity.

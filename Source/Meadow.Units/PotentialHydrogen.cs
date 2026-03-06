@@ -41,7 +41,7 @@ public partial struct PotentialHydrogen :
     /// <param name="type">Potential Hydrogen unit.</param>
     public PotentialHydrogen(double value, UnitType type = UnitType.pH)
     {
-        pH = value;
+        Value = value;
     }
 
     /// <summary>
@@ -50,13 +50,13 @@ public partial struct PotentialHydrogen :
     /// <param name="PotentialHydrogen"></param>
     public PotentialHydrogen(PotentialHydrogen PotentialHydrogen)
     {
-        pH = PotentialHydrogen.pH;
+        Value = PotentialHydrogen.Value;
     }
 
     /// <summary>
     /// The Potential Hydrogen expressed as pH.
     /// </summary>
-    public double pH { get; private set; }
+    public double pH => Value;
 
     /// <summary>
     /// The type of units available to describe the PotentialHydrogen.

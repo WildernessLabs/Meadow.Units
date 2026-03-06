@@ -61,7 +61,7 @@ public static class AzimuthConversions
 
         return value switch
         {
-            double v when (v >= 348.75f && v < 11.25) => Azimuth16PointCardinalNames.N,
+            double v when (v >= 348.75 || v < 11.25) => Azimuth16PointCardinalNames.N,
             double v when (v >= 11.25f && v < 33.75) => Azimuth16PointCardinalNames.NNE,
             double v when (v >= 33.75f && v < 56.25) => Azimuth16PointCardinalNames.NE,
             double v when (v >= 56.25f && v < 78.75) => Azimuth16PointCardinalNames.ENE,
