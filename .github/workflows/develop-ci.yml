@@ -16,26 +16,26 @@ jobs:
     
     # need Foundation for MicroJson
     - name: Checkout Meadow.Foundation
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         repository: WildernessLabs/Meadow.Foundation
         path: Meadow.Foundation
         ref: develop
         
     - name: Checkout Meadow.Contracts
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         repository: WildernessLabs/Meadow.Contracts
         path: Meadow.Contracts
         ref: develop
 
     - name: Checkout Meadow.Units
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         path: Meadow.Units
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 8.0.x
 
